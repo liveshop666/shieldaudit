@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SA Rapport">
+<meta name="theme-color" content="#2d6a4f">
+<title>ShieldAudit — Rapport d'Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--noir:#0f0f0f;--blanc:#fafaf8;--vert:#2d6a4f;--vl:#e8f4ee;--gris:#6b6b6b;--border:#e2e2de;--bg:#f0f0ec;--rouge:#cc3333;--orange:#cc7700;--jaune:#b8860b}
+html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir);overflow-x:hidden}
+.topbar{background:var(--noir);padding:0.8rem 1.2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap}
+.logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:white}
+.logo span{color:#6fcf97}
+.tr{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
+.btn{padding:0.5rem 0.9rem;border-radius:100px;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;border:1px solid #444;color:#aaa;background:transparent;-webkit-appearance:none}
+.btn.v{background:var(--vert);border-color:var(--vert);color:white}
+.btn.r{background:var(--rouge);border-color:var(--rouge);color:white}
+.tabs{background:var(--blanc);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:0.85rem 1rem;font-size:0.82rem;cursor:pointer;border:none;background:transparent;color:var(--gris);font-family:'DM Sans',sans-serif;border-bottom:3px solid transparent;white-space:nowrap;-webkit-appearance:none}
+.tab.active{color:var(--vert);border-bottom-color:var(--vert);font-weight:500}
+.nb{background:var(--rouge);color:white;font-size:0.6rem;padding:1px 5px;border-radius:100px;font-weight:700;margin-left:3px}
+.sec{display:none;padding:1rem;max-width:900px;margin:0 auto;padding-bottom:5rem}
+.sec.active{display:block}
+.card{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem}
+.ct{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem}
+.full{grid-column:1/-1}
+@media(max-width:600px){.g2,.g3{grid-column:1fr}}
+.fg{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.6rem}
+.fg label{font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris)}
+.fg input,.fg select,.fg textarea{padding:0.65rem 0.85rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;background:var(--blanc);width:100%;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--vert)}
+.fg textarea{resize:vertical;min-height:80px;line-height:1.6}
+.sc-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin-bottom:1rem}
+.sc{border-radius:10px;padding:1rem;text-align:center}
+.sc.r{background:#fff0f0;border:1px solid #ffcccc}
+.sc.o{background:#fff8f0;border:1px solid #ffd9aa}
+.sc.v{background:var(--vl);border:1px solid #aae0c4}
+.sv{font-family:'DM Serif Display',serif;font-size:2.2rem;line-height:1}
+.r .sv{color:var(--rouge)}.o .sv{color:var(--orange)}.v .sv{color:var(--vert)}
+.sl{font-size:0.7rem;margin-top:3px}
+.r .sl{color:#aa2222}.o .sl{color:#aa5500}.v .sl{color:#1a5035}
+.fw{margin-bottom:0.8rem;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--blanc)}
+.fh{display:flex;align-items:center;gap:0.6rem;padding:0.8rem 1rem}
+.fh.critique{background:#fff0f0;border-bottom:1px solid #ffcccc}
+.fh.eleve{background:#fff8f0;border-bottom:1px solid #ffd9aa}
+.fh.moyen{background:#fffdf0;border-bottom:1px solid #ffe9a0}
+.ns{font-size:0.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:100px;border:none;cursor:pointer;font-family:inherit;-webkit-appearance:none}
+.ns.critique{background:var(--rouge);color:white}
+.ns.eleve{background:var(--orange);color:white}
+.ns.moyen{background:var(--jaune);color:white}
+.fti{flex:1;border:none;background:transparent;font-size:0.9rem;font-weight:500;font-family:inherit;outline:none;color:var(--noir);min-width:0}
+.fn{font-size:0.7rem;color:#ccc;flex-shrink:0}
+.db{background:none;border:none;cursor:pointer;color:#ccc;font-size:1.1rem;padding:0 0 0 4px}
+.db:active{color:var(--rouge)}
+.fb{padding:1rem}
+.reco{background:var(--vl);border-left:4px solid var(--vert);border-radius:0 10px 10px 0;padding:0.8rem 1rem;margin-top:0.6rem}
+.reco label{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:600;display:block;margin-bottom:4px}
+.reco textarea{background:transparent;border:none;outline:none;font-size:0.85rem;color:#1a3a2a;font-family:inherit;width:100%;resize:none;line-height:1.6;min-height:60px}
+.photos-row{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem}
+.pbox{border:2px dashed var(--border);border-radius:10px;overflow:hidden;background:#fafaf8;position:relative;min-height:110px;transition:border-color 0.2s}
+.pbox:active{border-color:var(--vert)}
+.pbox input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:20;font-size:16px}
+.pph{padding:1.2rem 0.5rem;text-align:center;pointer-events:none;position:relative;z-index:1}
+.pph svg{width:24px;height:24px;stroke:#ccc;fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 0.3rem}
+.pph p{font-size:0.7rem;color:#ccc}
+.pi{width:100%;height:120px;object-fit:cover;display:none;position:relative;z-index:2}
+.pcap{padding:4px 8px;background:#f4f4f0;border-top:1px solid var(--border)}
+.pcap input{border:none;background:transparent;font-size:0.7rem;color:var(--gris);font-family:inherit;outline:none;width:100%}
+.ab{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:0.6rem}
+.ah{padding:0.7rem 1rem}
+.ah.rh{background:#fff0f0;border-bottom:1px solid #ffcccc}
+.ah.oh{background:#fff8f0;border-bottom:1px solid #ffd9aa}
+.ah.vh{background:var(--vl);border-bottom:1px solid #aae0c4}
+.ah h4{font-size:0.83rem;font-weight:600}
+.rh h4{color:var(--rouge)}.oh h4{color:var(--orange)}.vh h4{color:var(--vert)}
+.abody{padding:0.8rem;background:white}
+.abody textarea{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:0.6rem;font-size:0.85rem;font-family:inherit;outline:none;resize:vertical;min-height:80px;line-height:1.6}
+.abody textarea:focus{border-color:var(--vert)}
+.add-btn{width:100%;padding:0.9rem;background:var(--blanc);border:2px dashed var(--border);border-radius:12px;color:var(--gris);font-size:0.88rem;font-family:inherit;cursor:pointer;margin-bottom:0.8rem;-webkit-appearance:none}
+.add-btn:active{border-color:var(--vert);color:var(--vert)}
+.nav-btns{display:flex;justify-content:space-between;margin-top:1rem}
+.scb{border:2px dashed var(--border);border-radius:10px;background:#fafaf8;position:relative;height:130px;touch-action:none}
+.scanvas{width:100%;height:100%;display:block;border-radius:10px;touch-action:none}
+.sph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc}
+.sclear{background:transparent;border:1px solid var(--border);border-radius:100px;padding:0.35rem 1rem;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--gris);margin-top:0.3rem;-webkit-appearance:none}
+.sname{margin-top:0.4rem}
+.sname input{padding:0.5rem 0.8rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.85rem;font-family:inherit;outline:none;width:100%}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:550px){.sig-grid{grid-template-columns:1fr}}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;background:var(--noir);color:white;padding:0.65rem 1.2rem;border-radius:100px;font-size:0.8rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.g{background:var(--vert)}
+.empty{text-align:center;padding:2.5rem 1rem;color:var(--gris)}
+.si{font-size:0.72rem;color:#555}
+
+/* RAPPORT PDF — page complète */
+#rapport-pdf{display:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Shield<span>Audit</span> · Rapport</div>
+  <div class="tr">
+    <span class="si" id="sav-ind">Prêt</span>
+    <button class="btn" onclick="if(window.history.length>1){history.back();}else{window.close();}">← Retour</button>
+    <button class="btn" onclick="resetAll()">↺ Nouveau</button>
+    <button class="btn" onclick="addFaille()">+ Faille</button>
+    <button class="btn v" onclick="genPDF()">📄 PDF</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="goTab('infos')" id="t-infos">📋 Infos</button>
+  <button class="tab" onclick="goTab('failles')" id="t-failles">⚠ Failles <span class="nb" id="nb">0</span></button>
+  <button class="tab" onclick="goTab('synthese')" id="t-synthese">📊 Synthèse</button>
+  <button class="tab" onclick="goTab('actions')" id="t-actions">✅ Plan</button>
+  <button class="tab" onclick="goTab('conclusion')" id="t-conclusion">🖊 Conclusion</button>
+</div>
+
+<!-- INFOS -->
+<div class="sec active" id="sec-infos">
+  <div class="card">
+    <div class="ct">Identification du magasin</div>
+    <div class="g2">
+      <div class="fg"><label>Nom du magasin *</label><input id="r_mag" placeholder="Ex: Monoprix Lyon" oninput="autosave()"></div>
+      <div class="fg"><label>Responsable</label><input id="r_resp" placeholder="Ex: Jean Dupont" oninput="autosave()"></div>
+      <div class="fg full"><label>Adresse</label><input id="r_adr" placeholder="Adresse complète" oninput="autosave()"></div>
+      <div class="fg"><label>Référence rapport</label><input id="r_ref" placeholder="SA-2026-001" oninput="autosave()"></div>
+      <div class="fg"><label>Date de l'audit</label><input type="date" id="r_date" oninput="autosave()"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Déroulement</div>
+    <div class="g3">
+      <div class="fg"><label>Heure d'entrée</label><input type="time" id="r_ent" oninput="autosave()"></div>
+      <div class="fg"><label>Heure de fin</label><input type="time" id="r_fin" oninput="autosave()"></div>
+      <div class="fg"><label>Effectif présent</label><input type="number" id="r_eff" placeholder="Ex: 6" oninput="autosave()"></div>
+      <div class="fg"><label>Surface de vente</label><input id="r_surf" placeholder="Ex: 800 m²" oninput="autosave()"></div>
+      <div class="fg"><label>Nb de caméras</label><input type="number" id="r_cam" placeholder="Ex: 12" oninput="autosave()"></div>
+      <div class="fg"><label>Portiques EAS</label>
+        <select id="r_eas" onchange="autosave()">
+          <option value="">— État —</option>
+          <option>Fonctionnels</option>
+          <option>Partiellement fonctionnels</option>
+          <option>Hors service</option>
+          <option>Absents</option>
+        </select>
+      </div>
+      <div class="fg full"><label>Sécurité existante</label><input id="r_sec" placeholder="Ex: 12 caméras, portiques EAS x2" oninput="autosave()"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Observations générales</div>
+    <div class="fg"><textarea id="r_obs" rows="4" placeholder="Observations générales..." oninput="autosave()"></textarea></div>
+  </div>
+  <div class="nav-btns">
+    <div></div>
+    <button class="btn v" onclick="goTab('failles')">Failles →</button>
+  </div>
+</div>
+
+<!-- FAILLES -->
+<div class="sec" id="sec-failles">
+  <div id="fl"></div>
+  <button class="add-btn" onclick="addFaille()">+ Ajouter une faille</button>
+  <div class="nav-btns">
+    <button class="btn" onclick="goTab('infos')">← Infos</button>
+    <button class="btn v" onclick="goTab('synthese')">Synthèse →</button>
+  </div>
+</div>
+
+<!-- SYNTHESE -->
+<div class="sec" id="sec-synthese">
+  <div class="card">
+    <div class="ct">Bilan des failles</div>
+    <div class="sc-row">
+      <div class="sc r"><div class="sv" id="sc">0</div><div class="sl">Critiques</div></div>
+      <div class="sc o"><div class="sv" id="se">0</div><div class="sl">Élevées</div></div>
+      <div class="sc v"><div class="sv" id="sm">0</div><div class="sl">Moyennes</div></div>
+    </div>
+    <div class="fg"><label>Résumé exécutif</label><textarea id="r_res" rows="4" placeholder="Résumé pour le gérant..." oninput="autosave()"></textarea></div>
+    <div class="fg" style="margin-top:0.5rem"><label>⚠ Point d'alerte principal</label><textarea id="r_ale" rows="3" placeholder="La faille la plus grave..." oninput="autosave()" style="border-color:var(--rouge)"></textarea></div>
+  </div>
+  <div class="card">
+    <div class="ct">Tableau récapitulatif</div>
+    <div id="recap" style="overflow-x:auto"></div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn" onclick="goTab('failles')">← Failles</button>
+    <button class="btn v" onclick="goTab('actions')">Plan →</button>
+  </div>
+</div>
+
+<!-- ACTIONS -->
+<div class="sec" id="sec-actions">
+  <div class="card">
+    <div class="ct">Plan d'action recommandé</div>
+    <div class="ab"><div class="ah rh"><h4>🔴 Actions immédiates — 48h max</h4></div><div class="abody"><textarea id="act_r" placeholder="Actions urgentes..." oninput="autosave()"></textarea></div></div>
+    <div class="ab"><div class="ah oh"><h4>🟠 Actions sous 1 semaine</h4></div><div class="abody"><textarea id="act_o" placeholder="Actions à court terme..." oninput="autosave()"></textarea></div></div>
+    <div class="ab"><div class="ah vh"><h4>🟢 Actions sous 1 mois</h4></div><div class="abody"><textarea id="act_v" placeholder="Actions à moyen terme..." oninput="autosave()"></textarea></div></div>
+  </div>
+  <div class="card">
+    <div class="ct">Estimation financière</div>
+    <div class="g2">
+      <div class="fg"><label>Coût corrections estimé (€)</label><input type="number" id="r_cout" placeholder="Ex: 2500" oninput="autosave();calcEco()"></div>
+      <div class="fg"><label>Réduction pertes estimée (%)</label><input type="number" id="r_red" placeholder="Ex: 60" oninput="autosave();calcEco()"></div>
+      <div class="fg"><label>Pertes annuelles estimées (€)</label><input type="number" id="r_pert" placeholder="Ex: 12000" oninput="autosave();calcEco()"></div>
+      <div class="fg"><label>Économies annuelles (calculé)</label><input id="r_eco" readonly style="background:#f4f4f0;color:var(--gris)"></div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn" onclick="goTab('synthese')">← Synthèse</button>
+    <button class="btn v" onclick="goTab('conclusion')">Conclusion →</button>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="sec" id="sec-conclusion">
+  <div class="card">
+    <div class="ct">Conclusion de l'auditeur</div>
+    <div class="fg"><textarea id="r_ccl" rows="7" placeholder="Appréciation globale, conseils de suivi..." oninput="autosave()"></textarea></div>
+  </div>
+  <div class="card">
+    <div class="ct">Signatures</div>
+    <div class="sig-grid">
+      <div>
+        <div style="font-size:0.78rem;color:var(--gris);margin-bottom:0.4rem">ShieldAudit — L'Auditeur</div>
+        <div class="scb"><canvas id="sig1" class="scanvas"></canvas><div class="sph" id="sig1-ph"><div style="font-size:2rem">✍</div><div style="font-size:0.8rem;margin-top:4px">Signer ici</div></div></div>
+        <button class="sclear" onclick="clearSig('sig1')">Effacer</button>
+        <div class="sname"><input id="sig1-nm" placeholder="Nom de l'auditeur"></div>
+      </div>
+      <div>
+        <div style="font-size:0.78rem;color:var(--gris);margin-bottom:0.4rem">Le Client</div>
+        <div class="scb"><canvas id="sig2" class="scanvas"></canvas><div class="sph" id="sig2-ph"><div style="font-size:2rem">✍</div><div style="font-size:0.8rem;margin-top:4px">Signer ici</div></div></div>
+        <button class="sclear" onclick="clearSig('sig2')">Effacer</button>
+        <div class="sname"><input id="sig2-nm" placeholder="Nom, Prénom, Qualité"></div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn" onclick="goTab('actions')">← Plan</button>
+    <button class="btn v" onclick="genPDF()" style="padding:0.6rem 1.5rem">📄 Générer PDF</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+let D = JSON.parse(localStorage.getItem('sa_rapp3') || '{}');
+if(!D.failles) D.failles = [];
+
+// ===== NAV =====
+function goTab(id){
+  ['infos','failles','synthese','actions','conclusion'].forEach(t=>{
+    document.getElementById('sec-'+t).classList.toggle('active', t===id);
+    document.getElementById('t-'+t).classList.toggle('active', t===id);
+  });
+  window.scrollTo(0,0);
+  if(id==='failles') renderF();
+  if(id==='synthese'){ renderF(); renderRecap(); updSynth(); }
+  if(id==='conclusion') setTimeout(()=>{ initSig('sig1'); initSig('sig2'); },200);
+}
+
+// ===== SAVE =====
+let saveT;
+function autosave(){ clearTimeout(saveT); document.getElementById('sav-ind').textContent='...'; saveT=setTimeout(doSave,800); }
+function doSave(){
+  const ids=['r_mag','r_resp','r_adr','r_ref','r_date','r_ent','r_fin','r_eff','r_surf','r_cam','r_eas','r_sec','r_obs','r_res','r_ale','r_cout','r_red','r_pert','r_ccl','act_r','act_o','act_v','sig1-nm','sig2-nm'];
+  ids.forEach(id=>{ const el=document.getElementById(id); if(el) D[id]=el.value; });
+  localStorage.setItem('sa_rapp3', JSON.stringify(D));
+  document.getElementById('sav-ind').textContent='✓ Sauvegardé';
+}
+function loadData(){
+  Object.entries(D).forEach(([k,v])=>{ if(typeof v==='string'){ const el=document.getElementById(k); if(el) el.value=v; } });
+  updSynth();
+}
+function resetAll(){ if(!confirm('Effacer tout et recommencer ?')) return; D={failles:[]}; localStorage.removeItem('sa_rapp3'); location.reload(); }
+
+// ===== FAILLES =====
+function addFaille(){
+  D.failles.push({id:Date.now(),n:'critique',titre:'',zone:'',tech:'',val:'',dur:'',desc:'',reco:'',del:'48h',p1:null,p2:null,c1:'',c2:''});
+  doSave(); renderF(); goTab('failles');
+  showToast('Faille ajoutée ✓','g');
+}
+function updF(id,k,v){ const f=D.failles.find(x=>x.id===id); if(f){ f[k]=v; doSave(); if(k==='n') updSynth(); } }
+function delF(id){ if(!confirm('Supprimer ?')) return; D.failles=D.failles.filter(x=>x.id!==id); doSave(); renderF(); }
+
+function renderF(){
+  const el=document.getElementById('fl');
+  document.getElementById('nb').textContent=D.failles.length;
+  updSynth();
+  if(!D.failles.length){ el.innerHTML='<div class="empty"><div style="font-size:2rem;opacity:0.4;margin-bottom:0.6rem">🔍</div><p>Aucune faille.<br>Appuie sur <b>+ Ajouter une faille</b></p></div>'; return; }
+  el.innerHTML=D.failles.map((f,i)=>`
+<div class="fw">
+  <div class="fh ${f.n}" id="fh${f.id}">
+    <select class="ns ${f.n}" onchange="updF(${f.id},'n',this.value);this.className='ns '+this.value;document.getElementById('fh${f.id}').className='fh '+this.value">
+      <option value="critique" ${f.n==='critique'?'selected':''}>CRITIQUE</option>
+      <option value="eleve" ${f.n==='eleve'?'selected':''}>ÉLEVÉ</option>
+      <option value="moyen" ${f.n==='moyen'?'selected':''}>MOYEN</option>
+    </select>
+    <input class="fti" placeholder="Titre de la faille" value="${esc(f.titre)}" oninput="updF(${f.id},'titre',this.value)">
+    <span class="fn">#${String(i+1).padStart(2,'0')}</span>
+    <button class="db" onclick="delF(${f.id})">✕</button>
+  </div>
+  <div class="fb">
+    <div class="g2" style="margin-bottom:0.6rem">
+      <div class="fg"><label>Zone concernée</label><input placeholder="Ex: Rayon électronique" value="${esc(f.zone)}" oninput="updF(${f.id},'zone',this.value)"></div>
+      <div class="fg"><label>Technique exploitée</label><input placeholder="Ex: Dissimulation" value="${esc(f.tech)}" oninput="updF(${f.id},'tech',this.value)"></div>
+      <div class="fg"><label>Valeur à risque</label><input placeholder="Ex: ~800 €" value="${esc(f.val)}" oninput="updF(${f.id},'val',this.value)"></div>
+      <div class="fg"><label>Délai recommandé</label>
+        <select onchange="updF(${f.id},'del',this.value)">
+          <option value="immediat" ${f.del==='immediat'?'selected':''}>⚡ Immédiat</option>
+          <option value="48h" ${f.del==='48h'?'selected':''}>🔴 48h max</option>
+          <option value="semaine" ${f.del==='semaine'?'selected':''}>🟠 1 semaine</option>
+          <option value="mois" ${f.del==='mois'?'selected':''}>🟡 1 mois</option>
+        </select>
+      </div>
+      <div class="fg full"><label>Description détaillée</label><textarea rows="3" placeholder="Ce qui a été observé..." oninput="updF(${f.id},'desc',this.value)">${esc(f.desc)}</textarea></div>
+    </div>
+    <div class="reco">
+      <label>✅ Recommandation ShieldAudit</label>
+      <textarea rows="2" placeholder="Action corrective recommandée..." oninput="updF(${f.id},'reco',this.value)">${esc(f.reco)}</textarea>
+    </div>
+    <div class="photos-row">
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);margin-bottom:3px">Photo 1</div>
+        <div class="pbox">
+          <input type="file" accept="image/*" capture="environment" onchange="handleP(this,${f.id},'p1')">
+          <img class="pi" id="pi1-${f.id}" ${f.p1?`src="${f.p1}" style="display:block"`:''}><div class="pph" id="pph1-${f.id}" ${f.p1?'style="display:none"':''}><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p>📷 Photo</p></div>
+        </div>
+        <div class="pcap"><input placeholder="Légende..." value="${esc(f.c1)}" oninput="updF(${f.id},'c1',this.value)"></div>
+      </div>
+      <div>
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);margin-bottom:3px">Photo 2</div>
+        <div class="pbox">
+          <input type="file" accept="image/*" capture="environment" onchange="handleP(this,${f.id},'p2')">
+          <img class="pi" id="pi2-${f.id}" ${f.p2?`src="${f.p2}" style="display:block"`:''}><div class="pph" id="pph2-${f.id}" ${f.p2?'style="display:none"':''}><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><p>📷 Photo</p></div>
+        </div>
+        <div class="pcap"><input placeholder="Légende..." value="${esc(f.c2)}" oninput="updF(${f.id},'c2',this.value)"></div>
+      </div>
+    </div>
+  </div>
+</div>`).join('');
+}
+
+function handleP(input,fId,slot){
+  const file=input.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const src=e.target.result;
+    const n=slot==='p1'?'1':'2';
+    const img=document.getElementById(`pi${n}-${fId}`);
+    const ph=document.getElementById(`pph${n}-${fId}`);
+    if(img){img.src=src;img.style.display='block';}
+    if(ph) ph.style.display='none';
+    const f=D.failles.find(x=>x.id===fId);
+    if(f){f[slot]=src;doSave();}
+    showToast('✓ Photo ajoutée','g');
+  };
+  r.readAsDataURL(file);
+}
+
+function updSynth(){
+  const c=D.failles.filter(f=>f.n==='critique').length;
+  const e=D.failles.filter(f=>f.n==='eleve').length;
+  const m=D.failles.filter(f=>f.n==='moyen').length;
+  document.getElementById('sc').textContent=c;
+  document.getElementById('se').textContent=e;
+  document.getElementById('sm').textContent=m;
+  document.getElementById('nb').textContent=D.failles.length;
+}
+
+function renderRecap(){
+  const DL={immediat:'⚡ Immédiat','48h':'🔴 48h',semaine:'🟠 1 sem.',mois:'🟡 1 mois'};
+  const NB={critique:'<span style="background:#fff0f0;color:var(--rouge);border:1px solid #ffaaaa;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Critique</span>',eleve:'<span style="background:#fff8f0;color:var(--orange);border:1px solid #ffd9aa;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Élevé</span>',moyen:'<span style="background:#fffdf0;color:var(--jaune);border:1px solid #ffe9a0;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Moyen</span>'};
+  if(!D.failles.length){document.getElementById('recap').innerHTML='<p style="color:var(--gris);font-size:0.83rem">Aucune faille.</p>';return;}
+  document.getElementById('recap').innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:0.8rem"><thead><tr style="background:var(--noir);color:white"><th style="padding:7px 10px;text-align:left">#</th><th style="padding:7px 10px;text-align:left">Faille</th><th style="padding:7px 10px;text-align:left">Zone</th><th style="padding:7px 10px;text-align:left">Niveau</th><th style="padding:7px 10px;text-align:left">Délai</th></tr></thead><tbody>${D.failles.map((f,i)=>`<tr style="border-bottom:1px solid #f0f0ec"><td style="padding:7px 10px;color:#bbb">${String(i+1).padStart(2,'0')}</td><td style="padding:7px 10px">${esc(f.titre||'—')}</td><td style="padding:7px 10px;color:var(--gris)">${esc(f.zone||'—')}</td><td style="padding:7px 10px">${NB[f.n]||f.n}</td><td style="padding:7px 10px">${DL[f.del]||'—'}</td></tr>`).join('')}</tbody></table>`;
+}
+
+function calcEco(){
+  const p=parseFloat(document.getElementById('r_pert')?.value)||0;
+  const r=parseFloat(document.getElementById('r_red')?.value)||0;
+  const el=document.getElementById('r_eco');
+  if(el) el.value=p&&r?Math.round(p*r/100).toLocaleString('fr-FR')+' €/an':'';
+}
+
+// ===== SIGNATURES =====
+const SG={};
+function initSig(id){
+  const canvas=document.getElementById(id);
+  if(!canvas||SG[id]) return;
+  const box=canvas.parentElement;
+  const rb=box.getBoundingClientRect();
+  canvas.width=Math.floor(rb.width);
+  canvas.height=Math.floor(rb.height);
+  const ctx=canvas.getContext('2d');
+  ctx.strokeStyle='#0f0f0f';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+  SG[id]={ctx,drawing:false};
+  const getP=e=>{const r=canvas.getBoundingClientRect();const s=e.touches?e.touches[0]:e;return{x:s.clientX-r.left,y:s.clientY-r.top};};
+  canvas.addEventListener('mousedown',e=>{e.preventDefault();const p=getP(e);SG[id].drawing=true;ctx.beginPath();ctx.moveTo(p.x,p.y);document.getElementById(id+'-ph').style.display='none';});
+  canvas.addEventListener('mousemove',e=>{if(!SG[id]?.drawing)return;const p=getP(e);ctx.lineTo(p.x,p.y);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,p.y);});
+  canvas.addEventListener('mouseup',e=>{e.preventDefault();if(SG[id])SG[id].drawing=false;});
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();const p=getP(e);SG[id].drawing=true;ctx.beginPath();ctx.moveTo(p.x,p.y);document.getElementById(id+'-ph').style.display='none';},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!SG[id]?.drawing)return;const p=getP(e);ctx.lineTo(p.x,p.y);ctx.stroke();ctx.beginPath();ctx.moveTo(p.x,p.y);},{passive:false});
+  canvas.addEventListener('touchend',e=>{e.preventDefault();if(SG[id])SG[id].drawing=false;},{passive:false});
+}
+function clearSig(id){if(SG[id])SG[id].ctx.clearRect(0,0,99999,99999);const ph=document.getElementById(id+'-ph');if(ph)ph.style.display='flex';}
+
+// ===== GÉNÉRER PDF =====
+function genPDF(){
+  doSave();
+  updSynth();
+  renderRecap();
+
+  const v=id=>document.getElementById(id)?.value||'—';
+  const mag=v('r_mag');
+  const ref=v('r_ref');
+  const date=v('r_date');
+  const DL={immediat:'⚡ Immédiat','48h':'🔴 48h max',semaine:'🟠 1 semaine',mois:'🟡 1 mois'};
+
+  // Signatures
+  const sig1=SG['sig1']?document.getElementById('sig1').toDataURL():'';
+  const sig2=SG['sig2']?document.getElementById('sig2').toDataURL():'';
+
+  const c=D.failles.filter(f=>f.n==='critique').length;
+  const e=D.failles.filter(f=>f.n==='eleve').length;
+  const m=D.failles.filter(f=>f.n==='moyen').length;
+
+  let html=`<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rapport ShieldAudit — ${mag}</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;padding:15px;color:#1a1a1a;font-size:12px;line-height:1.6;background:white}
+.logo{font-size:22px;font-weight:900;color:#2d6a4f;letter-spacing:2px;text-align:center}
+.cover{text-align:center;margin-bottom:20px;padding-bottom:15px;border-bottom:3px solid #2d6a4f}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#2d6a4f;border-left:3px solid #2d6a4f;padding-left:6px;margin:12px 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.cell{border:1px solid #ddd;border-radius:5px;padding:6px 8px}
+.lbl{font-size:9px;text-transform:uppercase;color:#2d6a4f;font-weight:700;margin-bottom:2px}
+.faille{border:1px solid #ddd;border-radius:6px;margin-bottom:10px;page-break-inside:avoid}
+.fh{padding:6px 10px;font-weight:700;font-size:12px}
+.fh.critique{background:#fff0f0;color:#cc3333}
+.fh.eleve{background:#fff8f0;color:#cc7700}
+.fh.moyen{background:#fffdf0;color:#b8860b}
+.fb{padding:8px 10px}
+.reco{background:#e8f4ee;border-left:3px solid #2d6a4f;padding:6px 8px;margin-top:6px;border-radius:0 5px 5px 0}
+.photo{width:100%;max-height:160px;object-fit:cover;border-radius:5px;margin-top:6px;display:block}
+.synth{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.sc{border-radius:6px;padding:8px;text-align:center}
+.sc-r{background:#fff0f0;border:1px solid #ffcccc}
+.sc-o{background:#fff8f0;border:1px solid #ffd9aa}
+.sc-v{background:#e8f4ee;border:1px solid #aae0c4}
+.sv{font-size:24px;font-weight:900}
+.sc-r .sv{color:#cc3333}.sc-o .sv{color:#cc7700}.sc-v .sv{color:#2d6a4f}
+table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:10px}
+th{background:#0f0f0f;color:white;padding:5px 7px;text-align:left}
+td{padding:5px 7px;border-bottom:1px solid #f0f0ec}
+.ab{border:1px solid #ddd;border-radius:6px;margin-bottom:6px;page-break-inside:avoid}
+.ah{padding:6px 8px;font-weight:700;font-size:11px}
+.ah-r{background:#fff0f0;color:#cc3333}
+.ah-o{background:#fff8f0;color:#cc7700}
+.ah-v{background:#e8f4ee;color:#2d6a4f}
+.ab-body{padding:6px 8px;white-space:pre-wrap;font-size:11px}
+.sig-line{border-bottom:1px solid #333;height:55px;margin:6px 0;position:relative}
+.sig-line img{max-height:55px;max-width:100%;position:absolute;bottom:2px;left:0}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.print-btn{position:fixed;bottom:15px;right:15px;background:#2d6a4f;color:white;border:none;padding:12px 20px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,0.3);z-index:999;font-family:Arial}
+.back-btn{position:fixed;bottom:15px;left:15px;background:#333;color:white;border:none;padding:12px 20px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,0.3);z-index:999;font-family:Arial}
+@media print{.print-btn,.back-btn{display:none!important}body{padding:8px}}
+</style></head><body>
+<button class="print-btn" onclick="window.print()">🖨 Imprimer / PDF</button>
+<button class="back-btn" onclick="location.reload()">← Retour</button>`;
+
+  // COUVERTURE
+  html+=`<div class="cover">
+<div class="logo">ShieldAudit</div>
+<div style="font-size:10px;color:#999;letter-spacing:2px;text-transform:uppercase;margin:3px 0">Rapport d'audit sécurité — Test d'intrusion physique</div>
+<div style="font-size:16px;font-weight:700;margin-top:8px">${mag}</div>
+<div style="font-size:11px;color:#666;margin-top:4px">Réf: ${ref} &nbsp;|&nbsp; ${date?fmtD(date):'—'} &nbsp;|&nbsp; ShieldAudit · 06 59 96 08 77</div>
+</div>`;
+
+  // INFOS
+  html+=`<h2>Informations de l'audit</h2>
+<div class="grid">
+<div class="cell"><div class="lbl">Magasin</div>${mag}</div>
+<div class="cell"><div class="lbl">Responsable</div>${v('r_resp')}</div>
+<div class="cell"><div class="lbl">Adresse</div>${v('r_adr')}</div>
+<div class="cell"><div class="lbl">Date</div>${date?fmtD(date):'—'}</div>
+<div class="cell"><div class="lbl">Heure entrée → fin</div>${v('r_ent')} → ${v('r_fin')}</div>
+<div class="cell"><div class="lbl">Effectif / Surface</div>${v('r_eff')} pers. / ${v('r_surf')}</div>
+<div class="cell"><div class="lbl">Caméras</div>${v('r_cam')}</div>
+<div class="cell"><div class="lbl">Portiques EAS</div>${v('r_eas')}</div>
+</div>
+<div class="cell" style="margin-bottom:12px"><div class="lbl">Observations générales</div>${v('r_obs')}</div>`;
+
+  // SYNTHESE
+  html+=`<h2>Synthèse des failles</h2>
+<div class="synth">
+<div class="sc sc-r"><div class="sv">${c}</div><div style="font-size:10px;color:#aa2222">Critiques</div></div>
+<div class="sc sc-o"><div class="sv">${e}</div><div style="font-size:10px;color:#aa5500">Élevées</div></div>
+<div class="sc sc-v"><div class="sv">${m}</div><div style="font-size:10px;color:#1a5035">Moyennes</div></div>
+</div>
+<div class="cell" style="margin-bottom:6px"><div class="lbl">Résumé exécutif</div>${v('r_res')}</div>
+<div class="cell" style="margin-bottom:12px;border-left:3px solid #cc3333"><div class="lbl">⚠ Point d'alerte principal</div>${v('r_ale')}</div>`;
+
+  // RECAP TABLE
+  if(D.failles.length){
+    html+=`<table><thead><tr><th>#</th><th>Faille</th><th>Zone</th><th>Niveau</th><th>Délai</th></tr></thead><tbody>`;
+    D.failles.forEach((f,i)=>{
+      html+=`<tr><td>${String(i+1).padStart(2,'0')}</td><td>${esc(f.titre||'—')}</td><td>${esc(f.zone||'—')}</td><td>${f.n}</td><td>${DL[f.del]||'—'}</td></tr>`;
+    });
+    html+=`</tbody></table>`;
+  }
+
+  // FAILLES DETAIL
+  html+=`<h2>Failles détectées (${D.failles.length})</h2>`;
+  D.failles.forEach((f,i)=>{
+    html+=`<div class="faille">
+<div class="fh ${f.n}">Faille #${String(i+1).padStart(2,'0')} — ${esc(f.titre||'Sans titre')} &nbsp;|&nbsp; ${DL[f.del]||'—'}</div>
+<div class="fb">
+<div class="grid">
+<div><div class="lbl">Zone</div>${esc(f.zone||'—')}</div>
+<div><div class="lbl">Technique</div>${esc(f.tech||'—')}</div>
+<div><div class="lbl">Valeur à risque</div>${esc(f.val||'—')}</div>
+<div><div class="lbl">Durée sans intervention</div>${esc(f.dur||'—')}</div>
+</div>
+<div class="lbl" style="margin-top:6px">Description détaillée</div>
+<div style="font-size:11px;margin-top:3px">${esc(f.desc||'—')}</div>
+<div class="reco"><div class="lbl">✅ Recommandation ShieldAudit</div><div style="margin-top:3px">${esc(f.reco||'—')}</div></div>
+${f.p1?`<img class="photo" src="${f.p1}"><div style="font-size:10px;color:#666;margin-top:2px">${esc(f.c1||'')}</div>`:''}
+${f.p2?`<img class="photo" src="${f.p2}"><div style="font-size:10px;color:#666;margin-top:2px">${esc(f.c2||'')}</div>`:''}
+</div></div>`;
+  });
+
+  // PLAN D'ACTION
+  html+=`<h2>Plan d'action recommandé</h2>
+<div class="ab"><div class="ah ah-r">🔴 Actions immédiates — 48h max</div><div class="ab-body">${esc(v('act_r'))}</div></div>
+<div class="ab"><div class="ah ah-o">🟠 Actions sous 1 semaine</div><div class="ab-body">${esc(v('act_o'))}</div></div>
+<div class="ab"><div class="ah ah-v">🟢 Actions sous 1 mois</div><div class="ab-body">${esc(v('act_v'))}</div></div>`;
+
+  // ESTIMATION
+  const cout=v('r_cout');const red=v('r_red');const pert=v('r_pert');
+  if(cout!=='—'||red!=='—'){
+    html+=`<div class="grid" style="margin-top:8px">
+<div class="cell"><div class="lbl">Coût corrections estimé</div>${cout!=='—'?cout+' €':'—'}</div>
+<div class="cell"><div class="lbl">Réduction pertes estimée</div>${red!=='—'?red+' %':'—'}</div>
+</div>`;
+  }
+
+  // CONCLUSION
+  html+=`<h2>Conclusion de l'auditeur</h2>
+<div class="cell" style="margin-bottom:15px">${esc(v('r_ccl'))}</div>`;
+
+  // SIGNATURES
+  html+=`<h2>Signatures — Bon pour réception du rapport</h2>
+<div class="sig-grid">
+<div>
+<div class="lbl">ShieldAudit — L'Auditeur</div>
+<div class="sig-line">${sig1?`<img src="${sig1}">`:'&nbsp;'}</div>
+<div style="font-size:10px;color:#777">${esc(v('sig1-nm'))}</div>
+</div>
+<div>
+<div class="lbl">Le Client</div>
+<div class="sig-line">${sig2?`<img src="${sig2}">`:'&nbsp;'}</div>
+<div style="font-size:10px;color:#777">${esc(v('sig2-nm'))}</div>
+</div>
+</div>
+<div style="text-align:center;font-size:9px;color:#bbb;margin-top:15px;padding-top:8px;border-top:1px solid #eee">ShieldAudit · Paris, France · 06 59 96 08 77 · © 2026 · Document confidentiel</div>
+</body></html>`;
+
+  // Ouvrir le rapport
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  if(isAndroid){
+    // Sur Android — essayer de télécharger via blob
+    try {
+      const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'rapport_shieldaudit_' + (D['r_mag']||'client').replace(/\s+/g,'_') + '.html';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 2000);
+      showToast('✓ Rapport téléchargé !','g');
+    } catch(e) {
+      // Si blob bloqué : remplacer la page
+      document.open();
+      document.write(html);
+      document.close();
+    }
+  } else {
+    const w = window.open('','_blank');
+    if(w){ w.document.write(html); w.document.close(); }
+    else { document.open(); document.write(html); document.close(); }
+  }
+}
+
+// ===== UTILS =====
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtD(s){ if(!s||s==='—') return '—'; try{ const[y,m,d]=s.split('-'); return `${d}/${m}/${y}`; } catch(e){ return s; } }
+function showToast(msg,type){ const t=document.getElementById('toast'); t.textContent=msg; t.className='toast '+(type||''); setTimeout(()=>t.classList.add('show'),10); setTimeout(()=>t.classList.remove('show'),2500); }
+
+// ===== INIT =====
+document.getElementById('r_date').value=new Date().toISOString().slice(0,10);
+loadData();
+renderF();
+setInterval(doSave,30000);
+</script>
+</body>
+</html>
