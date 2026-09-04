@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFVklEQVR4nO2dQW4bMRAE9aG8Jf/I/w+BLw4kRIBtyOsll2TNcKqAOmt3ujsHW0ZuNxEREREREREREREREREREREREREREREREWni15/f7/QziAzjXujZ0u8o8mBF2R2FhIEuuYOQ5dBFdgyyHLqwjkGWQxfTMQgCXcII0hkIAF26iNKZyALokmWQzkgmQJcqo3RmMgC6RDtIZygd0KXZUTpTOQldlJ2ls5UD6HJUks66JG9vf981h3RXtoQOVR0ACh2qOgAUOlR1ACh0qOoAUOhQ1QFg3H/0Roeq5/VHpQN5/uyZDlXbBuAIBvDxly90qNo+AEdwga+/faRD1b4BOIIOXv36nQ5V+wfgCBr47vsndKh6bQCO4CQOIL8OoJOjbyDSoer1ATiCA376Ci4dqo4ZgCN4wZnvoNOh6rgBOIIPnP0jDDpUHTsAR3Br+ysuOlQdP4DyI3AAe+oATtByJAeQy9Zs6S4up/VADiCXPfnSnVyKA9hbB3BAz3EcQC57M6a7OZ3ewziAXF7Jme7oVBxADR3AC64cxQHk8mrWdFen4ADq6AC+cPUgDiCXI/KmOzsUB1BLB/CBEcdwALkclTnd3SE4gHo6gP+MOoQDyOXI3OkOX8IB1NQB3Mb/jy10qMoMIO0IHEBdyw9g9AEcQC5n5E93ugkHUFsH4ABKW3oAM17eAeRyVgfobp/CAagDcAClLTuAWS/uAHI5swd0xw9xAOoAHEB5Sw5g5ks7gFzO7gLd9Zc4AHUADkAdgAOobrkBzH5hB5DLFX2gO/8JB6AOwAGoA3AA6gAcQHFLDWDFyzqAseXcYQBhRuAA8rjqlg7AAYRz5S0dgAMII3FLB+AAQkjd0gE4AFzylg7AAYQtvwMYjAOIZYRbOgAHULb8DsABlC6/A3AApcvvABxAuLJFfKYtBrDqRR1AjuKvHkC5ETiE2OVf3QW6+w9Wv3T1IUS8DdUBuvsPqJevOIKINyHzp7v/gDxApSFEuwOduQMoNIRI705n7ACCFCFS4SI9iwMIIl3cncpPZ+kACg3h+cwR3o3OzgEUG0Gk96EzcwDFhhDlHeiMHEDBEUR5djobB1BsCFGel84i9QDu0IfIOIQIz0jffovy36GPkW0EEZ6NvrkDCGiF8tM3dgAJjFA8+vOjS3f+E/Qxoo/A8m8+gDv0QaIOgfjMnYsfsvx36KNEHMHqz6tQfgeQYAirPqda8Z/SXX8JfZSVziqgxT8n3fVvoQ+zUsvPSHf8EPo4hGT56XcnpDt+CH2cjFr8NumO/wh9oCz6r367dLdPQR8pgxa/T7rbp6CPFF2L3y/d7dPQh4qq5e+X7nQT9LEiavGvSXe6CfpYUbX8/dKdboY+WGQtfpt0l7ugj5ZBi39Ousvd0IfT/NIdvgR9PM0v3eHL0AfUvNLdHQJ9RM0r3d1h0IfUfNKdHQp9TM0n3dnh0AfVPNJdnQJ9VM0j3dVp0IfV+NIdnQp9XI0v3dHp0AfWuNLdXAZ9aI0n3cml0MfWeNKdXA59cI0j3UUM+vDKS3cQhT6+8tIdxKEDUMuPQwehlh+HDkQtPw4djFp+HDogtfwodEjqAHDooNTy49CBqeXHoYNTy49DB6iWH4cOUi1/COhQ1eLj0AGr5cehg1bLj0MHrpYfhw5eLX8I6BJUlM5cvkAXopJ01nIAXY6dpbOVk9BF2VE6U+mALs0O0hnKAOgSZZTOTCZAlyqDdEayALpkEaUzEQC6dBGkM5AA0CW0+BIGupiWXsJAF9bSSxjoIlt6CQVdcgsv4bDsIg1YaBERERERERERERERERERERERERERERHp4B/eLvOYJPTRCQAAAABJRU5ErkJggg==">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ShieldAudit">
+  <meta name="theme-color" content="#2d6a4f">
+  <meta name="mobile-web-app-capable" content="yes">
+<title>ShieldAudit — App Terrain</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --noir:#0f0f0f;--blanc:#fafaf8;--vert:#2d6a4f;--vert-light:#e8f4ee;
+  --vert-dark:#1a3a2a;--gris:#6b6b6b;--border:#e2e2de;--bg:#f0f0ec;
+  --rouge:#cc3333;--orange:#cc7700;--jaune:#b8860b;
+  --sidebar:68px;--header:56px;
+}
+html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir)}
+
+/* ===== LAYOUT ===== */
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar);background:var(--noir);display:flex;flex-direction:column;align-items:center;padding:1rem 0;gap:0.3rem;z-index:200;flex-shrink:0}
+.sidebar-logo{font-family:'DM Serif Display',serif;font-size:0.8rem;color:#6fcf97;letter-spacing:1px;margin-bottom:1rem;writing-mode:vertical-rl;transform:rotate(180deg)}
+.nav-btn{width:44px;height:44px;border-radius:12px;background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#555;transition:all 0.2s;position:relative}
+.nav-btn:hover{background:#1a1a1a;color:#aaa}
+.nav-btn.active{background:#2d6a4f;color:white}
+.nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-btn span{font-size:8px;letter-spacing:0.5px;color:currentColor}
+.nav-sep{width:32px;height:1px;background:#1a1a1a;margin:0.3rem 0}
+.sidebar-bottom{margin-top:auto;display:flex;flex-direction:column;gap:0.3rem;align-items:center}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* HEADER */
+.header{height:var(--header);background:var(--blanc);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem;flex-shrink:0}
+.header-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--noir)}
+.header-sub{font-size:0.75rem;color:var(--gris);margin-left:auto}
+.header-btns{display:flex;gap:0.5rem}
+.hbtn{background:var(--noir);color:white;border:none;padding:0.45rem 1rem;border-radius:100px;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:opacity 0.2s;white-space:nowrap}
+.hbtn:hover{opacity:0.85}
+.hbtn.outline{background:transparent;color:var(--noir);border:1px solid var(--border)}
+.hbtn.vert{background:var(--vert)}
+.hbtn.rouge{background:var(--rouge)}
+
+/* PAGES */
+.page{flex:1;overflow-y:auto;display:none;padding:1.5rem}
+.page.active{display:block}
+
+/* ===== DASHBOARD ===== */
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:900px){.dash-grid{grid-template-columns:repeat(2,1fr)}}
+.dash-card{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.3rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.8rem}
+.dash-card:hover{border-color:#999;transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.dash-card .icon{width:44px;height:44px;border-radius:10px;background:var(--vert-light);display:flex;align-items:center;justify-content:center;color:var(--vert)}
+.dash-card .icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dash-card h3{font-size:0.95rem;font-weight:500}
+.dash-card p{font-size:0.78rem;color:var(--gris);line-height:1.5}
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:900px){.dash-stats{grid-template-columns:repeat(2,1fr)}}
+.stat-box{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center}
+.stat-box .val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--noir)}
+.stat-box .lbl{font-size:0.72rem;color:var(--gris);margin-top:3px}
+.stat-box.vert .val{color:var(--vert)}
+.stat-box.rouge .val{color:var(--rouge)}
+.activity{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.3rem}
+.activity h3{font-size:0.82rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem}
+.activity-list{display:flex;flex-direction:column;gap:0.6rem}
+.activity-item{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.85rem}
+.activity-item:last-child{border-bottom:none}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ===== CLIENTS ===== */
+.toolbar{display:flex;gap:0.8rem;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.search-wrap{position:relative;flex:1;min-width:180px}
+.search-wrap input{width:100%;padding:0.6rem 0.9rem 0.6rem 2.2rem;border:1px solid var(--border);border-radius:100px;font-size:0.85rem;font-family:'DM Sans',sans-serif;background:var(--blanc);outline:none}
+.search-wrap svg{position:absolute;left:0.7rem;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:#aaa;fill:none;stroke-width:2;stroke-linecap:round}
+select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;font-size:0.83rem;font-family:'DM Sans',sans-serif;background:var(--blanc);outline:none;cursor:pointer}
+.clients-table{background:var(--blanc);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.clients-table table{width:100%;border-collapse:collapse;font-size:0.83rem}
+.clients-table thead tr{background:var(--noir);color:white}
+.clients-table th{padding:10px 14px;text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;font-weight:500;white-space:nowrap}
+.clients-table td{padding:10px 14px;border-bottom:1px solid #f4f4f0;vertical-align:middle}
+.clients-table tr:last-child td{border-bottom:none}
+.clients-table tr:hover td{background:#fafaf8}
+.badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:0.68rem;font-weight:500}
+.badge.prospect{background:#fff8e8;color:#8a6200;border:1px solid #f0c040}
+.badge.rdv{background:#e8f0ff;color:#3355bb;border:1px solid #99aadd}
+.badge.envoye{background:#f0e8ff;color:#6633bb;border:1px solid #bb99dd}
+.badge.signe{background:var(--vert-light);color:#085041;border:1px solid #88ccaa}
+.badge.termine{background:#f0f0f0;color:#555;border:1px solid #ccc}
+.badge.perdu{background:#fff0f0;color:#aa2222;border:1px solid #ffaaaa}
+.td-actions{display:flex;gap:0.3rem}
+.icon-btn{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--blanc);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gris);transition:all 0.15s}
+.icon-btn:hover{background:var(--noir);color:white;border-color:var(--noir)}
+.icon-btn.del:hover{background:var(--rouge);border-color:var(--rouge)}
+.icon-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== FORMS ===== */
+.form-section{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem}
+.form-section h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:700px){.form-grid{grid-template-columns:1fr}}
+.form-grid.three{grid-template-columns:1fr 1fr 1fr}
+.form-group{display:flex;flex-direction:column;gap:0.35rem}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris)}
+.form-group input,.form-group select,.form-group textarea{padding:0.7rem 0.9rem;border:1px solid var(--border);border-radius:10px;font-size:0.88rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;background:var(--blanc);width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--vert)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-actions{display:flex;gap:0.8rem;justify-content:flex-end;margin-top:1.2rem}
+
+/* SIGNATURE PAD */
+.sig-container{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem}
+.sig-container h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem}
+.sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:700px){.sig-grid{grid-template-columns:1fr}}
+.sig-pad-wrap{display:flex;flex-direction:column;gap:0.5rem}
+.sig-label{font-size:0.78rem;color:var(--gris)}
+.sig-canvas-wrap{border:1px dashed var(--border);border-radius:10px;background:#fafaf8;position:relative;height:120px}
+.sig-canvas{width:100%;height:100%;cursor:crosshair;border-radius:10px}
+.sig-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#ccc;pointer-events:none}
+.sig-btns{display:flex;gap:0.5rem;margin-top:0.4rem}
+.sig-btn{background:transparent;border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--gris);transition:all 0.2s}
+.sig-btn:hover{border-color:#999;color:var(--noir)}
+.sig-info{margin-top:0.6rem}
+.sig-info input{width:100%;padding:0.5rem 0.8rem;border:1px solid var(--border);border-radius:8px;font-size:0.82rem;font-family:'DM Sans',sans-serif;outline:none}
+
+/* FAILLE CARDS */
+.faille-card{background:var(--blanc);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem}
+.faille-card-head{padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem}
+.faille-card-head.critique{background:#fff0f0;border-bottom:1px solid #ffcccc}
+.faille-card-head.eleve{background:#fff8f0;border-bottom:1px solid #ffd9aa}
+.faille-card-head.moyen{background:#fffdf0;border-bottom:1px solid #ffe9a0}
+.faille-badge{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+.faille-badge.critique{background:var(--rouge);color:white}
+.faille-badge.eleve{background:var(--orange);color:white}
+.faille-badge.moyen{background:var(--jaune);color:white}
+.faille-card-title{font-size:0.88rem;font-weight:500;color:var(--noir)}
+.faille-card-body{padding:1rem}
+.photo-upload{border:2px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;background:#fafaf8;position:relative;overflow:hidden}
+.photo-upload:hover{border-color:var(--vert);background:var(--vert-light)}
+.photo-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.photo-upload p{font-size:0.75rem;color:#bbb;text-align:center;pointer-events:none}
+.photo-preview{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;border-radius:8px}
+
+/* RAPPORT SECTIONS */
+.rapp-tabs{display:flex;gap:0.3rem;margin-bottom:1.2rem;background:var(--blanc);border:1px solid var(--border);border-radius:100px;padding:0.3rem;width:fit-content}
+.rapp-tab{padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;background:transparent;color:var(--gris);transition:all 0.2s}
+.rapp-tab.active{background:var(--noir);color:white}
+.rapp-section{display:none}
+.rapp-section.active{display:block}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--noir);color:white;padding:0.7rem 1.4rem;border-radius:100px;font-size:0.82rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.vert{background:var(--vert)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--blanc);border-radius:20px;padding:1.8rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto}
+.modal h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:1.3rem}
+
+/* CONTRAT PREVIEW */
+.doc-preview{background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;font-size:0.85rem;line-height:1.75;color:#333;max-height:400px;overflow-y:auto}
+.doc-preview h1{font-size:1rem;text-align:center;color:var(--vert-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem}
+.doc-preview h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1.2rem 0 0.6rem}
+.doc-preview p{margin-bottom:0.6rem}
+.doc-preview .highlight{background:#fffbf0;border:1px solid #f0c040;border-radius:6px;padding:0.8rem;margin:0.8rem 0;font-size:0.82rem}
+.doc-price{text-align:center;font-size:1.3rem;font-weight:700;color:var(--vert-dark);margin:1rem 0}
+
+/* EMPTY */
+.empty{text-align:center;padding:3rem;color:var(--gris)}
+.empty-icon{font-size:2.5rem;margin-bottom:0.8rem;opacity:0.4}
+.empty p{font-size:0.88rem}
+
+/* STATUS PILLS */
+.status-bar{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.status-pill{display:flex;align-items:center;gap:5px;padding:0.4rem 0.8rem;border-radius:100px;font-size:0.75rem;border:1px solid var(--border);background:var(--blanc);white-space:nowrap}
+.status-pill .dot{width:6px;height:6px;border-radius:50%}
+
+/* PHOTO UPLOAD — FIX TABLETTE */
+.photo-upload{border:2px dashed var(--border);border-radius:10px;height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fafaf8;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.photo-upload:active{border-color:var(--vert);background:var(--vert-light)}
+.photo-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:10;font-size:16px}
+.photo-upload p{font-size:0.78rem;color:#bbb;text-align:center;pointer-events:none;z-index:1;padding:0.5rem}
+.photo-preview{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:8px;z-index:5;display:none}
+
+/* SIGNATURE — FIX TABLETTE */
+.sig-canvas{touch-action:none;-webkit-user-select:none;user-select:none}
+.sig-canvas-wrap{touch-action:none}
+
+/* PRINT — RAPPORT COMPLET */
+@media print{
+  .sidebar,.header,.toolbar,.form-actions,.hbtn,.nav-btn,.rapp-tabs,.hbtn.outline{display:none!important}
+  .page{overflow:visible!important}
+  .page.active{display:block!important}
+  #page-rapport{display:block!important}
+  .rapp-section{display:block!important;margin-bottom:1.5rem}
+  .faille-card{break-inside:avoid;page-break-inside:avoid}
+  .photo-preview{display:block!important;position:relative!important}
+  body{background:white!important}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">SA</div>
+  <button class="nav-btn active" onclick="goPage('dashboard')" id="nav-dashboard" title="Accueil">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Accueil</span>
+  </button>
+  <button class="nav-btn" onclick="goPage('clients')" id="nav-clients" title="Clients">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <span>Clients</span>
+  </button>
+  <div class="nav-sep"></div>
+  <button class="nav-btn" onclick="goPage('devis')" id="nav-devis" title="Devis">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    <span>Devis</span>
+  </button>
+  <button class="nav-btn" onclick="goPage('contrat')" id="nav-contrat" title="Contrat">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    <span>Contrat</span>
+  </button>
+  <button class="nav-btn" onclick="goPage('facture')" id="nav-facture" title="Facture">
+    <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    <span>Facture</span>
+  </button>
+  <div class="sidebar-bottom">
+    <button class="nav-btn" onclick="saveAll()" title="Sauvegarder">
+      <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      <span>Sauv.</span>
+    </button>
+    <button class="nav-btn" onclick="history.length>1?history.back():window.close()" title="Retour">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>Retour</span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ===== DASHBOARD ===== -->
+<div class="page active" id="page-dashboard">
+  <div class="header">
+    <div class="header-title">Shield<span style="color:var(--vert)">Audit</span> — App Terrain</div>
+    <div class="header-sub" id="dash-date"></div>
+  </div>
+  <div style="padding:1.5rem">
+    <div class="dash-stats" id="dash-stats"></div>
+    <div class="dash-grid">
+      <div class="dash-card" onclick="goPage('clients')">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Suivi Clients</h3>
+        <p>Gérer vos prospects et clients, suivre les statuts et relances.</p>
+      </div>
+      <div class="dash-card" onclick="goPage('devis')">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Créer un Devis</h3>
+        <p>Générer un devis professionnel à envoyer au client.</p>
+      </div>
+      <div class="dash-card" onclick="goPage('contrat')">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Contrat + Signature</h3>
+        <p>Remplir et faire signer le contrat directement sur la tablette.</p>
+      </div>
+      <div class="dash-card" onclick="goPage('facture')">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <h3>Facture</h3>
+        <p>Émettre la facture après la mission et suivre les paiements.</p>
+      </div>
+      <div class="dash-card" style="background:var(--vert-dark);border-color:var(--vert)" onclick="goPage('clients')">
+        <div class="icon" style="background:rgba(111,207,151,0.15)"><svg viewBox="0 0 24 24" style="stroke:#6fcf97"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <h3 style="color:white">Nouvelle Mission</h3>
+        <p style="color:#6b9b85">Démarrer une nouvelle mission client de A à Z.</p>
+      </div>
+    </div>
+    <div class="activity">
+      <h3>Activité récente</h3>
+      <div class="activity-list" id="activity-list">
+        <div class="activity-item"><div class="activity-dot" style="background:var(--vert)"></div><div style="flex:1">Application chargée — Bienvenue !</div><div style="font-size:0.75rem;color:var(--gris)" id="dash-now"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CLIENTS ===== -->
+<div class="page" id="page-clients">
+  <div class="header">
+    <div class="header-title">Suivi Clients</div>
+    <div class="header-btns">
+      <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
+      <button class="hbtn outline" onclick="exportClients()">⬇ CSV</button>
+      <button class="hbtn vert" onclick="openClientModal()">+ Nouveau client</button>
+    </div>
+  </div>
+  <div style="padding:1.5rem">
+    <div class="status-bar" id="status-bar"></div>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="client-search" placeholder="Rechercher..." oninput="renderClients()">
+      </div>
+      <select id="client-filter" onchange="renderClients()">
+        <option value="">Tous statuts</option>
+        <option value="prospect">Prospect</option>
+        <option value="rdv">RDV planifié</option>
+        <option value="envoye">Devis envoyé</option>
+        <option value="signe">Signé</option>
+        <option value="termine">Terminé</option>
+        <option value="perdu">Perdu</option>
+      </select>
+    </div>
+    <div class="clients-table">
+      <table>
+        <thead><tr>
+          <th>Magasin</th><th>Contact</th><th>Téléphone</th><th>Ville</th>
+          <th>Statut</th><th>Montant</th><th>Prochain contact</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="clients-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DEVIS ===== -->
+<div class="page" id="page-devis">
+  <div class="header">
+    <div class="header-title">Créer un Devis</div>
+    <div class="header-btns">
+      <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
+      <button class="hbtn outline" onclick="resetDevis()">↺ Réinitialiser</button>
+      <button class="hbtn vert" onclick="printDoc('devis-preview')">🖨 Imprimer</button>
+    </div>
+  </div>
+  <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div class="form-section">
+        <h3>Informations client</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>Nom du magasin *</label><input id="d_magasin" placeholder="Ex: Carrefour Market"></div>
+          <div class="form-group"><label>Gérant / Contact</label><input id="d_contact" placeholder="Ex: Jean Dupont"></div>
+          <div class="form-group"><label>Adresse</label><input id="d_adresse" placeholder="Ex: 12 rue de la Paix, Lyon"></div>
+          <div class="form-group"><label>Téléphone</label><input id="d_tel" placeholder="06 XX XX XX XX"></div>
+          <div class="form-group"><label>Email</label><input id="d_email" placeholder="contact@magasin.fr"></div>
+          <div class="form-group"><label>SIRET client</label><input id="d_siret_client" placeholder="XXX XXX XXX XXXXX"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Détails du devis</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>N° de devis</label><input id="d_num" placeholder="DEV-2026-001"></div>
+          <div class="form-group"><label>Date</label><input type="date" id="d_date"></div>
+          <div class="form-group"><label>Validité (jours)</label><input id="d_validite" value="30" type="number"></div>
+          <div class="form-group"><label>Date de mission</label><input type="date" id="d_date_mission"></div>
+          <div class="form-group"><label>Prix HT (€)</label><input id="d_ht" value="3000" type="number" oninput="calcDevis()"></div>
+          <div class="form-group"><label>TVA %</label><select id="d_tva" onchange="calcDevis()"><option value="20">20%</option><option value="0">0% (auto-entr.)</option></select></div>
+        </div>
+        <div style="margin-top:1rem;background:#f4f4f0;border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:0.82rem;color:var(--gris)">Total TTC</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--noir)" id="d_ttc_display">3 600 €</div>
+        </div>
+      </div>
+    </div>
+    <div id="devis-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--noir);letter-spacing:1px">Shield<span style="color:var(--vert)">Audit</span></div>
+          <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
+          <div style="font-size:0.78rem;color:#666;margin-top:8px;line-height:1.7">Paris, France<br>06 59 96 08 77</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:2px">Devis</div>
+          <div style="font-size:0.78rem;color:#666;margin-top:6px;line-height:1.9">N° <span id="dp_num">DEV-2026-001</span><br>Date : <span id="dp_date">—</span><br>Valide 30 jours</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+        <div style="border:1px solid var(--border);border-radius:8px;padding:1rem">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:8px">Prestataire</div>
+          <div style="font-size:0.82rem;line-height:1.8;color:#333">ShieldAudit<br>Paris, France<br>06 59 96 08 77</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:1rem">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:8px">Client</div>
+          <div style="font-size:0.82rem;line-height:1.8;color:#333"><span id="dp_magasin">—</span><br><span id="dp_contact">—</span><br><span id="dp_adresse">—</span><br><span id="dp_tel">—</span><br><span id="dp_email">—</span><br><span id="dp_siret"></span></div>
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:1rem">
+        <thead><tr style="background:var(--noir);color:white">
+          <th style="padding:8px 10px;text-align:left">Désignation</th>
+          <th style="padding:8px 10px;text-align:right">HT</th>
+          <th style="padding:8px 10px;text-align:right">TVA</th>
+          <th style="padding:8px 10px;text-align:right">TTC</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit terrain · Rapport 48h · Personnel de sécurité · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="dp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="dp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="dp_ttc">3 600 €</td></tr>
+        </tbody>
+      </table>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+        <div style="width:220px">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666;border-bottom:1px solid var(--border)"><span>Total HT</span><span id="dp_ht2">3 000 €</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666"><span id="dp_tva_label">TVA 20%</span><span id="dp_tva2">600 €</span></div>
+          <div style="background:var(--noir);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.88rem">Total TTC</span><span style="color:#6fcf97;font-size:1.1rem" id="dp_ttc2">3 600 €</span></div>
+        </div>
+      </div>
+      <div style="background:var(--vert-light);border:1px solid #88ccaa;border-radius:8px;padding:0.8rem;font-size:0.75rem;color:#1a3a2a;margin-bottom:1rem">🛡 <strong>Garantie résultat :</strong> Si aucune faille n'est détectée, remboursement intégral sans condition.</div>
+      <div style="font-size:0.72rem;color:#999;text-align:center;border-top:1px solid var(--border);padding-top:0.8rem">ShieldAudit · Paris, France · 06 59 96 08 77 · © 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTRAT ===== -->
+<div class="page" id="page-contrat">
+  <div class="header">
+    <div class="header-title">Contrat + Signature</div>
+    <div class="header-btns">
+      <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
+      <button class="hbtn outline" onclick="resetContrat()">↺ Réinitialiser</button>
+      <button class="hbtn vert" onclick="window.print()">🖨 PDF</button>
+    </div>
+  </div>
+
+  <!-- TABS CONTRAT -->
+  <div style="background:var(--blanc);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <button class="contrat-tab active" onclick="switchContratTab('formulaire')" id="ctab-formulaire" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">📝 Formulaire</button>
+    <button class="contrat-tab" onclick="switchContratTab('signatures')" id="ctab-signatures" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">✍ Signatures</button>
+    <button class="contrat-tab" onclick="switchContratTab('apercu')" id="ctab-apercu" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">👁 Aperçu & PDF</button>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div id="csec-formulaire" style="padding:1.2rem;overflow-y:auto">
+    <div class="form-section">
+      <h3>Informations client</h3>
+      <div class="form-grid">
+        <div class="form-group"><label>Magasin / Société *</label><input id="c_magasin" placeholder="Ex: Carrefour Market" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>Gérant / Directeur</label><input id="c_contact" placeholder="Ex: Jean Dupont" oninput="updateContratPreview()"></div>
+        <div class="form-group full"><label>Adresse du commerce</label><input id="c_adresse" placeholder="Ex: 12 rue de la Paix, 69001 Lyon" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>SIRET client</label><input id="c_siret" placeholder="XXX XXX XXX XXXXX"></div>
+        <div class="form-group"><label>Téléphone</label><input id="c_tel" placeholder="06 XX XX XX XX" oninput="updateContratPreview()"></div>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>Détails de la mission</h3>
+      <div class="form-grid">
+        <div class="form-group"><label>Référence contrat</label><input id="c_ref" placeholder="TIP-2026-001" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>Date du contrat</label><input type="date" id="c_date" oninput="updateContratPreview()"></div>
+        <div class="form-group full"><label>Adresse exacte du magasin audité</label><input id="c_lieu" placeholder="Adresse complète" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>Date de la mission</label><input type="date" id="c_date_mission" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>Délai rapport (jours)</label><input id="c_delai" value="2" type="number" oninput="updateContratPreview()"></div>
+        <div class="form-group"><label>Prix HT (€)</label><input id="c_ht" value="3000" type="number" oninput="calcContrat()"></div>
+        <div class="form-group"><label>Prix TTC (calculé)</label><input id="c_ttc" value="3600" readonly style="background:#f4f4f0;color:var(--gris)"></div>
+      </div>
+    </div>
+    <div style="text-align:right;padding-bottom:2rem">
+      <button class="hbtn vert" onclick="switchContratTab('signatures')">Suivant : Signatures →</button>
+    </div>
+  </div>
+
+  <!-- SIGNATURES -->
+  <div id="csec-signatures" style="display:none;padding:1.2rem;overflow-y:auto">
+    <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:12px;padding:1rem;margin-bottom:1.2rem;font-size:0.85rem;color:#7a5500">
+      ✍ <strong>Instructions :</strong> Chaque partie signe dans la zone ci-dessous avec le doigt. La signature est enregistrée automatiquement dans le contrat.
+    </div>
+
+    <!-- SIG 1 -->
+    <div class="form-section">
+      <h3>Signature ShieldAudit — Le Prestataire</h3>
+      <div style="margin-bottom:0.8rem">
+        <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom du signataire</label>
+        <input id="sig1_name" placeholder="Prénom Nom" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+      </div>
+      <div style="border:2px dashed var(--border);border-radius:12px;background:#fafaf8;position:relative;height:160px;touch-action:none" id="sig1-wrap">
+        <canvas id="sig1" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
+        <div id="sig1-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
+          <div style="font-size:2rem">✍</div>
+          <div style="font-size:0.82rem;margin-top:0.3rem">Signer ici avec le doigt</div>
+        </div>
+      </div>
+      <div style="margin-top:0.5rem;display:flex;gap:0.5rem">
+        <button class="hbtn outline" onclick="clearSig('sig1')" style="font-size:0.78rem;padding:0.4rem 0.9rem">Effacer</button>
+        <span style="font-size:0.75rem;color:var(--gris);display:flex;align-items:center">Signez dans la zone grise ci-dessus</span>
+      </div>
+    </div>
+
+    <!-- SIG 2 -->
+    <div class="form-section">
+      <h3>Signature Client</h3>
+      <div style="margin-bottom:0.8rem">
+        <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom, Qualité</label>
+        <input id="sig2_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+      </div>
+      <div style="border:2px dashed var(--border);border-radius:12px;background:#fafaf8;position:relative;height:160px;touch-action:none" id="sig2-wrap">
+        <canvas id="sig2" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
+        <div id="sig2-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
+          <div style="font-size:2rem">✍</div>
+          <div style="font-size:0.82rem;margin-top:0.3rem">Signer ici avec le doigt</div>
+        </div>
+      </div>
+      <div style="margin-top:0.5rem;display:flex;gap:0.5rem">
+        <button class="hbtn outline" onclick="clearSig('sig2')" style="font-size:0.78rem;padding:0.4rem 0.9rem">Effacer</button>
+        <span style="font-size:0.75rem;color:var(--gris);display:flex;align-items:center">Le client signe dans la zone grise ci-dessus</span>
+      </div>
+    </div>
+
+    <div style="text-align:right;padding-bottom:2rem">
+      <button class="hbtn vert" onclick="switchContratTab('apercu')">Suivant : Aperçu & PDF →</button>
+    </div>
+  </div>
+
+  <!-- APERCU -->
+  <div id="csec-apercu" style="display:none;padding:1.2rem;overflow-y:auto">
+    <div style="background:var(--vert-light);border:1px solid #88ccaa;border-radius:10px;padding:0.8rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#1a3a2a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+      <span>✅ Contrat prêt à imprimer / enregistrer en PDF</span>
+      <button class="hbtn vert" onclick="window.print()" style="padding:0.5rem 1.2rem">🖨 Imprimer / PDF</button>
+    </div>
+    <div id="contrat-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;font-size:0.85rem;line-height:1.75;color:#333">
+
+      <!-- EN-TÊTE -->
+      <div style="text-align:center;margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:3px solid var(--vert)">
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--vert);letter-spacing:1px">Shield<span style="color:var(--noir)">Audit</span></div>
+        <div style="font-size:0.68rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:4px">Conseil en Prévention des Pertes & Sécurité Retail</div>
+      </div>
+
+      <h1 style="font-size:1rem;text-align:center;color:var(--vert-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.3rem">Contrat de Prestation de Service</h1>
+      <div style="text-align:center;font-size:0.88rem;font-style:italic;color:#666;margin-bottom:0.5rem">Test d'Intrusion Physique en Magasin</div>
+      <div style="text-align:center;font-size:0.72rem;color:#999;margin-bottom:1.5rem">Référence : <span id="cp_ref">TIP-2026-___</span> &nbsp;|&nbsp; Date : <span id="cp_date">__ / __ / ____</span></div>
+
+      <!-- ARTICLE 1 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 1 – Parties au contrat</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
+          <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Prestataire</div>
+          <strong>ShieldAudit</strong><br>Paris, France<br>SIRET : à compléter<br>06 59 96 08 77
+        </div>
+        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
+          <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Client</div>
+          <span id="cp_magasin" style="font-weight:600">—</span><br><span id="cp_adresse">—</span><br>SIRET : <span id="cp_siret">—</span><br><span id="cp_tel">—</span>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 2 – Objet de la prestation</div>
+      <div style="margin-bottom:0.8rem;font-size:0.82rem">
+        <p style="margin-bottom:0.5rem">Le présent contrat a pour objet la réalisation d'un <strong>test d'intrusion physique</strong> dans l'établissement du Client, par le Prestataire, afin d'identifier les failles de sécurité susceptibles de faciliter des actes de vol.</p>
+        <p>Le Client reconnaît et accepte expressément que le Prestataire agisse en qualité de testeur mandaté, simulant le comportement d'un individu malveillant à des fins exclusivement préventives.</p>
+      </div>
+
+      <!-- ARTICLE 3 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 3 – Autorisation expresse et cadre légal</div>
+      <div style="background:#fffbf0;border:1px solid #f0c040;border-radius:8px;padding:0.9rem;margin:0.6rem 0;font-size:0.8rem;line-height:1.6">⚠️ <strong>Clause essentielle.</strong> Le Client autorise formellement et sans équivoque le Prestataire à pénétrer dans son établissement, à simuler des actes de vol, et à manipuler des marchandises dans le cadre strict de la mission définie ci-après. Cette autorisation couvre les dates, lieux et périmètres indiqués à l'Article 4.</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p style="margin-bottom:0.5rem">La présente prestation est réalisée par ShieldAudit en qualité de <strong>société de conseil aux entreprises</strong>, enregistrée en France sous le numéro SIRET indiqué à l'Article 1. Cette activité relève du conseil en gestion et sécurité des entreprises (code APE 7022Z) et n'est pas soumise à la réglementation des activités privées de sécurité (loi du 12 juillet 1983).</p>
+        <p style="margin-bottom:0.5rem">Le Client reconnaît que le Prestataire intervient exclusivement en qualité de <strong>consultant mandaté</strong> par ses soins, à des fins de prévention et d'audit interne, et non en qualité d'agent de sécurité ou de surveillance.</p>
+        <p style="margin-bottom:0.5rem">Le Client s'engage à ne pas porter plainte, ni alerter les forces de l'ordre, ni engager de procédure à l'encontre du Prestataire pour des actes réalisés dans le cadre strict de cette mission contractuellement autorisée. En cas d'interpellation par un tiers (employé, agent de sécurité, forces de l'ordre), le Client s'engage à intervenir immédiatement pour confirmer le mandat du Prestataire en présentant le présent contrat.</p>
+        <p>Le Client s'engage à conserver un exemplaire signé du présent contrat et à le mettre à disposition sur simple demande lors de la mission.</p>
+      </div>
+
+      <!-- ARTICLE 4 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 4 – Périmètre et modalités de la mission</div>
+      <div style="font-size:0.82rem;line-height:1.8">
+        <p><strong>4.1 Lieu :</strong> <span id="cp_lieu">—</span></p>
+        <p><strong>4.2 Date(s) :</strong> <span id="cp_date_mission">—</span></p>
+        <p style="margin-top:0.4rem"><strong>4.3 Zones couvertes :</strong></p>
+        <ul style="margin-left:1.2rem;margin-top:0.3rem;margin-bottom:0.5rem">
+          <li>Rayons et espaces de vente</li>
+          <li>Zones de caisse</li>
+          <li>Entrées et sorties</li>
+          <li>Autres zones selon accord préalable</li>
+        </ul>
+        <p><strong>4.4 Techniques autorisées :</strong> simulation de dissimulation de produits, test des angles morts de vidéosurveillance, évaluation des procédures du personnel de sécurité, test des dispositifs antivol (EAS). <strong>Aucun produit ne sera emporté hors de l'établissement sans restitution immédiate.</strong></p>
+      </div>
+
+      <!-- ARTICLE 5 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 5 – Restitution et rapport</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p style="margin-bottom:0.4rem">À l'issue du test, le Prestataire s'engage à :</p>
+        <ul style="margin-left:1.2rem">
+          <li>Restituer immédiatement tout article manipulé dans le cadre de la mission</li>
+          <li>Réaliser un <strong>debriefing oral</strong> avec le Client dans les 24h suivant le test</li>
+          <li>Remettre un <strong>rapport écrit</strong> détaillant les failles identifiées, leur niveau de criticité et les recommandations correctives, dans un délai de <span id="cp_delai">2</span> jours ouvrés</li>
+        </ul>
+      </div>
+
+      <!-- ARTICLE 6 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 6 – Confidentialité</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p style="margin-bottom:0.5rem">Les deux parties s'engagent à traiter l'ensemble des informations échangées dans le cadre de cette mission comme strictement confidentielles. Le Prestataire ne divulguera à aucun tiers le contenu du rapport ni les failles identifiées. Le Client ne divulguera pas l'identité du Prestataire ni les méthodes utilisées.</p>
+        <p>Cette obligation de confidentialité s'applique pendant toute la durée du contrat et pendant une durée de <strong>3 ans</strong> après son terme.</p>
+      </div>
+
+      <!-- ARTICLE 7 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 7 – Rémunération</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p style="margin-bottom:0.5rem">En contrepartie de la prestation réalisée, le Client versera au Prestataire la somme de :</p>
+        <div style="text-align:center;font-size:1.4rem;font-weight:700;color:var(--vert-dark);margin:0.8rem 0;padding:0.8rem;background:#f4f4f0;border-radius:8px"><span id="cp_ht">3 000 €</span> HT &nbsp;·&nbsp; <span id="cp_ttc_display" style="color:var(--vert)">3 600 € TTC</span></div>
+        <p style="margin-bottom:0.5rem"><strong>Modalités de paiement :</strong> 50 % à la signature (1 800 € TTC), 50 % à la remise du rapport (1 800 € TTC) — par virement bancaire ou chèque à l'ordre de ShieldAudit.</p>
+        <p>En cas de retard de paiement, des pénalités de 1,5 % par mois seront appliquées de plein droit.</p>
+      </div>
+
+      <!-- ARTICLE 8 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 8 – Responsabilité</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p style="margin-bottom:0.5rem">Le Prestataire s'engage à réaliser sa mission avec soin et professionnalisme. Sa responsabilité est limitée au montant de la prestation facturée. Le Client reste seul responsable des décisions qu'il prendra sur la base des recommandations formulées.</p>
+        <p>En cas de méprise d'un tiers lors du test, le Client s'engage à intervenir immédiatement pour confirmer le mandat du Prestataire. À cet effet, chaque partie conservera un exemplaire signé du présent contrat.</p>
+      </div>
+
+      <!-- ARTICLE 9 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 9 – Résiliation</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p>En cas d'annulation de la mission par le Client moins de 48h avant la date prévue, un forfait d'annulation correspondant à 50 % du montant total de la prestation sera dû au Prestataire.</p>
+      </div>
+
+      <!-- ARTICLE 10 -->
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 10 – Droit applicable et litiges</div>
+      <div style="font-size:0.82rem;line-height:1.7">
+        <p>Le présent contrat est soumis au droit français. En cas de litige, les parties s'efforceront de trouver une solution amiable. À défaut, le Tribunal compétent du ressort du siège du Prestataire sera saisi.</p>
+      </div>
+
+      <!-- SIGNATURES -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;padding-top:1.5rem;border-top:2px solid var(--border)">
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:700;margin-bottom:5px">Le Prestataire — ShieldAudit</div>
+          <div style="font-size:0.72rem;color:#777;margin-bottom:10px;font-style:italic">Lu et approuvé – Bon pour accord</div>
+          <div style="border-bottom:1px solid #333;height:65px;position:relative;margin-bottom:6px">
+            <img id="sig1-preview" style="max-height:65px;max-width:100%;position:absolute;bottom:2px;left:0;display:none">
+          </div>
+          <div style="font-size:0.75rem;color:#555" id="sig1-info-display">Nom : —</div>
+          <div style="font-size:0.72rem;color:#aaa;margin-top:3px">Date : __ / __ / 2026</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:700;margin-bottom:5px">Le Client</div>
+          <div style="font-size:0.72rem;color:#777;margin-bottom:10px;font-style:italic">Lu et approuvé – Bon pour accord</div>
+          <div style="border-bottom:1px solid #333;height:65px;position:relative;margin-bottom:6px">
+            <img id="sig2-preview" style="max-height:65px;max-width:100%;position:absolute;bottom:2px;left:0;display:none">
+          </div>
+          <div style="font-size:0.75rem;color:#555" id="sig2-info-display">Nom : —</div>
+          <div style="font-size:0.72rem;color:#aaa;margin-top:3px">Date : __ / __ / 2026</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:0.68rem;color:#bbb;margin-top:1.5rem;padding-top:0.8rem;border-top:1px solid #eee">ShieldAudit · Paris, France · 06 59 96 08 77 · © 2026 · Document confidentiel</div>
+    </div>
+  </div>
+</div>
+<!-- ===== FACTURE ===== -->
+<div class="page" id="page-facture">
+  <div class="header">
+    <div class="header-title">Facture</div>
+    <div class="header-btns">
+      <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
+      <button class="hbtn outline" onclick="resetFacture()">↺ Réinitialiser</button>
+      <button class="hbtn vert" onclick="printDoc('facture-preview')">🖨 Imprimer / PDF</button>
+    </div>
+  </div>
+  <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div class="form-section">
+        <h3>Informations client</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>Magasin / Société</label><input id="f_magasin" placeholder="Ex: Carrefour Market"></div>
+          <div class="form-group"><label>Contact</label><input id="f_contact" placeholder="Ex: Jean Dupont"></div>
+          <div class="form-group full"><label>Adresse</label><input id="f_adresse" placeholder="Adresse complète"></div>
+          <div class="form-group"><label>Email</label><input id="f_email" placeholder="contact@magasin.fr"></div>
+          <div class="form-group"><label>Téléphone</label><input id="f_tel" placeholder="06 XX XX XX XX"></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <h3>Détails facture</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>N° facture</label><input id="f_num" placeholder="FAC-2026-001"></div>
+          <div class="form-group"><label>Date d'émission</label><input type="date" id="f_date"></div>
+          <div class="form-group"><label>Date d'échéance</label><input type="date" id="f_echeance"></div>
+          <div class="form-group"><label>Réf. devis</label><input id="f_ref_devis" placeholder="DEV-2026-001"></div>
+          <div class="form-group"><label>Date de prestation</label><input type="date" id="f_date_prest"></div>
+          <div class="form-group"><label>Prix HT (€)</label><input id="f_ht" value="3000" type="number" oninput="calcFacture()"></div>
+          <div class="form-group"><label>TVA %</label><select id="f_tva" onchange="calcFacture()"><option value="20">20%</option><option value="0">0%</option></select></div>
+          <div class="form-group"><label>Statut paiement</label>
+            <select id="f_statut_paiement">
+              <option value="attente">En attente</option>
+              <option value="partiel">Acompte reçu</option>
+              <option value="paye">Payé ✓</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full" style="margin-top:0.5rem"><label>IBAN (pour virement)</label><input id="f_iban" placeholder="FR__ ____ ____ ____ ____ ____ ___"></div>
+      </div>
+    </div>
+    <div id="facture-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-size:1.5rem">Shield<span style="color:var(--vert)">Audit</span></div>
+          <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
+          <div style="font-size:0.75rem;color:#666;margin-top:8px;line-height:1.8">Paris, France · 06 59 96 08 77</div>
+        </div>
+        <div style="text-align:right">
+          <div id="f_badge_statut" style="display:inline-block;background:#fff8e8;color:#cc7700;border:1px solid #f0c040;border-radius:100px;font-size:0.68rem;font-weight:700;padding:3px 10px;margin-bottom:6px">EN ATTENTE</div>
+          <div style="font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:2px">Facture</div>
+          <div style="font-size:0.75rem;color:#666;margin-top:5px;line-height:1.9">N° <span id="fp_num">FAC-2026-001</span><br>Émise le <span id="fp_date">—</span><br>Échéance : <span id="fp_echeance">—</span></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+        <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem">
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:6px">Émetteur</div>
+          <div style="font-size:0.78rem;line-height:1.8;color:#333">ShieldAudit<br>Paris, France<br>06 59 96 08 77</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem">
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:6px">Facturé à</div>
+          <div style="font-size:0.78rem;line-height:1.8;color:#333"><span id="fp_magasin">—</span><br><span id="fp_contact">—</span><br><span id="fp_adresse">—</span><br><span id="fp_tel">—</span><br><span id="fp_email2">—</span></div>
+        </div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:1rem">
+        <thead><tr style="background:var(--noir);color:white"><th style="padding:8px 10px;text-align:left">Désignation</th><th style="padding:8px 10px;text-align:right">HT</th><th style="padding:8px 10px;text-align:right">TVA</th><th style="padding:8px 10px;text-align:right">TTC</th></tr></thead>
+        <tbody><tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit · Rapport · Personnel de sécurité · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="fp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="fp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="fp_ttc">3 600 €</td></tr></tbody>
+      </table>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+        <div style="width:230px">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666;border-bottom:1px solid var(--border)"><span>Total HT</span><span id="fp_ht2">3 000 €</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666"><span id="fp_tva_lbl">TVA 20%</span><span id="fp_tva2">600 €</span></div>
+          <div style="background:var(--noir);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.85rem">Total TTC</span><span style="color:#6fcf97;font-size:1.1rem" id="fp_ttc2">3 600 €</span></div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem;margin-bottom:1rem;font-size:0.75rem">
+        <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:6px">Virement bancaire</div>
+        IBAN : <span id="fp_iban">—</span><br>
+        <span style="color:#888">Réf. virement : <span id="fp_num2">FAC-2026-001</span></span>
+      </div>
+      <div style="font-size:0.68rem;color:#999;border-top:1px solid var(--border);padding-top:0.8rem;line-height:1.7">Pénalités de retard : 1,5% par mois · Indemnité forfaitaire recouvrement : 40 € · Aucun escompte pour paiement anticipé<br>ShieldAudit · Paris, France · © 2026</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- MODAL CLIENT -->
+<div class="modal-overlay" id="client-modal" onclick="closeModalOutside(event,'client-modal')">
+  <div class="modal">
+    <h2 id="client-modal-title">Nouveau client</h2>
+    <div class="form-grid">
+      <div class="form-group"><label>Magasin *</label><input id="cm_magasin" placeholder="Ex: Carrefour"></div>
+      <div class="form-group"><label>Gérant</label><input id="cm_contact" placeholder="Ex: Jean Dupont"></div>
+      <div class="form-group"><label>Téléphone</label><input id="cm_tel" placeholder="06 XX XX XX XX"></div>
+      <div class="form-group"><label>Email</label><input id="cm_email" placeholder="contact@..."></div>
+      <div class="form-group"><label>Ville</label><input id="cm_ville" placeholder="Ex: Lyon"></div>
+      <div class="form-group"><label>Statut</label>
+        <select id="cm_statut">
+          <option value="prospect">Prospect</option><option value="rdv">RDV planifié</option>
+          <option value="envoye">Devis envoyé</option><option value="signe">Signé</option>
+          <option value="termine">Terminé</option><option value="perdu">Perdu</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Montant (€ TTC)</label><input type="number" id="cm_montant" placeholder="3600"></div>
+      <div class="form-group"><label>Prochain contact</label><input type="date" id="cm_date"></div>
+      <div class="form-group full"><label>Notes</label><textarea id="cm_notes" placeholder="Observations..."></textarea></div>
+    </div>
+    <div class="form-actions">
+      <button class="hbtn outline" onclick="closeModal('client-modal')">Annuler</button>
+      <button class="hbtn vert" onclick="saveClient()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== STATE =====
+let state = JSON.parse(localStorage.getItem('sa_state') || '{}');
+if(!state.clients) state.clients = [
+  {id:1,magasin:'Carrefour Market Lyon',contact:'Jean Dupont',tel:'06 12 34 56 78',email:'jean@carrefour.fr',ville:'Lyon',statut:'prospect',montant:'',date:'2026-06-10',notes:'Intéressé — rappeler cette semaine'},
+  {id:2,magasin:'Pharmacie du Centre',contact:'Sophie Martin',tel:'06 98 76 54 32',email:'sophie@pharmacie.fr',ville:'Paris',statut:'signe',montant:3600,date:'',notes:'Contrat signé. Audit planifié le 20/06'},
+  {id:3,magasin:'Fnac Bordeaux',contact:'Luc Bernard',tel:'07 11 22 33 44',email:'luc@fnac.fr',ville:'Bordeaux',statut:'termine',montant:3600,date:'',notes:'Mission terminée. Rapport remis.'},
+];
+if(!state.failles) state.failles = [];
+let editingClientId = null;
+
+function saveState(){ localStorage.setItem('sa_state', JSON.stringify(state)); }
+function saveAll(){ saveState(); showToast('✓ Sauvegardé','vert'); }
+
+// ===== NAV =====
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  if(id==='clients') renderClients();
+  if(id==='dashboard') renderDash();
+  if(id==='contrat') switchContratTab('formulaire');
+}
+
+// ===== DATE =====
+const now = new Date();
+const dateStr = now.toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+document.getElementById('dash-date').textContent = dateStr;
+document.getElementById('dash-now').textContent = now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+// Set default dates
+['d_date','c_date','f_date'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=now.toISOString().slice(0,10); });
+
+// ===== DASHBOARD =====
+function renderDash(){
+  const total=state.clients.length;
+  const signes=state.clients.filter(c=>c.statut==='signe'||c.statut==='termine').length;
+  const ca=state.clients.filter(c=>c.montant).reduce((a,c)=>a+(parseFloat(c.montant)||0),0);
+  const prospects=state.clients.filter(c=>c.statut==='prospect').length;
+  document.getElementById('dash-stats').innerHTML=`
+    <div class="stat-box"><div class="val">${total}</div><div class="lbl">Clients total</div></div>
+    <div class="stat-box"><div class="val">${prospects}</div><div class="lbl">Prospects actifs</div></div>
+    <div class="stat-box vert"><div class="val">${signes}</div><div class="lbl">Signés & terminés</div></div>
+    <div class="stat-box vert"><div class="val">${ca>0?Math.round(ca/1000)+'k€':'0'}</div><div class="lbl">CA généré</div></div>
+  `;
+}
+renderDash();
+
+// ===== CLIENTS =====
+const STATUTS={prospect:'Prospect',rdv:'RDV planifié',envoye:'Devis envoyé',signe:'Signé ✓',termine:'Terminé',perdu:'Perdu'};
+function renderClients(){
+  const s=document.getElementById('client-search').value.toLowerCase();
+  const f=document.getElementById('client-filter').value;
+  const filtered=state.clients.filter(c=>{
+    const ms=!s||(c.magasin+c.contact+c.ville+c.notes).toLowerCase().includes(s);
+    const mf=!f||c.statut===f;
+    return ms&&mf;
+  });
+  const counts={};
+  state.clients.forEach(c=>{ counts[c.statut]=(counts[c.statut]||0)+1; });
+  const dotColors={prospect:'#cc9900',rdv:'#4466cc',envoye:'#7744cc',signe:'#2d6a4f',termine:'#777',perdu:'#cc3333'};
+  document.getElementById('status-bar').innerHTML=Object.entries(counts).map(([s,n])=>
+    `<div class="status-pill"><div class="dot" style="background:${dotColors[s]||'#999'}"></div>${n} ${STATUTS[s]||s}</div>`
+  ).join('');
+  const tbody=document.getElementById('clients-tbody');
+  if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--gris)">Aucun client trouvé</td></tr>`; return; }
+  tbody.innerHTML=filtered.map(c=>`
+    <tr>
+      <td><strong style="font-size:0.85rem">${esc(c.magasin)}</strong></td>
+      <td style="color:var(--gris);font-size:0.8rem">${esc(c.contact||'—')}</td>
+      <td><a href="tel:${(c.tel||'').replace(/\s/g,'')}" style="color:var(--vert);text-decoration:none;font-size:0.8rem">${esc(c.tel||'—')}</a></td>
+      <td style="font-size:0.8rem">${esc(c.ville||'—')}</td>
+      <td><span class="badge ${c.statut}">${STATUTS[c.statut]||c.statut}</span></td>
+      <td style="font-size:0.82rem;font-weight:500">${c.montant?Number(c.montant).toLocaleString('fr-FR')+' €':'—'}</td>
+      <td style="font-size:0.78rem;color:var(--gris)">${c.date?fmtDate(c.date):'—'}</td>
+      <td><div class="td-actions">
+        <button class="icon-btn" onclick="editClient(${c.id})" title="Modifier"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button class="icon-btn del" onclick="delClient(${c.id})" title="Supprimer"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+      </div></td>
+    </tr>`).join('');
+}
+function openClientModal(){ editingClientId=null; document.getElementById('client-modal-title').textContent='Nouveau client'; ['cm_magasin','cm_contact','cm_tel','cm_email','cm_ville','cm_notes'].forEach(id=>document.getElementById(id).value=''); document.getElementById('cm_statut').value='prospect'; document.getElementById('cm_montant').value=''; document.getElementById('cm_date').value=''; document.getElementById('client-modal').classList.add('open'); }
+function editClient(id){ const c=state.clients.find(x=>x.id===id); if(!c) return; editingClientId=id; document.getElementById('client-modal-title').textContent='Modifier le client'; document.getElementById('cm_magasin').value=c.magasin||''; document.getElementById('cm_contact').value=c.contact||''; document.getElementById('cm_tel').value=c.tel||''; document.getElementById('cm_email').value=c.email||''; document.getElementById('cm_ville').value=c.ville||''; document.getElementById('cm_statut').value=c.statut||'prospect'; document.getElementById('cm_montant').value=c.montant||''; document.getElementById('cm_date').value=c.date||''; document.getElementById('cm_notes').value=c.notes||''; document.getElementById('client-modal').classList.add('open'); }
+function saveClient(){ const mag=document.getElementById('cm_magasin').value.trim(); if(!mag){ showToast('Nom du magasin obligatoire',''); return; } const data={id:editingClientId||Date.now(),magasin:mag,contact:document.getElementById('cm_contact').value.trim(),tel:document.getElementById('cm_tel').value.trim(),email:document.getElementById('cm_email').value.trim(),ville:document.getElementById('cm_ville').value.trim(),statut:document.getElementById('cm_statut').value,montant:parseFloat(document.getElementById('cm_montant').value)||'',date:document.getElementById('cm_date').value,notes:document.getElementById('cm_notes').value.trim()}; if(editingClientId){ const i=state.clients.findIndex(c=>c.id===editingClientId); state.clients[i]=data; }else{ state.clients.unshift(data); } saveState(); closeModal('client-modal'); renderClients(); renderDash(); showToast('✓ Client enregistré','vert'); }
+function delClient(id){ if(!confirm('Supprimer ce client ?')) return; state.clients=state.clients.filter(c=>c.id!==id); saveState(); renderClients(); renderDash(); showToast('Client supprimé'); }
+function exportClients(){ const h=['Magasin','Contact','Tél','Email','Ville','Statut','Montant','Date','Notes']; const rows=state.clients.map(c=>[c.magasin,c.contact,c.tel,c.email,c.ville,STATUTS[c.statut]||c.statut,c.montant||'',c.date||'',c.notes].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(';')); const csv='\uFEFF'+[h.join(';'),...rows].join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='clients_shieldaudit.csv'; a.click(); showToast('✓ Export CSV téléchargé','vert'); }
+
+// ===== DEVIS =====
+function calcDevis(){ const ht=parseFloat(document.getElementById('d_ht').value)||0; const tva=parseInt(document.getElementById('d_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('d_ttc_display').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_label').textContent='TVA '+tva+'%'; }
+function resetDevis(){ ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date_mission'].forEach(id=>document.getElementById(id).value=''); document.getElementById('d_ht').value='3000'; calcDevis(); }
+// Live update devis preview
+['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{
+    if(id==='d_magasin'){ const t=document.getElementById('dp_magasin'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_contact'){ const t=document.getElementById('dp_contact'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_adresse'){ const t=document.getElementById('dp_adresse'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_tel'){ const t=document.getElementById('dp_tel'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_email'){ const t=document.getElementById('dp_email'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_siret_client'){ const t=document.getElementById('dp_siret'); if(t) t.textContent=el.value?'SIRET: '+el.value:''; }
+    if(id==='d_num'){ const t=document.getElementById('dp_num'); if(t) t.textContent=el.value||'DEV-2026-001'; }
+    if(id==='d_date'){ const t=document.getElementById('dp_date'); if(t) t.textContent=el.value?fmtDate(el.value):'—'; }
+  });
+});
+calcDevis();
+
+// ===== CONTRAT =====
+// ===== CONTRAT TABS =====
+function switchContratTab(tab){
+  ['formulaire','signatures','apercu'].forEach(t=>{
+    document.getElementById('csec-'+t).style.display = t===tab ? 'block' : 'none';
+    const btn = document.getElementById('ctab-'+t);
+    if(btn){ btn.style.borderBottomColor = t===tab ? 'var(--vert)' : 'transparent'; btn.style.color = t===tab ? 'var(--vert)' : 'var(--gris)'; }
+  });
+  if(tab==='signatures'){ setTimeout(()=>{ initSig('sig1'); initSig('sig2'); },200); }
+  if(tab==='apercu'){ updateContratPreview(); }
+}
+function updateContratPreview(){
+  const v = id => document.getElementById(id)?.value || '—';
+  const fmtDate = s => { if(!s||s==='—') return '—'; const[y,m,d]=s.split('-'); return `${d}/${m}/${y}`; };
+  const set = (id,val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+  set('cp_ref', v('c_ref')||'TIP-2026-___'); set('cp_date', fmtDate(v('c_date'))||'__ / __ / ____');
+  set('cp_magasin', v('c_magasin')); set('cp_adresse', v('c_adresse')); set('cp_tel', v('c_tel'));
+  set('cp_siret', v('c_siret')||'—');
+  set('cp_lieu', v('c_lieu')); set('cp_date_mission', fmtDate(v('c_date_mission')));
+  set('cp_delai', v('c_delai')||'2');
+  const ht = parseFloat(document.getElementById('c_ht')?.value)||3000;
+  const ttc = Math.round(ht*1.2);
+  set('cp_ht', ht.toLocaleString('fr-FR')+' €');
+  set('cp_ttc_display', ttc.toLocaleString('fr-FR')+' € TTC');
+}
+function calcContrat(){
+  const ht = parseFloat(document.getElementById('c_ht')?.value)||0;
+  const ttc = Math.round(ht*1.2);
+  const el = document.getElementById('c_ttc'); if(el) el.value=ttc;
+  updateContratPreview();
+}
+function resetContrat(){
+  ['c_magasin','c_contact','c_adresse','c_siret','c_tel','c_ref','c_lieu'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  const ht=document.getElementById('c_ht'); if(ht) ht.value='3000';
+  calcContrat(); clearSig('sig1'); clearSig('sig2');
+  switchContratTab('formulaire');
+}
+['c_magasin','c_contact','c_adresse','c_tel','c_ref','c_date','c_lieu','c_date_mission','c_delai'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{
+    if(id==='c_magasin') document.getElementById('cp_magasin').textContent=el.value||'—';
+    if(id==='c_adresse') document.getElementById('cp_adresse').textContent=el.value||'—';
+    if(id==='c_tel') document.getElementById('cp_tel').textContent=el.value||'—';
+    if(id==='c_ref') document.getElementById('cp_ref').textContent=el.value||'TIP-2026-___';
+    if(id==='c_date') document.getElementById('cp_date').textContent=el.value?fmtDate(el.value):'—';
+    if(id==='c_lieu') document.getElementById('cp_lieu').textContent=el.value||'—';
+    if(id==='c_date_mission') document.getElementById('cp_date_mission').textContent=el.value?fmtDate(el.value):'—';
+    if(id==='c_delai') document.getElementById('cp_delai').textContent=el.value||'2';
+  });
+});
+calcContrat();
+
+// ===== FACTURE =====
+function calcFacture(){ const ht=parseFloat(document.getElementById('f_ht').value)||0; const tva=parseInt(document.getElementById('f_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('fp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_lbl').textContent='TVA '+tva+'%'; }
+function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel','f_num','f_ref_devis','f_iban'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f_ht').value='3000'; calcFacture(); }
+['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{
+    if(id==='f_magasin'){ const t=document.getElementById('fp_magasin'); if(t) t.textContent=el.value||'—'; }
+    if(id==='f_contact'){ const t=document.getElementById('fp_contact'); if(t) t.textContent=el.value||'—'; }
+    if(id==='f_adresse'){ const t=document.getElementById('fp_adresse'); if(t) t.textContent=el.value||'—'; }
+    if(id==='f_tel'){ const t=document.getElementById('fp_tel'); if(t) t.textContent=el.value||'—'; }
+    if(id==='f_email'){ const t=document.getElementById('fp_email2'); if(t) t.textContent=el.value||'—'; }
+    if(id==='f_num'){ const t=document.getElementById('fp_num'); if(t) t.textContent=el.value||'FAC-2026-001'; const t2=document.getElementById('fp_num2'); if(t2) t2.textContent=el.value||'FAC-2026-001'; }
+    if(id==='f_date'){ const t=document.getElementById('fp_date'); if(t) t.textContent=el.value?fmtDate(el.value):'—'; }
+    if(id==='f_echeance'){ const t=document.getElementById('fp_echeance'); if(t) t.textContent=el.value?fmtDate(el.value):'—'; }
+    if(id==='f_iban'){ const t=document.getElementById('fp_iban'); if(t) t.textContent=el.value||'—'; }
+  });
+});
+document.getElementById('f_statut_paiement').addEventListener('change',function(){ const badges={attente:'background:#fff8e8;color:#cc7700;border:1px solid #f0c040',partiel:'background:#e8f0ff;color:#3355bb;border:1px solid #99aadd',paye:'background:var(--vert-light);color:#085041;border:1px solid #88ccaa'}; const labels={attente:'EN ATTENTE',partiel:'ACOMPTE REÇU',paye:'PAYÉ ✓'}; const b=document.getElementById('f_badge_statut'); b.style.cssText+=';'+badges[this.value]; b.textContent=labels[this.value]; });
+calcFacture();
+
+// ===== RAPPORT - FAILLES =====
+function addFaille(){
+  const id=Date.now();
+  state.failles.push({id,niveau:'critique',titre:'',zone:'',technique:'',description:'',recommandation:'',cout:''});
+  saveState(); renderFailles(); switchRappTab('failles');
+  showToast('✓ Faille ajoutée','vert');
+}
+function renderFailles(){
+  const list=document.getElementById('failles-list');
+  document.getElementById('failles-count').textContent=state.failles.length;
+  updateSynthese();
+  if(!state.failles.length){ list.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><p>Aucune faille enregistrée.<br>Appuyez sur "+ Ajouter une faille" pour commencer.</p></div>`; return; }
+  list.innerHTML=state.failles.map((f,i)=>`
+    <div class="faille-card" id="fc-${f.id}">
+      <div class="faille-card-head ${f.niveau}">
+        <select class="faille-badge ${f.niveau}" onchange="updateFaille(${f.id},'niveau',this.value);this.className='faille-badge '+this.value;this.parentElement.className='faille-card-head '+this.value" style="border:none;cursor:pointer;font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px;font-family:inherit">
+          <option value="critique" ${f.niveau==='critique'?'selected':''}>CRITIQUE</option>
+          <option value="eleve" ${f.niveau==='eleve'?'selected':''}>RISQUE ÉLEVÉ</option>
+          <option value="moyen" ${f.niveau==='moyen'?'selected':''}>RISQUE MOYEN</option>
+        </select>
+        <input style="flex:1;border:none;background:transparent;font-size:0.88rem;font-weight:500;font-family:inherit;outline:none" placeholder="Titre de la faille" value="${esc(f.titre)}" oninput="updateFaille(${f.id},'titre',this.value)">
+        <span style="font-size:0.72rem;color:#bbb;margin-left:auto;flex-shrink:0">Faille #${String(i+1).padStart(2,'0')}</span>
+        <button onclick="delFaille(${f.id})" style="background:none;border:none;cursor:pointer;color:#bbb;padding:0 0 0 8px;font-size:1rem" title="Supprimer">✕</button>
+      </div>
+      <div class="faille-card-body">
+        <div class="form-grid" style="margin-bottom:0.8rem">
+          <div class="form-group"><label>Zone concernée</label><input placeholder="Ex: Rayon électronique" value="${esc(f.zone)}" oninput="updateFaille(${f.id},'zone',this.value)"></div>
+          <div class="form-group"><label>Technique exploitée</label><input placeholder="Ex: Dissimulation sous vêtement" value="${esc(f.technique)}" oninput="updateFaille(${f.id},'technique',this.value)"></div>
+          <div class="form-group full"><label>Description détaillée</label><textarea rows="3" placeholder="Décrire précisément ce qui a été observé et testé..." oninput="updateFaille(${f.id},'description',this.value)">${esc(f.description)}</textarea></div>
+          <div class="form-group full"><label>Recommandation ShieldAudit</label><textarea rows="2" placeholder="Action corrective recommandée, coût estimé, délai..." oninput="updateFaille(${f.id},'recommandation',this.value)">${esc(f.recommandation)}</textarea></div>
+          <div class="form-group"><label>Coût estimé correction</label><input placeholder="Ex: 150 à 300 €" value="${esc(f.cout)}" oninput="updateFaille(${f.id},'cout',this.value)"></div>
+          <div class="form-group"><label>Délai recommandé</label>
+            <select onchange="updateFaille(${f.id},'delai',this.value)">
+              <option ${f.delai==='immediat'?'selected':''} value="immediat">Immédiat</option>
+              <option ${f.delai==='48h'?'selected':''} value="48h">48h</option>
+              <option ${f.delai==='semaine'?'selected':''} value="semaine">1 semaine</option>
+              <option ${f.delai==='mois'?'selected':''} value="mois">1 mois</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
+          <div>
+            <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);margin-bottom:4px">Photo 1</div>
+            <div class="photo-upload" id="pu1-${f.id}">
+              <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(this,${f.id},'p1')">
+              <img class="photo-preview" id="pp1-${f.id}" ${f.photo1?`src="${f.photo1}" style="display:block"`:''}> 
+              <p id="pt1-${f.id}" ${f.photo1?'style="display:none"':''}>📷 Prendre une photo</p>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);margin-bottom:4px">Photo 2</div>
+            <div class="photo-upload" id="pu2-${f.id}">
+              <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(this,${f.id},'p2')">
+              <img class="photo-preview" id="pp2-${f.id}" ${f.photo2?`src="${f.photo2}" style="display:block"`:''}> 
+              <p id="pt2-${f.id}" ${f.photo2?'style="display:none"':''}>📷 Prendre une photo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function updateFaille(id,key,val){ const f=state.failles.find(x=>x.id===id); if(f){ f[key]=val; saveState(); if(key==='niveau') updateSynthese(); } }
+function delFaille(id){ state.failles=state.failles.filter(f=>f.id!==id); saveState(); renderFailles(); }
+function previewPhoto(input,fId,slot){
+  const file=input.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const src=e.target.result;
+    const n=slot==='p1'?'1':'2';
+    const img=document.getElementById(`pp${n}-${fId}`);
+    const txt=document.getElementById(`pt${n}-${fId}`);
+    if(img){ img.src=src; img.style.display='block'; }
+    if(txt) txt.style.display='none';
+    const f=state.failles.find(x=>x.id===fId);
+    if(f){ f[slot==='p1'?'photo1':'photo2']=src; saveState(); }
+    showToast('✓ Photo ajoutée','vert');
+  };
+  r.readAsDataURL(file);
+}
+function updateSynthese(){ const c=state.failles.filter(f=>f.niveau==='critique').length; const e=state.failles.filter(f=>f.niveau==='eleve').length; const m=state.failles.filter(f=>f.niveau==='moyen').length; document.getElementById('syn-critique').textContent=c; document.getElementById('syn-eleve').textContent=e; document.getElementById('syn-moyen').textContent=m; }
+function switchRappTab(tab){ document.querySelectorAll('.rapp-tab').forEach((t,i)=>{ const tabs=['infos','failles','synthese','conclusion']; t.classList.toggle('active',tabs[i]===tab); }); document.querySelectorAll('.rapp-section').forEach(s=>s.classList.remove('active')); document.getElementById('rapp-'+tab).classList.add('active'); if(tab==='failles') renderFailles(); if(tab==='conclusion'){ setTimeout(()=>{ initSig('sig3'); initSig('sig4'); },200); } }
+
+// ===== SIGNATURE PADS — FIX POSITION TABLETTE =====
+const sigStates={};
+function initSig(id){
+  const canvas=document.getElementById(id);
+  if(!canvas||sigStates[id]) return;
+  const box=canvas.parentElement;
+  // Taille canvas = taille CSS exacte — pas de scale
+  const r=box.getBoundingClientRect();
+  canvas.width=Math.floor(r.width);
+  canvas.height=Math.floor(r.height);
+  const ctx=canvas.getContext('2d');
+  ctx.strokeStyle='#0f0f0f';
+  ctx.lineWidth=3;
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+  sigStates[id]={ctx,drawing:false};
+  // Position exacte : clientX/Y - rect du canvas
+  const getPos=e=>{
+    const cr=canvas.getBoundingClientRect();
+    const src=e.touches?e.touches[0]:e;
+    return{ x:src.clientX-cr.left, y:src.clientY-cr.top };
+  };
+  const start=e=>{
+    e.preventDefault(); e.stopPropagation();
+    const p=getPos(e);
+    sigStates[id].drawing=true;
+    ctx.beginPath(); ctx.moveTo(p.x,p.y);
+    const ph=document.getElementById(id+'-ph');
+    if(ph) ph.style.display='none';
+  };
+  const draw=e=>{
+    e.preventDefault(); e.stopPropagation();
+    if(!sigStates[id]?.drawing) return;
+    const p=getPos(e);
+    ctx.lineTo(p.x,p.y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(p.x,p.y);
+    updateSigPreview(id);
+  };
+  const stop=e=>{ e.preventDefault(); if(sigStates[id]) sigStates[id].drawing=false; };
+  canvas.addEventListener('mousedown',start);
+  canvas.addEventListener('mousemove',draw);
+  canvas.addEventListener('mouseup',stop);
+  canvas.addEventListener('mouseleave',stop);
+  canvas.addEventListener('touchstart',start,{passive:false});
+  canvas.addEventListener('touchmove',draw,{passive:false});
+  canvas.addEventListener('touchend',stop,{passive:false});
+  canvas.addEventListener('touchcancel',stop,{passive:false});
+}
+function clearSig(id){
+  const s=sigStates[id];
+  if(s){ s.ctx.clearRect(0,0,99999,99999); s.drawing=false; }
+  const ph=document.getElementById(id+'-ph'); if(ph) ph.style.display='flex';
+  const pv=document.getElementById(id+'-preview'); if(pv){ pv.src=''; pv.style.display='none'; }
+}
+function updateSigPreview(id){
+  const canvas=document.getElementById(id);
+  const pv=document.getElementById(id+'-preview');
+  if(pv&&canvas){ pv.src=canvas.toDataURL(); pv.style.display='block'; }
+  const nameVal=document.getElementById(id+'_name')?.value||'—';
+  const disp=document.getElementById(id+'-info-display');
+  if(disp) disp.textContent='Nom : '+nameVal;
+}
+// Init signatures après chargement complet
+setTimeout(()=>{ document.querySelectorAll('.sig-canvas').forEach(c=>initSig(c.id)); },600);
+['sig1_name','sig2_name'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',()=>{ updateSigPreview(id.replace('_name','')); });
+});
+
+// ===== UTILS =====
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtDate(s){ if(!s) return '—'; const [y,m,d]=s.split('-'); return `${d}/${m}/${y}`; }
+function showToast(msg,type){ const t=document.getElementById('toast'); t.textContent=msg; t.className='toast '+(type||''); setTimeout(()=>t.classList.add('show'),10); setTimeout(()=>t.classList.remove('show'),2500); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function closeModalOutside(e,id){ if(e.target.id===id) closeModal(id); }
+function printDoc(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  const isAndroid=/Android/i.test(navigator.userAgent);
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ShieldAudit</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,sans-serif;padding:20px;padding-bottom:80px;color:#1a1a1a;font-size:12px;line-height:1.6}
+    table{width:100%;border-collapse:collapse}
+    th{background:#0f0f0f;color:white;padding:8px 12px;text-align:left;font-size:11px}
+    td{padding:8px 12px;border-bottom:1px solid #f0f0ec}
+    .fixed-bar{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;z-index:999;box-shadow:0 -4px 15px rgba(0,0,0,0.1)}
+    .print-btn{background:#2d6a4f;color:white;border:none;padding:12px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;font-family:Arial}
+    .back-btn{background:#333;color:white;border:none;padding:12px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;font-family:Arial}
+    @media print{.fixed-bar{display:none!important}body{padding:10px}}
+  </style></head>
+  <body>
+  <div class="fixed-bar">
+    <button class="back-btn" onclick="window.location.href='${window.location.href}'">← Retour</button>
+    <button class="print-btn" onclick="window.print()">🖨 Imprimer / PDF</button>
+  </div>
+  ${el.innerHTML}
+  </body></html>`;
+
+  if(isAndroid){
+    // Sur Android — télécharger via blob
+    try {
+      const blob = new Blob([html], {type: 'application/octet-stream'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'shieldaudit_document.html';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 2000);
+      showToast('✓ Document dans Téléchargements !','vert');
+    } catch(e) {
+      document.open(); document.write(html); document.close();
+    }
+  } else {
+    document.open();
+    document.write(html);
+    document.close();
+  }
+}
+
+// Keyboard shortcut ESC
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open')); } });
+
+// Auto-save every 30s
+setInterval(saveState, 30000);
+
+console.log('✓ ShieldAudit App chargée — Données sauvegardées localement');
+</script>
+</body>
+</html>
