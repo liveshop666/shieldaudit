@@ -13,8 +13,10 @@ ALLOWED_ORIGIN = "*"
 #   npx wrangler secret put IOPOLE_API_KEY
 #   npx wrangler secret put IOPOLE_CUSTOMER_ID
 # et colle les valeurs correspondantes quand c'est demandé.
-# (IOPOLE_CUSTOMER_ID est l'identifiant obtenu après l'enrôlement KYC/KYB de
-# ShieldAudit sur iopole — voir README.md.)
+# (IOPOLE_API_KEY est obligatoire. IOPOLE_CUSTOMER_ID — l'identifiant obtenu
+# après l'enrôlement KYC/KYB de ShieldAudit sur iopole — est listé comme
+# optionnel par leur doc mais utilisé dans leur exemple : configure-le si
+# ton compte iopole en a un. Voir README.md.)
 
 # Optionnel : décommente et adapte si l'endpoint diffère de la valeur par
 # défaut dans worker.js (sandbox : api.ppd.iopole.fr).

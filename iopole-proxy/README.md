@@ -7,24 +7,38 @@ par un tiers. La solution : un petit serveur (ici un Cloudflare Worker
 gratuit) qui garde la clé et relaie la demande vers iopole. `index.html`
 n'appelle que ce relais, jamais iopole directement.
 
-## Étape 1 — Créer un compte iopole et obtenir une clé API + un customer-id
+## Étape 1 — Créer un compte iopole et obtenir une clé API
 
-1. Va sur https://www.iopole.com, crée un compte dans l'espace développeurs
-   et active un Sandbox (environnement de test gratuit, isolé).
-2. Récupère ta clé API de sandbox.
-3. Termine l'enrôlement (KYC/KYB) de ShieldAudit sur iopole pour obtenir ton
-   **customer-id** (un UUID) — l'API d'émission de facture en a besoin en
-   plus de la clé API.
-4. Dans la doc (https://docs.iopole.com/docs/iopole-api/reference, page
-   « Send invoice » / emitInvoice), vérifie :
-   - l'URL exacte de l'endpoint (par défaut ici :
-     `https://api.ppd.iopole.fr/v1/invoice` en sandbox) ;
-   - que le format attendu est toujours un `multipart/form-data` avec un
-     champ `file` + un champ `type` (c'est ce que `worker.js` envoie
-     actuellement, avec `type: application/json` et le contenu de la facture
-     en JSON dans `file`).
-   Adapte `IOPOLE_API_URL` (dans `wrangler.toml`) ou `worker.js` si la doc
-   montre autre chose.
+1. Va sur https://labs.iopole.io/ (bac à sable public et gratuit) ou
+   https://www.iopole.com pour créer ton compte développeur / sandbox
+   d'assurance qualité (environnement isolé, sans impact sur la production).
+2. Récupère ta clé API de sandbox (Bearer token).
+3. Si ton compte a un **customer-id** (UUID, lié à l'enrôlement KYC/KYB de
+   ShieldAudit), note-le aussi — il est envoyé en en-tête mais listé comme
+   optionnel par la doc iopole.
+
+D'après la doc officielle (« Send invoice », `POST /v1/invoice`) :
+- Bases : `https://api.ppd.iopole.fr` (assurance qualité / sandbox) et
+  `https://api.iopole.com` (production).
+- En-têtes : `Authorization: Bearer <clé>` (obligatoire), `customer-id`
+  (optionnel), `accept: application/json`.
+- Corps `multipart/form-data` avec un champ `file` : **seuls les formats PDF
+  ou XML sont acceptés** (UBL, Factur-X, XRechnung, CII nativement — pas de
+  JSON brut). `worker.js` génère donc une facture au format **UBL 2.1**
+  (XML) à partir des champs du formulaire.
+- Réponse `201` : `{ "type": "INVOICE", "id": "..." }` — l'appel est
+  **asynchrone**, cet `id`/GUID sert à suivre le statut ensuite (webhook ou
+  `GET /v1/status`). Erreurs possibles : `401` (auth), `403` (interdit),
+  `413` (fichier > 50 Mo).
+
+⚠️ **Compliance** : le générateur UBL de `worker.js` est minimal — il ne
+couvre pas tout ce qu'exige la validation Schematron légale française
+(notamment le **SIRET** de ShieldAudit et du client, absents du formulaire
+Facture actuel). iopole rejette toute facture invalide et renvoie le détail
+de l'erreur via notification de statut. Teste d'abord sur
+https://labs.iopole.io/, ajuste le mapping dans `buildUblInvoice()`
+(`worker.js`) selon les erreurs retournées, avant tout envoi réel aux
+impôts.
 
 ## Étape 2 — Déployer le relais sur Cloudflare Workers (gratuit)
 
@@ -42,7 +56,9 @@ n'appelle que ce relais, jamais iopole directement.
    npx wrangler secret put IOPOLE_API_KEY
    npx wrangler secret put IOPOLE_CUSTOMER_ID
    ```
-   puis colle ta clé iopole, puis ton customer-id, quand c'est demandé.
+   puis colle ta clé iopole, puis ton customer-id (si tu en as un — sinon
+   passe cette seconde commande, le champ est optionnel), quand c'est
+   demandé.
 5. À la fin du `deploy`, Cloudflare affiche une URL du type
    `https://shieldaudit-iopole-proxy.<ton-compte>.workers.dev`. Garde-la.
 
@@ -58,13 +74,14 @@ données du formulaire au relais, qui les transmet à iopole avec la clé API.
 
 ## Suivi du statut (asynchrone)
 
-L'émission de facture chez iopole est **asynchrone** : une réponse réussie
-contient un `guid`, pas une confirmation immédiate d'acceptation. Le suivi
-du statut (via l'API ou un webhook iopole) n'est pas encore implémenté ici —
-pour l'instant, le bouton « Envoyer à iopole » confirme seulement que la
-requête a été acceptée par iopole (guid reçu), pas que la facture est
-validée/transmise aux impôts. À ajouter une fois la doc de suivi de statut
-consultée dans ton espace développeur.
+L'émission de facture chez iopole est **asynchrone** : une réponse `201`
+contient `{ "type": "INVOICE", "id": "..." }`, pas une confirmation
+d'acceptation définitive. Le suivi du statut (via webhook iopole ou polling
+de `GET /v1/status`) n'est pas encore implémenté ici — pour l'instant, le
+bouton « Envoyer à iopole » confirme seulement que la requête a été reçue
+par iopole, pas que la facture est validée et transmise aux impôts. À
+ajouter une fois la doc de l'endpoint de statut consultée dans ton espace
+développeur.
 
 ## Sécurité
 
