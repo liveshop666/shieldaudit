@@ -8,15 +8,21 @@
  * serveur (Cloudflare) : la clé et l'identifiant client sont stockés comme
  * secrets et ne sont jamais envoyés au navigateur.
  *
+ * Authentification (doc officielle « Authentification » / OAuth2) : iopole
+ * utilise un flux OAuth2 client_credentials. On échange IOPOLE_CLIENT_ID +
+ * IOPOLE_CLIENT_SECRET contre un access_token de courte durée (1h) auprès de
+ * IOPOLE_TOKEN_URL, puis ce token sert de Bearer pour l'appel à l'API
+ * facture. Un token est redemandé à chaque appel (l'usage est trop rare ici
+ * pour justifier un cache).
+ *
  * D'après la doc officielle iopole (« Send invoice », POST /v1/invoice) :
  * - le corps est un multipart/form-data avec un champ "file" contenant le
  *   document facture — SEULS les formats PDF ou XML sont acceptés
  *   nativement (UBL, Factur-X, XRechnung, CII), pas de JSON brut. On génère
  *   donc ici une facture au format UBL 2.1 (XML) à partir des données du
  *   formulaire.
- * - en-têtes : "Authorization: Bearer <clé>" (obligatoire) et "customer-id"
- *   (optionnel selon la doc, mais montré dans leur exemple — l'identifiant
- *   obtenu lors de l'enrôlement KYC/KYB de ShieldAudit chez iopole).
+ * - en-têtes : "Authorization: Bearer <access_token>" (obligatoire) et
+ *   "customer-id" (l'identifiant unique du compte iopole).
  * - l'appel est asynchrone : une réponse 201 renvoie { type: "INVOICE", id }
  *   à conserver pour suivre le statut ensuite (webhook ou GET /v1/status).
  *
@@ -39,8 +45,8 @@ export default {
       return json({ error: 'Méthode non autorisée.' }, 405, env);
     }
 
-    if (!env.IOPOLE_API_KEY) {
-      return json({ error: 'IOPOLE_API_KEY non configurée côté serveur.' }, 500, env);
+    if (!env.IOPOLE_CLIENT_ID || !env.IOPOLE_CLIENT_SECRET) {
+      return json({ error: 'IOPOLE_CLIENT_ID ou IOPOLE_CLIENT_SECRET non configuré côté serveur.' }, 500, env);
     }
 
     let invoice;
@@ -54,6 +60,13 @@ export default {
       return json({ error: 'Champs obligatoires manquants (numero, client, lignes).' }, 400, env);
     }
 
+    let accessToken;
+    try {
+      accessToken = await getAccessToken(env);
+    } catch (err) {
+      return json({ error: 'Authentification iopole (OAuth2) échouée.', detail: String(err) }, 502, env);
+    }
+
     const ublXml = buildUblInvoice(invoice);
     const form = new FormData();
     form.append('file', new Blob([ublXml], { type: 'application/xml' }), `${invoice.numero}.xml`);
@@ -62,7 +75,7 @@ export default {
     const iopoleUrl = env.IOPOLE_API_URL || 'https://api.ppd.iopole.fr/v1/invoice';
     const headers = {
       accept: 'application/json',
-      Authorization: `Bearer ${env.IOPOLE_API_KEY}`,
+      Authorization: `Bearer ${accessToken}`,
     };
     if (env.IOPOLE_CUSTOMER_ID) headers['customer-id'] = env.IOPOLE_CUSTOMER_ID;
 
@@ -80,6 +93,25 @@ export default {
     });
   },
 };
+
+async function getAccessToken(env) {
+  const tokenUrl =
+    env.IOPOLE_TOKEN_URL || 'https://auth.ppd.iopole.fr/realms/iopole/protocol/openid-connect/token';
+  const body = new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: env.IOPOLE_CLIENT_ID,
+    client_secret: env.IOPOLE_CLIENT_SECRET,
+  });
+  const res = await fetch(tokenUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString(),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data = await res.json();
+  if (!data.access_token) throw new Error('Réponse sans access_token');
+  return data.access_token;
+}
 
 function buildUblInvoice(invoice) {
   const ht = Number(invoice.lignes[0]?.prix_ht) || 0;

@@ -8,16 +8,18 @@ compatibility_date = "2026-09-01"
 # restreindre l'accès au relais à ta seule page.
 ALLOWED_ORIGIN = "*"
 
-# IOPOLE_API_KEY et IOPOLE_CUSTOMER_ID sont des SECRETS : ne jamais les
-# écrire ici ni dans un fichier versionné. Une fois le worker créé, exécute :
-#   npx wrangler secret put IOPOLE_API_KEY
+# IOPOLE_CLIENT_ID, IOPOLE_CLIENT_SECRET et IOPOLE_CUSTOMER_ID sont des
+# SECRETS : ne jamais les écrire ici ni dans un fichier versionné. Une fois
+# le worker créé, exécute :
+#   npx wrangler secret put IOPOLE_CLIENT_ID
+#   npx wrangler secret put IOPOLE_CLIENT_SECRET
 #   npx wrangler secret put IOPOLE_CUSTOMER_ID
-# et colle les valeurs correspondantes quand c'est demandé.
-# (IOPOLE_API_KEY est obligatoire. IOPOLE_CUSTOMER_ID — l'identifiant obtenu
-# après l'enrôlement KYC/KYB de ShieldAudit sur iopole — est listé comme
-# optionnel par leur doc mais utilisé dans leur exemple : configure-le si
-# ton compte iopole en a un. Voir README.md.)
+# et colle les valeurs correspondantes (visibles dans Paramètres de la
+# sandbox sur labs.iopole.io : Api Client ID, Api Client Secret, Identifiant
+# client / CustomerId) quand c'est demandé. Voir README.md.
 
-# Optionnel : décommente et adapte si l'endpoint diffère de la valeur par
-# défaut dans worker.js (sandbox : api.ppd.iopole.fr).
+# Optionnel : décommente et adapte si l'endpoint ou le serveur
+# d'authentification diffèrent des valeurs par défaut dans worker.js
+# (sandbox : api.ppd.iopole.fr / auth.ppd.iopole.fr).
 # IOPOLE_API_URL = "https://api.ppd.iopole.fr/v1/invoice"
+# IOPOLE_TOKEN_URL = "https://auth.ppd.iopole.fr/realms/iopole/protocol/openid-connect/token"

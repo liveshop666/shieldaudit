@@ -2,34 +2,43 @@
 
 `index.html` est une page 100% statique : tout son code est visible par
 n'importe qui via "Afficher le code source". On ne peut donc **jamais** y
-mettre une clé API iopole en clair — elle serait immédiatement récupérable
-par un tiers. La solution : un petit serveur (ici un Cloudflare Worker
-gratuit) qui garde la clé et relaie la demande vers iopole. `index.html`
+mettre un secret iopole en clair — il serait immédiatement récupérable par
+un tiers. La solution : un petit serveur (ici un Cloudflare Worker gratuit)
+qui garde les secrets et relaie la demande vers iopole. `index.html`
 n'appelle que ce relais, jamais iopole directement.
 
-## Étape 1 — Créer un compte iopole et obtenir une clé API
+## Étape 1 — Créer un compte iopole et récupérer tes identifiants
 
-1. Va sur https://labs.iopole.io/ (bac à sable public et gratuit) ou
-   https://www.iopole.com pour créer ton compte développeur / sandbox
-   d'assurance qualité (environnement isolé, sans impact sur la production).
-2. Récupère ta clé API de sandbox (Bearer token).
-3. Si ton compte a un **customer-id** (UUID, lié à l'enrôlement KYC/KYB de
-   ShieldAudit), note-le aussi — il est envoyé en en-tête mais listé comme
-   optionnel par la doc iopole.
+1. Va sur https://labs.iopole.io/ pour créer ton bac à sable (sandbox)
+   gratuit et isolé, sans impact sur la production.
+2. Dans **Sandbox → Paramètres**, note trois valeurs :
+   - **Api Client ID**
+   - **Api Client Secret**
+   - **Identifiant client (CustomerId)**
+   Traite le Client Secret comme un mot de passe : ne le partage nulle part
+   publiquement (Slack, capture d'écran publique, etc.).
 
-D'après la doc officielle (« Send invoice », `POST /v1/invoice`) :
-- Bases : `https://api.ppd.iopole.fr` (assurance qualité / sandbox) et
-  `https://api.iopole.com` (production).
-- En-têtes : `Authorization: Bearer <clé>` (obligatoire), `customer-id`
-  (optionnel), `accept: application/json`.
-- Corps `multipart/form-data` avec un champ `file` : **seuls les formats PDF
-  ou XML sont acceptés** (UBL, Factur-X, XRechnung, CII nativement — pas de
-  JSON brut). `worker.js` génère donc une facture au format **UBL 2.1**
-  (XML) à partir des champs du formulaire.
-- Réponse `201` : `{ "type": "INVOICE", "id": "..." }` — l'appel est
-  **asynchrone**, cet `id`/GUID sert à suivre le statut ensuite (webhook ou
-  `GET /v1/status`). Erreurs possibles : `401` (auth), `403` (interdit),
-  `413` (fichier > 50 Mo).
+D'après la doc officielle :
+- **Authentification** : iopole utilise OAuth2 en flux `client_credentials`,
+  **pas** une clé API statique. Il faut échanger le Client ID + Client
+  Secret contre un `access_token` (valable 1h) auprès de
+  `https://auth.ppd.iopole.fr/realms/iopole/protocol/openid-connect/token`
+  (sandbox), puis utiliser ce token comme `Authorization: Bearer
+  <access_token>`. `worker.js` fait cet échange automatiquement à chaque
+  envoi de facture.
+- **Send invoice** (`POST /v1/invoice`) :
+  - Bases : `https://api.ppd.iopole.fr` (sandbox) et `https://api.iopole.com`
+    (production).
+  - En-têtes : `Authorization: Bearer <access_token>`, `customer-id`,
+    `accept: application/json`.
+  - Corps `multipart/form-data` avec un champ `file` : **seuls les formats
+    PDF ou XML sont acceptés** (UBL, Factur-X, XRechnung, CII nativement —
+    pas de JSON brut). `worker.js` génère donc une facture au format **UBL
+    2.1** (XML) à partir des champs du formulaire.
+  - Réponse `201` : `{ "type": "INVOICE", "id": "..." }` — l'appel est
+    **asynchrone**, cet `id`/GUID sert à suivre le statut ensuite (webhook ou
+    `GET /v1/status`). Erreurs possibles : `401` (auth), `403` (interdit),
+    `413` (fichier > 50 Mo).
 
 ⚠️ **Compliance** : le générateur UBL de `worker.js` est minimal — il ne
 couvre pas tout ce qu'exige la validation Schematron légale française
@@ -53,12 +62,12 @@ impôts.
    Cloudflare ; `deploy` publie le worker.)
 4. Configure les secrets (ils ne seront jamais visibles dans le code) :
    ```
-   npx wrangler secret put IOPOLE_API_KEY
+   npx wrangler secret put IOPOLE_CLIENT_ID
+   npx wrangler secret put IOPOLE_CLIENT_SECRET
    npx wrangler secret put IOPOLE_CUSTOMER_ID
    ```
-   puis colle ta clé iopole, puis ton customer-id (si tu en as un — sinon
-   passe cette seconde commande, le champ est optionnel), quand c'est
-   demandé.
+   puis colle, pour chacune, la valeur correspondante notée à l'étape 1
+   (Api Client ID, Api Client Secret, CustomerId) quand c'est demandé.
 5. À la fin du `deploy`, Cloudflare affiche une URL du type
    `https://shieldaudit-iopole-proxy.<ton-compte>.workers.dev`. Garde-la.
 
@@ -85,8 +94,10 @@ développeur.
 
 ## Sécurité
 
-- La clé API et le customer-id ne sont **jamais** commités dans ce dépôt :
-  ils vivent uniquement dans les secrets Cloudflare (`wrangler secret put`).
+- Le Client ID, le Client Secret et le customer-id ne sont **jamais**
+  commités dans ce dépôt : ils vivent uniquement dans les secrets Cloudflare
+  (`wrangler secret put`). Si tu penses que le Client Secret a fuité,
+  contacte le support iopole pour le régénérer (voir leur avis de sécurité).
 - `ALLOWED_ORIGIN` dans `wrangler.toml` peut être restreint à l'URL exacte où
   `index.html` est hébergé, pour empêcher d'autres sites d'utiliser ton
   relais.
