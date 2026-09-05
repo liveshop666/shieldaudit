@@ -661,6 +661,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
       <button class="hbtn outline" onclick="resetFacture()">↺ Réinitialiser</button>
       <button class="hbtn vert" onclick="printDoc('facture-preview')">🖨 Imprimer / PDF</button>
+      <button class="hbtn vert" onclick="sendToIopole()">📤 Envoyer à iopole</button>
     </div>
   </div>
   <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
@@ -933,6 +934,51 @@ function resetContrat(){
 calcContrat();
 
 // ===== FACTURE =====
+// URL du relais sécurisé (Cloudflare Worker) qui détient la clé API iopole.
+// La clé elle-même ne doit jamais être écrite ici : voir iopole-proxy/README.md.
+const IOPOLE_PROXY_URL = 'https://REMPLACER-PAR-TON-URL-WORKER.workers.dev';
+
+async function sendToIopole(){
+  if(IOPOLE_PROXY_URL.includes('REMPLACER')){
+    showToast('⚠ Relais iopole non configuré (voir iopole-proxy/README.md)','');
+    return;
+  }
+  const magasin=document.getElementById('f_magasin').value.trim();
+  const num=document.getElementById('f_num').value.trim();
+  if(!magasin || !num){ showToast('N° facture et magasin obligatoires',''); return; }
+  const ht=parseFloat(document.getElementById('f_ht').value)||0;
+  const tva=parseInt(document.getElementById('f_tva').value)||0;
+  const tvaAmt=Math.round(ht*tva/100);
+  const invoice={
+    numero:num,
+    date_emission:document.getElementById('f_date').value,
+    date_echeance:document.getElementById('f_echeance').value,
+    reference_devis:document.getElementById('f_ref_devis').value,
+    emetteur:{ nom:'ShieldAudit', ville:'Paris, France', telephone:'06 59 96 08 77' },
+    client:{
+      nom:magasin,
+      contact:document.getElementById('f_contact').value.trim(),
+      adresse:document.getElementById('f_adresse').value.trim(),
+      email:document.getElementById('f_email').value.trim(),
+      telephone:document.getElementById('f_tel').value.trim(),
+    },
+    lignes:[{
+      designation:'Pack Complet ShieldAudit',
+      description:'Audit · Rapport · Personnel de sécurité · Conseil',
+      prix_ht:ht, taux_tva:tva, montant_tva:tvaAmt, prix_ttc:ht+tvaAmt,
+    }],
+    iban:document.getElementById('f_iban').value.trim(),
+    statut_paiement:document.getElementById('f_statut_paiement').value,
+  };
+  showToast('Envoi vers iopole…','');
+  try{
+    const res=await fetch(IOPOLE_PROXY_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(invoice) });
+    const data=await res.json().catch(()=>({}));
+    if(res.ok){ showToast('✓ Facture envoyée à iopole','vert'); }
+    else{ showToast('✗ Erreur iopole : '+(data.error||res.status),''); console.error('iopole error',data); }
+  }catch(e){ showToast('✗ Impossible de joindre le relais iopole',''); console.error(e); }
+}
+
 function calcFacture(){ const ht=parseFloat(document.getElementById('f_ht').value)||0; const tva=parseInt(document.getElementById('f_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('fp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_lbl').textContent='TVA '+tva+'%'; }
 function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel','f_num','f_ref_devis','f_iban'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f_ht').value='3000'; calcFacture(); }
 ['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban'].forEach(id=>{

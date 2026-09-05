@@ -1,0 +1,14 @@
+name = "shieldaudit-iopole-proxy"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Autorise n'importe quelle origine par défaut ; remplace "*" par l'URL exacte
+# où index.html est hébergé (ex: "https://liveshop666.github.io") si tu veux
+# restreindre l'accès au relais à ta seule page.
+ALLOWED_ORIGIN = "*"
+
+# IOPOLE_API_KEY est un SECRET : ne jamais l'écrire ici ni dans un fichier
+# versionné. Une fois le worker créé, exécute :
+#   npx wrangler secret put IOPOLE_API_KEY
+# et colle ta clé quand c'est demandé.
