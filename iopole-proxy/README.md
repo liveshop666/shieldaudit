@@ -7,16 +7,24 @@ par un tiers. La solution : un petit serveur (ici un Cloudflare Worker
 gratuit) qui garde la clé et relaie la demande vers iopole. `index.html`
 n'appelle que ce relais, jamais iopole directement.
 
-## Étape 1 — Créer un compte iopole et obtenir une clé API
+## Étape 1 — Créer un compte iopole et obtenir une clé API + un customer-id
 
-1. Va sur https://www.iopole.com et crée un compte dans l'espace
-   développeurs.
-2. Récupère une clé API (mode test/sandbox pour commencer).
-3. Note l'URL exacte de l'endpoint d'envoi de facture dans leur documentation
-   (https://api.iopole.com/v1/api) — elle peut différer de la valeur par
-   défaut mise dans `worker.js` (`https://api.iopole.com/v1/invoices`), tout
-   comme le format exact du corps JSON attendu. Adapte `worker.js` en
-   conséquence si besoin.
+1. Va sur https://www.iopole.com, crée un compte dans l'espace développeurs
+   et active un Sandbox (environnement de test gratuit, isolé).
+2. Récupère ta clé API de sandbox.
+3. Termine l'enrôlement (KYC/KYB) de ShieldAudit sur iopole pour obtenir ton
+   **customer-id** (un UUID) — l'API d'émission de facture en a besoin en
+   plus de la clé API.
+4. Dans la doc (https://docs.iopole.com/docs/iopole-api/reference, page
+   « Send invoice » / emitInvoice), vérifie :
+   - l'URL exacte de l'endpoint (par défaut ici :
+     `https://api.ppd.iopole.fr/v1/invoice` en sandbox) ;
+   - que le format attendu est toujours un `multipart/form-data` avec un
+     champ `file` + un champ `type` (c'est ce que `worker.js` envoie
+     actuellement, avec `type: application/json` et le contenu de la facture
+     en JSON dans `file`).
+   Adapte `IOPOLE_API_URL` (dans `wrangler.toml`) ou `worker.js` si la doc
+   montre autre chose.
 
 ## Étape 2 — Déployer le relais sur Cloudflare Workers (gratuit)
 
@@ -29,11 +37,12 @@ n'appelle que ce relais, jamais iopole directement.
    ```
    (`npx wrangler login` ouvre une page web pour connecter ton compte
    Cloudflare ; `deploy` publie le worker.)
-4. Configure la clé secrète (elle ne sera jamais visible dans le code) :
+4. Configure les secrets (ils ne seront jamais visibles dans le code) :
    ```
    npx wrangler secret put IOPOLE_API_KEY
+   npx wrangler secret put IOPOLE_CUSTOMER_ID
    ```
-   puis colle ta clé iopole quand c'est demandé.
+   puis colle ta clé iopole, puis ton customer-id, quand c'est demandé.
 5. À la fin du `deploy`, Cloudflare affiche une URL du type
    `https://shieldaudit-iopole-proxy.<ton-compte>.workers.dev`. Garde-la.
 
@@ -47,10 +56,20 @@ et remplace la valeur par l'URL obtenue à l'étape 2. Un nouveau bouton
 « 📤 Envoyer à iopole » apparaît alors sur la page Facture ; il envoie les
 données du formulaire au relais, qui les transmet à iopole avec la clé API.
 
+## Suivi du statut (asynchrone)
+
+L'émission de facture chez iopole est **asynchrone** : une réponse réussie
+contient un `guid`, pas une confirmation immédiate d'acceptation. Le suivi
+du statut (via l'API ou un webhook iopole) n'est pas encore implémenté ici —
+pour l'instant, le bouton « Envoyer à iopole » confirme seulement que la
+requête a été acceptée par iopole (guid reçu), pas que la facture est
+validée/transmise aux impôts. À ajouter une fois la doc de suivi de statut
+consultée dans ton espace développeur.
+
 ## Sécurité
 
-- La clé API n'est **jamais** commitée dans ce dépôt : elle vit uniquement
-  dans les secrets Cloudflare (`wrangler secret put`).
+- La clé API et le customer-id ne sont **jamais** commités dans ce dépôt :
+  ils vivent uniquement dans les secrets Cloudflare (`wrangler secret put`).
 - `ALLOWED_ORIGIN` dans `wrangler.toml` peut être restreint à l'URL exacte où
   `index.html` est hébergé, pour empêcher d'autres sites d'utiliser ton
   relais.
