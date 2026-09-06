@@ -343,6 +343,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <div class="header-btns">
       <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
       <button class="hbtn outline" onclick="resetDevis()">↺ Réinitialiser</button>
+      <button class="hbtn outline" onclick="saveDocument('devis')">💾 Enregistrer</button>
       <button class="hbtn vert" onclick="printDoc('devis-preview')">🖨 Imprimer</button>
     </div>
   </div>
@@ -428,6 +429,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <div class="header-btns">
       <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
       <button class="hbtn outline" onclick="resetContrat()">↺ Réinitialiser</button>
+      <button class="hbtn outline" onclick="saveDocument('contrat')">💾 Enregistrer</button>
       <button class="hbtn vert" onclick="window.print()">🖨 PDF</button>
     </div>
   </div>
@@ -660,6 +662,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <div class="header-btns">
       <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
       <button class="hbtn outline" onclick="resetFacture()">↺ Réinitialiser</button>
+      <button class="hbtn outline" onclick="saveDocument('facture')">💾 Enregistrer</button>
       <button class="hbtn vert" onclick="printDoc('facture-preview')">🖨 Imprimer / PDF</button>
       <button class="hbtn vert" onclick="sendToIopole()">📤 Envoyer à iopole</button>
     </div>
@@ -772,6 +775,17 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
   </div>
 </div>
 
+<!-- MODAL DOCUMENTS CLIENT -->
+<div class="modal-overlay" id="docs-modal" onclick="closeModalOutside(event,'docs-modal')">
+  <div class="modal">
+    <h2 id="docs-modal-title">Documents</h2>
+    <div id="docs-modal-list" style="display:flex;flex-direction:column;gap:0.6rem;max-height:60vh;overflow-y:auto"></div>
+    <div class="form-actions">
+      <button class="hbtn outline" onclick="closeModal('docs-modal')">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -784,6 +798,7 @@ if(!state.clients) state.clients = [
   {id:3,magasin:'Fnac Bordeaux',contact:'Luc Bernard',tel:'07 11 22 33 44',email:'luc@fnac.fr',ville:'Bordeaux',statut:'termine',montant:3600,date:'',notes:'Mission terminée. Rapport remis.'},
 ];
 if(!state.failles) state.failles = [];
+if(!state.documents) state.documents = [];
 let editingClientId = null;
 
 function saveState(){ localStorage.setItem('sa_state', JSON.stringify(state)); }
@@ -843,7 +858,7 @@ function renderClients(){
   if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--gris)">Aucun client trouvé</td></tr>`; return; }
   tbody.innerHTML=filtered.map(c=>`
     <tr>
-      <td><strong style="font-size:0.85rem">${esc(c.magasin)}</strong></td>
+      <td><strong style="font-size:0.85rem;cursor:pointer;text-decoration:underline;text-decoration-color:var(--border)" onclick="openClientDocs('${esc(c.magasin).replace(/'/g,"\\'")}')" title="Voir devis/contrat/factures">${esc(c.magasin)}</strong></td>
       <td style="color:var(--gris);font-size:0.8rem">${esc(c.contact||'—')}</td>
       <td><a href="tel:${(c.tel||'').replace(/\s/g,'')}" style="color:var(--vert);text-decoration:none;font-size:0.8rem">${esc(c.tel||'—')}</a></td>
       <td style="font-size:0.8rem">${esc(c.ville||'—')}</td>
@@ -861,6 +876,125 @@ function editClient(id){ const c=state.clients.find(x=>x.id===id); if(!c) return
 function saveClient(){ const mag=document.getElementById('cm_magasin').value.trim(); if(!mag){ showToast('Nom du magasin obligatoire',''); return; } const data={id:editingClientId||Date.now(),magasin:mag,contact:document.getElementById('cm_contact').value.trim(),tel:document.getElementById('cm_tel').value.trim(),email:document.getElementById('cm_email').value.trim(),ville:document.getElementById('cm_ville').value.trim(),statut:document.getElementById('cm_statut').value,montant:parseFloat(document.getElementById('cm_montant').value)||'',date:document.getElementById('cm_date').value,notes:document.getElementById('cm_notes').value.trim()}; if(editingClientId){ const i=state.clients.findIndex(c=>c.id===editingClientId); state.clients[i]=data; }else{ state.clients.unshift(data); } saveState(); closeModal('client-modal'); renderClients(); renderDash(); showToast('✓ Client enregistré','vert'); }
 function delClient(id){ if(!confirm('Supprimer ce client ?')) return; state.clients=state.clients.filter(c=>c.id!==id); saveState(); renderClients(); renderDash(); showToast('Client supprimé'); }
 function exportClients(){ const h=['Magasin','Contact','Tél','Email','Ville','Statut','Montant','Date','Notes']; const rows=state.clients.map(c=>[c.magasin,c.contact,c.tel,c.email,c.ville,STATUTS[c.statut]||c.statut,c.montant||'',c.date||'',c.notes].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(';')); const csv='\uFEFF'+[h.join(';'),...rows].join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='clients_shieldaudit.csv'; a.click(); showToast('✓ Export CSV téléchargé','vert'); }
+
+// ===== DOCUMENTS (devis/contrat/facture liés aux clients) =====
+function normName(s){ return (s||'').trim().toLowerCase(); }
+function upsertClientFromDocument(magasin,statut,montant){
+  const norm=normName(magasin);
+  const c=state.clients.find(x=>normName(x.magasin)===norm);
+  if(c){ c.statut=statut; if(montant) c.montant=montant; }
+  else{ state.clients.unshift({id:Date.now(),magasin,contact:'',tel:'',email:'',ville:'',statut,montant:montant||'',date:'',notes:''}); }
+}
+function saveDocument(type){
+  let magasin,numero,montant,statut,data;
+  if(type==='devis'){
+    magasin=document.getElementById('d_magasin').value.trim();
+    if(!magasin){ showToast('Nom du magasin obligatoire',''); return; }
+    numero=document.getElementById('d_num').value.trim();
+    const ht=parseFloat(document.getElementById('d_ht').value)||0;
+    const tva=parseInt(document.getElementById('d_tva').value)||0;
+    montant=Math.round(ht*(1+tva/100));
+    statut='envoye';
+    data={magasin,contact:document.getElementById('d_contact').value.trim(),adresse:document.getElementById('d_adresse').value.trim(),tel:document.getElementById('d_tel').value.trim(),email:document.getElementById('d_email').value.trim(),siret:document.getElementById('d_siret_client').value.trim(),numero,date:document.getElementById('d_date').value,validite:document.getElementById('d_validite').value,dateMission:document.getElementById('d_date_mission').value,ht,tva};
+  } else if(type==='contrat'){
+    magasin=document.getElementById('c_magasin').value.trim();
+    if(!magasin){ showToast('Nom du magasin obligatoire',''); return; }
+    numero=document.getElementById('c_ref').value.trim();
+    montant=parseFloat(document.getElementById('c_ttc').value)||0;
+    statut='signe';
+    data={magasin,contact:document.getElementById('c_contact').value.trim(),adresse:document.getElementById('c_adresse').value.trim(),siret:document.getElementById('c_siret').value.trim(),tel:document.getElementById('c_tel').value.trim(),numero,date:document.getElementById('c_date').value,lieu:document.getElementById('c_lieu').value.trim(),dateMission:document.getElementById('c_date_mission').value,delai:document.getElementById('c_delai').value,ht:parseFloat(document.getElementById('c_ht').value)||0};
+  } else if(type==='facture'){
+    magasin=document.getElementById('f_magasin').value.trim();
+    if(!magasin){ showToast('Nom du magasin obligatoire',''); return; }
+    numero=document.getElementById('f_num').value.trim();
+    const ht=parseFloat(document.getElementById('f_ht').value)||0;
+    const tva=parseInt(document.getElementById('f_tva').value)||0;
+    montant=Math.round(ht*(1+tva/100));
+    const statutPaiement=document.getElementById('f_statut_paiement').value;
+    statut=statutPaiement==='paye'?'termine':'signe';
+    data={magasin,contact:document.getElementById('f_contact').value.trim(),adresse:document.getElementById('f_adresse').value.trim(),email:document.getElementById('f_email').value.trim(),tel:document.getElementById('f_tel').value.trim(),numero,date:document.getElementById('f_date').value,echeance:document.getElementById('f_echeance').value,refDevis:document.getElementById('f_ref_devis').value.trim(),ht,tva,iban:document.getElementById('f_iban').value.trim(),statutPaiement};
+  } else { return; }
+  const existing=numero?state.documents.find(d=>d.type===type&&d.numero===numero):null;
+  const record={id:existing?existing.id:Date.now(),type,magasin,numero,montant,statut,date:data.date||new Date().toISOString().slice(0,10),data};
+  if(existing){ const i=state.documents.findIndex(d=>d.id===existing.id); state.documents[i]=record; }
+  else{ state.documents.unshift(record); }
+  upsertClientFromDocument(magasin,statut,montant);
+  saveState();
+  renderClients(); renderDash();
+  showToast('✓ Enregistré dans le suivi client','vert');
+}
+function openClientDocs(magasin){
+  const norm=normName(magasin);
+  const docs=state.documents.filter(d=>normName(d.magasin)===norm).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+  document.getElementById('docs-modal-title').textContent='Documents — '+magasin;
+  const icons={devis:'📝',contrat:'✍',facture:'🧾'};
+  const labels={devis:'Devis',contrat:'Contrat',facture:'Facture'};
+  document.getElementById('docs-modal-list').innerHTML = docs.length ? docs.map(d=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem">
+      <div>
+        <div style="font-size:0.85rem;font-weight:600">${icons[d.type]||'📄'} ${labels[d.type]||d.type}${d.numero?' · '+esc(d.numero):''}</div>
+        <div style="font-size:0.75rem;color:var(--gris);margin-top:2px">${d.date?fmtDate(d.date):'—'} · ${d.montant?Number(d.montant).toLocaleString('fr-FR')+' €':'—'}</div>
+      </div>
+      <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="loadDocument(${d.id})">Voir</button>
+    </div>`).join('') : '<p style="color:var(--gris);text-align:center;padding:1rem 0">Aucun document enregistré pour ce client pour le moment.</p>';
+  document.getElementById('docs-modal').classList.add('open');
+}
+function loadDocument(id){
+  const d=state.documents.find(x=>x.id===id);
+  if(!d) return;
+  closeModal('docs-modal');
+  const dispatch=ids=>ids.forEach(fid=>{ const el=document.getElementById(fid); if(el) el.dispatchEvent(new Event('input')); });
+  if(d.type==='devis'){
+    goPage('devis');
+    document.getElementById('d_magasin').value=d.data.magasin||'';
+    document.getElementById('d_contact').value=d.data.contact||'';
+    document.getElementById('d_adresse').value=d.data.adresse||'';
+    document.getElementById('d_tel').value=d.data.tel||'';
+    document.getElementById('d_email').value=d.data.email||'';
+    document.getElementById('d_siret_client').value=d.data.siret||'';
+    document.getElementById('d_num').value=d.data.numero||'';
+    document.getElementById('d_date').value=d.data.date||'';
+    document.getElementById('d_validite').value=d.data.validite||30;
+    document.getElementById('d_date_mission').value=d.data.dateMission||'';
+    document.getElementById('d_ht').value=d.data.ht||0;
+    document.getElementById('d_tva').value=d.data.tva||20;
+    dispatch(['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date']);
+    calcDevis();
+  } else if(d.type==='contrat'){
+    goPage('contrat');
+    document.getElementById('c_magasin').value=d.data.magasin||'';
+    document.getElementById('c_contact').value=d.data.contact||'';
+    document.getElementById('c_adresse').value=d.data.adresse||'';
+    document.getElementById('c_siret').value=d.data.siret||'';
+    document.getElementById('c_tel').value=d.data.tel||'';
+    document.getElementById('c_ref').value=d.data.numero||'';
+    document.getElementById('c_date').value=d.data.date||'';
+    document.getElementById('c_lieu').value=d.data.lieu||'';
+    document.getElementById('c_date_mission').value=d.data.dateMission||'';
+    document.getElementById('c_delai').value=d.data.delai||2;
+    document.getElementById('c_ht').value=d.data.ht||0;
+    calcContrat();
+    switchContratTab('formulaire');
+  } else if(d.type==='facture'){
+    goPage('facture');
+    document.getElementById('f_magasin').value=d.data.magasin||'';
+    document.getElementById('f_contact').value=d.data.contact||'';
+    document.getElementById('f_adresse').value=d.data.adresse||'';
+    document.getElementById('f_email').value=d.data.email||'';
+    document.getElementById('f_tel').value=d.data.tel||'';
+    document.getElementById('f_num').value=d.data.numero||'';
+    document.getElementById('f_date').value=d.data.date||'';
+    document.getElementById('f_echeance').value=d.data.echeance||'';
+    document.getElementById('f_ref_devis').value=d.data.refDevis||'';
+    document.getElementById('f_ht').value=d.data.ht||0;
+    document.getElementById('f_tva').value=d.data.tva||20;
+    document.getElementById('f_iban').value=d.data.iban||'';
+    document.getElementById('f_statut_paiement').value=d.data.statutPaiement||'attente';
+    dispatch(['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban']);
+    calcFacture();
+  }
+  showToast('Document chargé','vert');
+}
 
 // ===== DEVIS =====
 function calcDevis(){ const ht=parseFloat(document.getElementById('d_ht').value)||0; const tva=parseInt(document.getElementById('d_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('d_ttc_display').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_label').textContent='TVA '+tva+'%'; }
