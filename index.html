@@ -238,6 +238,10 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
     <span>Facture</span>
   </button>
+  <button class="nav-btn" onclick="goPage('dcs')" id="nav-dcs" title="DCS — Discours Commercial">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>DCS</span>
+  </button>
   <div class="sidebar-bottom">
     <button class="nav-btn" onclick="saveAll()" title="Sauvegarder">
       <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -740,6 +744,144 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <span style="color:#888">Réf. virement : <span id="fp_num2">FAC-2026-001</span></span>
       </div>
       <div style="font-size:0.68rem;color:#999;border-top:1px solid var(--border);padding-top:0.8rem;line-height:1.7">Pénalités de retard : 1,5% par mois · Indemnité forfaitaire recouvrement : 40 € · Aucun escompte pour paiement anticipé<br>ShieldAudit · Paris, France · © 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DCS (Discours Commercial ShieldAudit) ===== -->
+<div class="page" id="page-dcs">
+  <div class="header">
+    <div class="header-title">DCS — Discours Commercial</div>
+    <div class="header-btns">
+      <button class="hbtn outline" onclick="goPage('dashboard')">← Accueil</button>
+      <button class="hbtn vert" onclick="printDoc('dcs-content')">🖨 Imprimer / PDF</button>
+    </div>
+  </div>
+  <div style="padding:1.5rem;max-width:900px;margin:0 auto">
+    <div id="dcs-content">
+    <div style="background:var(--noir);color:white;border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem">
+      <div style="font-family:'DM Serif Display',serif;font-size:1.6rem">Shield<span style="color:var(--vert)">Audit</span></div>
+      <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
+      <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:1.4rem;margin-top:1.2rem">Guide de vente &amp; argumentation commerciale</div>
+      <div style="font-size:0.82rem;color:#bbb;margin-top:0.6rem">Tout ce qu'il faut dire, dans le bon ordre, pour convaincre un gérant de magasin de faire appel à ShieldAudit.</div>
+      <div style="display:inline-block;border:1px solid var(--vert);border-radius:100px;font-size:0.72rem;padding:4px 14px;margin-top:1rem;color:var(--vert)">Document interne — Confidentiel</div>
+    </div>
+
+    <div class="form-section">
+      <h3>1. Avant d'appeler — Les chiffres à connaître par cœur</h3>
+      <p style="font-size:0.85rem;color:#333;margin-bottom:1rem">Ces chiffres sont tes meilleurs alliés. Ils créent un sentiment d'urgence chez le client <strong>avant même que tu aies présenté ton offre.</strong></p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem">
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">82%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">des commerces victimes d'au moins un vol en 2024</div></div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">3 Md€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes par an pour les commerçants en France</div></div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">3%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">seulement des vols aboutissent à une condamnation</div></div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">+15%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de hausse des vols en magasin en un an</div></div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">5 000€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes pour 1 commerçant sur 4 en seulement 6 mois</div></div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">67%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de réduction des pertes après un audit ShieldAudit</div></div>
+      </div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Mémorise ces chiffres. En les citant naturellement dans la conversation, tu montres que tu maîtrises ton sujet et tu crédibilises immédiatement ton discours.</div>
+    </div>
+
+    <div class="form-section">
+      <h3>2. L'accroche — Les 30 premières secondes</h3>
+      <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">Que ce soit par téléphone ou en face à face, les 30 premières secondes sont décisives. Voici plusieurs accroches selon la situation :</p>
+      <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;margin-bottom:0.7rem;font-size:0.85rem"><strong>En face à face :</strong><br><em>« Bonjour, je suis consultant en sécurité retail. Je travaille avec des gérants de magasins pour identifier les failles que leurs voleurs exploitent déjà — sans qu'ils le sachent. Est-ce que vous avez 5 minutes ? »</em></div>
+      <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;margin-bottom:0.7rem;font-size:0.85rem"><strong>Par téléphone :</strong><br><em>« Bonjour, je m'appelle [prénom], je suis de ShieldAudit. On aide les commerçants à réduire leurs pertes de 60 à 70% en identifiant exactement comment les voleurs entrent et ressortent de leur magasin. Je voulais juste vous poser une question rapide : est-ce que vous savez combien vous perdez chaque mois en vol ? »</em></div>
+      <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;font-size:0.85rem"><strong>Si le client dit "j'ai déjà des caméras" :</strong><br><em>« C'est exactement pour ça que j'appelle. Les caméras, les voleurs savent où elles sont. Notre travail, c'est de trouver les angles morts que même votre installateur n'a pas vus. »</em></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Ne parle pas de ton offre et de ton prix tout de suite. D'abord, crée le besoin. Pose des questions. Laisse le client parler de ses pertes.</div>
+    </div>
+
+    <div class="form-section">
+      <h3>3. L'argumentaire principal — La méthode CAB</h3>
+      <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">Pour chaque argument, utilise la méthode <strong>CAB : Caractéristique → Avantage → Bénéfice.</strong> Voici les 5 arguments clés de ShieldAudit :</p>
+
+      <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
+        <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 1 — On pense comme un voleur</div>
+        <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « Contrairement à un consultant classique qui regarde votre magasin de l'extérieur, nous entrons dedans comme un voleur. On teste vraiment — on prend les articles, on teste les alarmes, on vérifie si votre personnel réagit. »</p>
+        <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « Vous savez exactement ce qu'un voleur peut faire dans votre magasin. Pas des suppositions. Des faits. »</p>
+        <div style="background:#f4f4f0;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Si le client dit : "C'est légal ça ?"</strong><br>« Absolument. Avant chaque intervention, on signe un contrat ensemble qui autorise expressément la mission. Vous êtes couvert à 100%, et moi aussi. C'est la base de notre travail. »</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
+        <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 2 — Un rapport concret et actionnable</div>
+        <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « À la fin de l'audit, vous recevez un rapport avec des photos, des plans annotés, et des recommandations classées par priorité. Ce n'est pas un document de 50 pages que personne ne lit. C'est une liste claire : voilà le problème, voilà la solution, voilà combien ça coûte à corriger. »</p>
+        <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « Vous savez exactement quoi faire le lendemain matin. »</p>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
+        <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 3 — La garantie remboursement</div>
+        <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « On est tellement sûrs de trouver des failles dans votre magasin que si on ne trouve rien, on vous rembourse intégralement. Pas de discussion, pas de condition. Vous ne prenez aucun risque. »</p>
+        <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « C'est une décision sans risque. Le seul risque, c'est de ne pas le faire et de continuer à perdre de l'argent. »</p>
+        <div style="background:#f4f4f0;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Impact psychologique :</strong> Cette garantie supprime le principal frein à l'achat. En pratique, 100% de vos audits trouveront des failles — donc vous ne la déclencherez jamais.</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
+        <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 4 — Le retour sur investissement</div>
+        <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « Notre prestation est à 3 600 € TTC. Un magasin moyen perd entre 6 000 et 12 000 € par an en vol. Si on réduit ça de 60%, vous économisez entre 3 600 et 7 200 € par an. L'audit est rentabilisé en moins d'un an. »</p>
+        <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « Ce n'est pas une dépense. C'est un investissement qui se rembourse tout seul. »</p>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;padding:1rem">
+        <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 5 — La formation du personnel incluse</div>
+        <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « La technologie, c'est bien. Mais 80% des vols sont rendus possibles par un manque de vigilance humaine. En formant vos équipes à reconnaître les comportements suspects, vous créez une vraie barrière que les caméras ne peuvent pas remplacer. »</p>
+        <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « Votre personnel devient votre meilleur système de sécurité. »</p>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>4. Gérer les objections — Les réponses exactes à donner</h3>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ C'est trop cher, 3 600 €.</div><p style="font-size:0.84rem">« Je comprends. Permettez-moi de vous poser une question : combien pensez-vous perdre chaque mois en vol ? Même si c'est 300 €, ça fait 3 600 € par an. Notre audit est amorti en un an environ. Et avec une réduction de 60% des pertes, vous récupérez cet argent rapidement. <strong>Ce n'est pas une dépense — c'est la seule décision qui vous coûte de l'argent si vous ne la prenez pas.</strong> »</p></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ J'ai déjà un système de vidéosurveillance.</div><p style="font-size:0.84rem">« Très bien. Et savez-vous combien d'angles morts il y a dans votre magasin ? Les voleurs, eux, le savent. Notre travail c'est justement de trouver ces zones que vos caméras ne voient pas, et que votre installateur n'a pas vus non plus. <strong>Les caméras enregistrent les vols. Nous, on les empêche.</strong> »</p></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Je n'ai pas beaucoup de vols dans mon magasin.</div><p style="font-size:0.84rem">« C'est ce que pensent la plupart de nos clients avant l'audit. En moyenne, on trouve 14 failles par magasin — même dans des commerces qui pensaient être bien protégés. <strong>Le vol que vous ne voyez pas est le plus dangereux.</strong> Les petits vols quotidiens sont souvent invisibles dans les inventaires mais représentent des milliers d'euros par an. »</p></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Je dois en parler à mon associé / ma direction.</div><p style="font-size:0.84rem">« Bien sûr. Pour vous aider dans cette discussion, est-ce que je peux vous envoyer notre plaquette avec les chiffres clés ? Et si vous voulez, on peut fixer un rendez-vous à trois pour que je présente directement la solution à votre associé. <strong>Ça vous ferait gagner du temps et vous auriez toutes les réponses en direct.</strong> »</p></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Ce n'est pas le bon moment.</div><p style="font-size:0.84rem">« Je comprends. Juste une question : les voleurs, eux, attendent-ils le bon moment ? <strong>Chaque semaine sans audit, c'est des pertes qui continuent.</strong> On peut commencer par un simple rendez-vous de 20 minutes, sans engagement, pour que vous ayez une idée concrète de ce qu'on peut faire pour vous. »</p></div>
+    </div>
+
+    <div class="form-section">
+      <h3>5. La présentation du prix — Comment annoncer les 3 600 €</h3>
+      <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">N'annonce jamais le prix en premier. D'abord, construis la valeur. Ensuite seulement, présente le prix.</p>
+      <div style="border:2px solid var(--vert);border-radius:14px;padding:1.3rem;text-align:center;margin-bottom:1rem">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--noir)">3 600 € TTC</div>
+        <div style="font-size:0.8rem;color:#666;margin-top:2px">soit 3 000 € HT — Pack complet ShieldAudit</div>
+        <div style="font-size:0.78rem;color:#888;font-style:italic;margin-top:0.6rem">✓ Garantie remboursement si aucune faille détectée<br>✓ Rapport sous 48h · Formation du personnel incluse</div>
+      </div>
+      <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;font-size:0.85rem"><strong>La phrase exacte à dire pour annoncer le prix :</strong><br><em>« Notre pack complet est à 3 600 € TTC, tout inclus — l'audit terrain, le rapport avec photos, la formation de vos équipes et les recommandations. Et si on ne trouve aucune faille dans votre magasin, on vous rembourse intégralement. Vous ne prenez aucun risque. »</em></div>
+      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Après avoir annoncé le prix, tais-toi. Laisse le client réagir. Le silence qui suit est normal — laisse-le s'installer. C'est lui qui doit parler en premier après le prix.</div>
+    </div>
+
+    <div class="form-section">
+      <h3>6. Le closing — Conclure la vente</h3>
+      <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">Le closing, c'est le moment où tu transformes l'intérêt en décision. Ne laisse jamais la conversation se terminer sans proposer une prochaine étape concrète.</p>
+      <div style="background:var(--noir);color:white;border-radius:12px;padding:1.2rem">
+        <div style="font-weight:700;color:var(--vert);margin-bottom:0.8rem;font-size:0.9rem">Les 3 phrases de closing qui fonctionnent</div>
+        <div style="border-left:3px solid var(--vert);padding-left:0.8rem;margin-bottom:0.8rem"><em>« Est-ce que vous préférez qu'on commence en début ou en fin de semaine ? »</em><br><span style="font-size:0.75rem;color:#aaa">→ Tu proposes deux options, les deux mènent à la vente.</span></div>
+        <div style="border-left:3px solid var(--vert);padding-left:0.8rem;margin-bottom:0.8rem"><em>« On peut démarrer dès la semaine prochaine. Je vous envoie le contrat ce soir et on cale la date ensemble. »</em><br><span style="font-size:0.75rem;color:#aaa">→ Tu crées l'urgence et tu passes à l'action immédiatement.</span></div>
+        <div style="border-left:3px solid var(--vert);padding-left:0.8rem"><em>« La seule question c'est : est-ce que vous voulez continuer à perdre de l'argent chaque semaine, ou est-ce qu'on règle ça maintenant ? »</em><br><span style="font-size:0.75rem;color:#aaa">→ À utiliser si le client hésite depuis longtemps — formulation directe et percutante.</span></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>7. Le processus — Ce qui se passe après la vente</h3>
+      <div style="display:flex;flex-direction:column;gap:0.7rem">
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>1. Signature du contrat</strong> — Tu envoies le contrat ShieldAudit par email. Le client le signe et te le renvoie. 50% du paiement encaissé à la signature (1 800 € TTC).</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>2. Planification de l'audit</strong> — Tu fixes la date avec le client. Il doit juste te confirmer les horaires d'ouverture. Il n'a pas besoin de prévenir son personnel.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>3. Audit terrain</strong> — Tu visites le magasin comme un client ordinaire. Tu testes les failles, tu prends des photos discrètes, tu notes tout. Durée : 3 à 5 heures.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>4. Rapport sous 48h</strong> — Tu rédiges le rapport avec photos, plans annotés et recommandations classées. Tu l'envoies au client.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>5. Restitution &amp; formation</strong> — Tu présentes le rapport en face à face et tu formes les équipes. Solde de 1 800 € TTC encaissé à cette étape.</div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>8. Les 5 règles d'or du commercial ShieldAudit</h3>
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Écoute plus que tu ne parles.</strong> Laisse le client exprimer ses problèmes. Plus il parle de ses pertes, plus il se convainc lui-même.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Pose toujours la question des pertes.</strong> « Combien pensez-vous perdre par mois ? » — cette question seule crée le besoin.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Ne descends jamais le prix.</strong> La garantie remboursement remplace toute négociation. Si le client insiste, reviens dessus.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Toujours proposer une prochaine étape.</strong> Ne raccroche jamais sans un rendez-vous, un envoi de document, ou une date d'audit confirmée.</div>
+        <div style="background:#f4f4f0;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Confiance et calme.</strong> Tu proposes une solution qui fonctionne. Tu n'as pas à convaincre — tu informes. Le client qui dit non perd de l'argent. Pas toi.</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;font-size:0.68rem;color:#bbb;margin-top:1rem;padding-top:0.8rem;border-top:1px solid #eee">ShieldAudit · 06 59 96 08 77 · Paris, France · Document interne — Usage exclusif ShieldAudit · © 2026</div>
     </div>
   </div>
 </div>
