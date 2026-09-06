@@ -142,8 +142,8 @@ function buildUblInvoice(invoice) {
     <cbc:InvoicedQuantity unitCode="C62">1</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="EUR">${money(Number(l.prix_ht) || 0)}</cbc:LineExtensionAmount>
     <cac:Item>
-      <cbc:Name>${esc(l.designation || 'Prestation')}</cbc:Name>
       <cbc:Description>${esc(l.description || '')}</cbc:Description>
+      <cbc:Name>${esc(l.designation || 'Prestation')}</cbc:Name>
       <cac:ClassifiedTaxCategory>
         <cbc:ID>${Number(l.taux_tva) > 0 ? 'S' : 'Z'}</cbc:ID>
         <cbc:Percent>${Number(l.taux_tva) || 0}</cbc:Percent>
@@ -167,6 +167,7 @@ function buildUblInvoice(invoice) {
   <cbc:DueDate>${invoice.date_echeance || ''}</cbc:DueDate>
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
   <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+  <cbc:BuyerReference>${esc(invoice.reference_devis || invoice.numero)}</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
       <cac:PartyName><cbc:Name>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:Name></cac:PartyName>
