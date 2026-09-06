@@ -936,7 +936,7 @@ calcContrat();
 // ===== FACTURE =====
 // URL du relais sécurisé (Cloudflare Worker) qui détient la clé API iopole.
 // La clé elle-même ne doit jamais être écrite ici : voir iopole-proxy/README.md.
-const IOPOLE_PROXY_URL = 'https://REMPLACER-PAR-TON-URL-WORKER.workers.dev';
+const IOPOLE_PROXY_URL = 'https://shieldaudit-iopole-proxy.shieldaudit-rudy.workers.dev';
 
 async function sendToIopole(){
   if(IOPOLE_PROXY_URL.includes('REMPLACER')){
