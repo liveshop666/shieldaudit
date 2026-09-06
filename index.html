@@ -1144,9 +1144,21 @@ function openClientDocs(magasin){
         <div style="font-size:0.85rem;font-weight:600">${icons[d.type]||'📄'} ${labels[d.type]||d.type}${d.numero?' · '+esc(d.numero):''}</div>
         <div style="font-size:0.75rem;color:var(--gris);margin-top:2px">${d.date?fmtDate(d.date):'—'} · ${d.montant?Number(d.montant).toLocaleString('fr-FR')+' €':'—'}</div>
       </div>
-      <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="loadDocument(${d.id})">Voir</button>
+      <div style="display:flex;gap:0.4rem">
+        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="loadDocument(${d.id})">Voir</button>
+        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem;color:#cc3333;border-color:#e0a0a0" onclick="deleteDocument(${d.id})">Supprimer</button>
+      </div>
     </div>`).join('') : '<p style="color:var(--gris);text-align:center;padding:1rem 0">Aucun document enregistré pour ce client pour le moment.</p>';
   document.getElementById('docs-modal').classList.add('open');
+}
+function deleteDocument(id){
+  const d=state.documents.find(x=>x.id===id);
+  if(!d) return;
+  if(!confirm('Supprimer ce document ? Cette action est irréversible.')) return;
+  state.documents=state.documents.filter(x=>x.id!==id);
+  saveState();
+  openClientDocs(d.magasin);
+  showToast('Document supprimé','vert');
 }
 function loadDocument(id){
   const d=state.documents.find(x=>x.id===id);
