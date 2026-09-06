@@ -1069,6 +1069,31 @@ function upsertClientFromDocument(magasin,statut,montant){
   if(c){ c.statut=statut; if(montant) c.montant=montant; }
   else{ state.clients.unshift({id:Date.now(),magasin,contact:'',tel:'',email:'',ville:'',statut,montant:montant||'',date:'',notes:''}); }
 }
+function captureSig(id){
+  const ph=document.getElementById(id+'-ph');
+  const canvas=document.getElementById(id);
+  if(!canvas||!ph||ph.style.display!=='none') return '';
+  return canvas.toDataURL();
+}
+function restoreSig(id,dataUrl,name){
+  const nameEl=document.getElementById(id+'_name');
+  if(nameEl) nameEl.value=name||'';
+  if(!dataUrl) return;
+  setTimeout(()=>{
+    initSig(id);
+    const canvas=document.getElementById(id);
+    if(!canvas) return;
+    const img=new Image();
+    img.onload=()=>{
+      const ctx=canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      const ph=document.getElementById(id+'-ph'); if(ph) ph.style.display='none';
+      updateSigPreview(id);
+    };
+    img.src=dataUrl;
+  },150);
+}
 function saveDocument(type){
   let magasin,numero,montant,statut,data;
   if(type==='devis'){
@@ -1079,7 +1104,7 @@ function saveDocument(type){
     const tva=parseInt(document.getElementById('d_tva').value)||0;
     montant=Math.round(ht*(1+tva/100));
     statut='envoye';
-    data={magasin,contact:document.getElementById('d_contact').value.trim(),adresse:document.getElementById('d_adresse').value.trim(),tel:document.getElementById('d_tel').value.trim(),email:document.getElementById('d_email').value.trim(),siret:document.getElementById('d_siret_client').value.trim(),numero,date:document.getElementById('d_date').value,validite:document.getElementById('d_validite').value,dateMission:document.getElementById('d_date_mission').value,ht,tva};
+    data={magasin,contact:document.getElementById('d_contact').value.trim(),adresse:document.getElementById('d_adresse').value.trim(),tel:document.getElementById('d_tel').value.trim(),email:document.getElementById('d_email').value.trim(),siret:document.getElementById('d_siret_client').value.trim(),numero,date:document.getElementById('d_date').value,validite:document.getElementById('d_validite').value,dateMission:document.getElementById('d_date_mission').value,ht,tva,signatureName:document.getElementById('sig_devis_name').value.trim(),signature:captureSig('sig_devis')};
   } else if(type==='contrat'){
     magasin=document.getElementById('c_magasin').value.trim();
     if(!magasin){ showToast('Nom du magasin obligatoire',''); return; }
@@ -1096,7 +1121,7 @@ function saveDocument(type){
     montant=Math.round(ht*(1+tva/100));
     const statutPaiement=document.getElementById('f_statut_paiement').value;
     statut=statutPaiement==='paye'?'termine':'signe';
-    data={magasin,contact:document.getElementById('f_contact').value.trim(),adresse:document.getElementById('f_adresse').value.trim(),email:document.getElementById('f_email').value.trim(),tel:document.getElementById('f_tel').value.trim(),numero,date:document.getElementById('f_date').value,echeance:document.getElementById('f_echeance').value,refDevis:document.getElementById('f_ref_devis').value.trim(),ht,tva,iban:document.getElementById('f_iban').value.trim(),statutPaiement};
+    data={magasin,contact:document.getElementById('f_contact').value.trim(),adresse:document.getElementById('f_adresse').value.trim(),email:document.getElementById('f_email').value.trim(),tel:document.getElementById('f_tel').value.trim(),numero,date:document.getElementById('f_date').value,echeance:document.getElementById('f_echeance').value,refDevis:document.getElementById('f_ref_devis').value.trim(),ht,tva,iban:document.getElementById('f_iban').value.trim(),statutPaiement,signatureName:document.getElementById('sig_fact_name').value.trim(),signature:captureSig('sig_fact')};
   } else { return; }
   const existing=numero?state.documents.find(d=>d.type===type&&d.numero===numero):null;
   const record={id:existing?existing.id:Date.now(),type,magasin,numero,montant,statut,date:data.date||new Date().toISOString().slice(0,10),data};
@@ -1144,6 +1169,7 @@ function loadDocument(id){
     document.getElementById('d_tva').value=d.data.tva||20;
     dispatch(['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date']);
     calcDevis();
+    restoreSig('sig_devis',d.data.signature,d.data.signatureName);
   } else if(d.type==='contrat'){
     goPage('contrat');
     document.getElementById('c_magasin').value=d.data.magasin||'';
@@ -1176,6 +1202,7 @@ function loadDocument(id){
     document.getElementById('f_statut_paiement').value=d.data.statutPaiement||'attente';
     dispatch(['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban']);
     calcFacture();
+    restoreSig('sig_fact',d.data.signature,d.data.signatureName);
   }
   showToast('Document chargé','vert');
 }
