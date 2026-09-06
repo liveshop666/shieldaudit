@@ -21,8 +21,10 @@
  *   nativement (UBL, Factur-X, XRechnung, CII), pas de JSON brut. On génère
  *   donc ici une facture au format UBL 2.1 (XML) à partir des données du
  *   formulaire.
- * - en-têtes : "Authorization: Bearer <access_token>" (obligatoire) et
- *   "customer-id" (l'identifiant unique du compte iopole).
+ * - en-têtes : "Authorization: Bearer <access_token>" et "customer-id"
+ *   (l'identifiant unique du compte iopole) sont tous les deux obligatoires
+ *   — customer-id le devient pour toutes les requêtes à compter du
+ *   1er février 2026 selon l'annonce iopole.
  * - l'appel est asynchrone : une réponse 201 renvoie { type: "INVOICE", id }
  *   à conserver pour suivre le statut ensuite (webhook ou GET /v1/status).
  *
@@ -45,8 +47,12 @@ export default {
       return json({ error: 'Méthode non autorisée.' }, 405, env);
     }
 
-    if (!env.IOPOLE_CLIENT_ID || !env.IOPOLE_CLIENT_SECRET) {
-      return json({ error: 'IOPOLE_CLIENT_ID ou IOPOLE_CLIENT_SECRET non configuré côté serveur.' }, 500, env);
+    if (!env.IOPOLE_CLIENT_ID || !env.IOPOLE_CLIENT_SECRET || !env.IOPOLE_CUSTOMER_ID) {
+      return json(
+        { error: 'IOPOLE_CLIENT_ID, IOPOLE_CLIENT_SECRET ou IOPOLE_CUSTOMER_ID non configuré côté serveur.' },
+        500,
+        env
+      );
     }
 
     let invoice;
@@ -76,8 +82,8 @@ export default {
     const headers = {
       accept: 'application/json',
       Authorization: `Bearer ${accessToken}`,
+      'customer-id': env.IOPOLE_CUSTOMER_ID,
     };
-    if (env.IOPOLE_CUSTOMER_ID) headers['customer-id'] = env.IOPOLE_CUSTOMER_ID;
 
     let iopoleResponse;
     try {

@@ -30,7 +30,9 @@ D'après la doc officielle :
   - Bases : `https://api.ppd.iopole.fr` (sandbox) et `https://api.iopole.com`
     (production).
   - En-têtes : `Authorization: Bearer <access_token>`, `customer-id`,
-    `accept: application/json`.
+    `accept: application/json`. `customer-id` devient obligatoire pour
+    toutes les requêtes à compter du **1er février 2026** (annonce iopole) —
+    `worker.js` le traite déjà comme obligatoire.
   - Corps `multipart/form-data` avec un champ `file` : **seuls les formats
     PDF ou XML sont acceptés** (UBL, Factur-X, XRechnung, CII nativement —
     pas de JSON brut). `worker.js` génère donc une facture au format **UBL
