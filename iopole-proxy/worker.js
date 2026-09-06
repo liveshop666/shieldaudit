@@ -36,6 +36,14 @@
  * sable public) avant tout envoi réel, et complète le mapping ci-dessous
  * (SIRET émetteur/client notamment, absents du formulaire actuel) selon les
  * retours de validation.
+ *
+ * Pour vérifier le statut réel d'une facture envoyée (accepté/rejeté), utilise
+ * GET /v1/invoice/{invoiceId}/status-history (headers customer-id + Bearer) —
+ * une réponse 201 de emitInvoice ne garantit PAS que la facture est valide,
+ * seulement qu'elle a été prise en compte pour traitement asynchrone. Un
+ * premier test a été rejeté avec status.code "UNACCEPTABLE" /
+ * "UNKNOWN_INVOICE_FORMAT" faute de <cbc:CustomizationID>/<cbc:ProfileID>
+ * (identifiants de profil PEPPOL BIS Billing 3.0) — ajoutés ci-dessous.
  */
 export default {
   async fetch(request, env) {
@@ -152,6 +160,8 @@ function buildUblInvoice(invoice) {
          xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
          xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
   <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
+  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>${esc(invoice.numero)}</cbc:ID>
   <cbc:IssueDate>${invoice.date_emission || ''}</cbc:IssueDate>
   <cbc:DueDate>${invoice.date_echeance || ''}</cbc:DueDate>
