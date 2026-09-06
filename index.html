@@ -379,6 +379,21 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--noir)" id="d_ttc_display">3 600 €</div>
         </div>
       </div>
+      <div class="form-section">
+        <h3>Signature électronique — Bon pour accord</h3>
+        <div style="margin-bottom:0.8rem">
+          <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom du client</label>
+          <input id="sig_devis_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+        </div>
+        <div style="border:2px dashed var(--border);border-radius:12px;background:#fafaf8;position:relative;height:140px;touch-action:none" id="sig_devis-wrap">
+          <canvas id="sig_devis" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
+          <div id="sig_devis-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
+            <div style="font-size:1.6rem">✍</div>
+            <div style="font-size:0.8rem;margin-top:0.3rem">Signer ici avec le doigt</div>
+          </div>
+        </div>
+        <div style="margin-top:0.5rem"><button class="hbtn outline" onclick="clearSig('sig_devis')" style="font-size:0.78rem;padding:0.4rem 0.9rem">Effacer</button></div>
+      </div>
     </div>
     <div id="devis-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
@@ -421,6 +436,11 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         </div>
       </div>
       <div style="background:var(--vert-light);border:1px solid #88ccaa;border-radius:8px;padding:0.8rem;font-size:0.75rem;color:#1a3a2a;margin-bottom:1rem">🛡 <strong>Garantie résultat :</strong> Si aucune faille n'est détectée, remboursement intégral sans condition.</div>
+      <div style="margin-bottom:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:700;margin-bottom:5px">Bon pour accord</div>
+        <div style="border-bottom:1px solid #333;height:55px;position:relative;margin-bottom:6px"><img id="sig_devis-preview" style="max-height:55px;max-width:100%;position:absolute;bottom:2px;left:0;display:none"></div>
+        <div style="font-size:0.72rem;color:#555" id="sig_devis-info-display">Nom : —</div>
+      </div>
       <div style="font-size:0.72rem;color:#999;text-align:center;border-top:1px solid var(--border);padding-top:0.8rem">ShieldAudit · Paris, France · 06 59 96 08 77 · © 2026</div>
     </div>
   </div>
@@ -703,6 +723,21 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         </div>
         <div class="form-group full" style="margin-top:0.5rem"><label>IBAN (pour virement)</label><input id="f_iban" placeholder="FR__ ____ ____ ____ ____ ____ ___"></div>
       </div>
+      <div class="form-section">
+        <h3>Signature électronique — Reçu / accepté</h3>
+        <div style="margin-bottom:0.8rem">
+          <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom du client</label>
+          <input id="sig_fact_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+        </div>
+        <div style="border:2px dashed var(--border);border-radius:12px;background:#fafaf8;position:relative;height:140px;touch-action:none" id="sig_fact-wrap">
+          <canvas id="sig_fact" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
+          <div id="sig_fact-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
+            <div style="font-size:1.6rem">✍</div>
+            <div style="font-size:0.8rem;margin-top:0.3rem">Signer ici avec le doigt</div>
+          </div>
+        </div>
+        <div style="margin-top:0.5rem"><button class="hbtn outline" onclick="clearSig('sig_fact')" style="font-size:0.78rem;padding:0.4rem 0.9rem">Effacer</button></div>
+      </div>
     </div>
     <div id="facture-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
@@ -742,6 +777,11 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:6px">Virement bancaire</div>
         IBAN : <span id="fp_iban">—</span><br>
         <span style="color:#888">Réf. virement : <span id="fp_num2">FAC-2026-001</span></span>
+      </div>
+      <div style="margin-bottom:1rem;padding-top:1rem;border-top:1px solid var(--border)">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:700;margin-bottom:5px">Reçu / accepté</div>
+        <div style="border-bottom:1px solid #333;height:55px;position:relative;margin-bottom:6px"><img id="sig_fact-preview" style="max-height:55px;max-width:100%;position:absolute;bottom:2px;left:0;display:none"></div>
+        <div style="font-size:0.72rem;color:#555" id="sig_fact-info-display">Nom : —</div>
       </div>
       <div style="font-size:0.68rem;color:#999;border-top:1px solid var(--border);padding-top:0.8rem;line-height:1.7">Pénalités de retard : 1,5% par mois · Indemnité forfaitaire recouvrement : 40 € · Aucun escompte pour paiement anticipé<br>ShieldAudit · Paris, France · © 2026</div>
     </div>
@@ -955,6 +995,8 @@ function goPage(id){
   if(id==='clients') renderClients();
   if(id==='dashboard') renderDash();
   if(id==='contrat') switchContratTab('formulaire');
+  if(id==='devis') setTimeout(()=>initSig('sig_devis'),100);
+  if(id==='facture') setTimeout(()=>initSig('sig_fact'),100);
 }
 
 // ===== DATE =====
@@ -1140,7 +1182,7 @@ function loadDocument(id){
 
 // ===== DEVIS =====
 function calcDevis(){ const ht=parseFloat(document.getElementById('d_ht').value)||0; const tva=parseInt(document.getElementById('d_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('d_ttc_display').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_label').textContent='TVA '+tva+'%'; }
-function resetDevis(){ ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date_mission'].forEach(id=>document.getElementById(id).value=''); document.getElementById('d_ht').value='3000'; calcDevis(); }
+function resetDevis(){ ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date_mission','sig_devis_name'].forEach(id=>document.getElementById(id).value=''); document.getElementById('d_ht').value='3000'; calcDevis(); clearSig('sig_devis'); }
 // Live update devis preview
 ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date'].forEach(id=>{
   const el=document.getElementById(id);
@@ -1256,7 +1298,7 @@ async function sendToIopole(){
 }
 
 function calcFacture(){ const ht=parseFloat(document.getElementById('f_ht').value)||0; const tva=parseInt(document.getElementById('f_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('fp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_lbl').textContent='TVA '+tva+'%'; }
-function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel','f_num','f_ref_devis','f_iban'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f_ht').value='3000'; calcFacture(); }
+function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel','f_num','f_ref_devis','f_iban','sig_fact_name'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f_ht').value='3000'; calcFacture(); clearSig('sig_fact'); }
 ['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban'].forEach(id=>{
   const el=document.getElementById(id);
   if(el) el.addEventListener('input',()=>{
@@ -1420,7 +1462,7 @@ function updateSigPreview(id){
 }
 // Init signatures après chargement complet
 setTimeout(()=>{ document.querySelectorAll('.sig-canvas').forEach(c=>initSig(c.id)); },600);
-['sig1_name','sig2_name'].forEach(id=>{
+['sig1_name','sig2_name','sig_devis_name','sig_fact_name'].forEach(id=>{
   const el=document.getElementById(id);
   if(el) el.addEventListener('input',()=>{ updateSigPreview(id.replace('_name','')); });
 });
