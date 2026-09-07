@@ -442,7 +442,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <th style="padding:8px 10px;text-align:right">TTC</th>
         </tr></thead>
         <tbody>
-          <tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit terrain · Rapport 48h · Personnel de sécurité · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="dp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="dp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="dp_ttc">3 600 €</td></tr>
+          <tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit terrain · Rapport 48h · Formation équipe · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="dp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="dp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="dp_ttc">3 600 €</td></tr>
         </tbody>
       </table>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
@@ -781,7 +781,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       </div>
       <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:1rem">
         <thead><tr style="background:var(--noir);color:white"><th style="padding:8px 10px;text-align:left">Désignation</th><th style="padding:8px 10px;text-align:right">HT</th><th style="padding:8px 10px;text-align:right">TVA</th><th style="padding:8px 10px;text-align:right">TTC</th></tr></thead>
-        <tbody><tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit · Rapport · Personnel de sécurité · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="fp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="fp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="fp_ttc">3 600 €</td></tr></tbody>
+        <tbody><tr style="border-bottom:1px solid #f0f0ec"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit · Rapport · Formation équipe · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="fp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="fp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="fp_ttc">3 600 €</td></tr></tbody>
       </table>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
         <div style="width:230px">
@@ -1464,7 +1464,7 @@ async function sendToIopole(){
     },
     lignes:[{
       designation:'Pack Complet ShieldAudit',
-      description:'Audit · Rapport · Personnel de sécurité · Conseil',
+      description:'Audit · Rapport · Formation équipe · Conseil',
       prix_ht:ht, taux_tva:tva, montant_tva:tvaAmt, prix_ttc:ht+tvaAmt,
     }],
     iban:document.getElementById('f_iban').value.trim(),
