@@ -299,6 +299,21 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <div class="activity-item"><div class="activity-dot" style="background:var(--vert)"></div><div style="flex:1">Application chargée — Bienvenue !</div><div style="font-size:0.75rem;color:var(--gris)" id="dash-now"></div></div>
       </div>
     </div>
+    <div class="activity" style="margin-top:1rem">
+      <h3>Sauvegarde des données</h3>
+      <p style="font-size:0.85rem;color:var(--gris);margin-bottom:1rem">Tes clients, devis, factures et contrats ne sont enregistrés que sur cet appareil. Exporte une sauvegarde régulièrement pour ne rien perdre en cas de changement d'appareil ou de navigateur.</p>
+      <div style="display:flex;gap:0.7rem;flex-wrap:wrap">
+        <button class="icon-btn" style="width:auto;padding:0.6rem 1.1rem;gap:0.4rem;display:inline-flex;align-items:center" onclick="exportBackup()">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exporter mes données
+        </button>
+        <button class="icon-btn" style="width:auto;padding:0.6rem 1.1rem;gap:0.4rem;display:inline-flex;align-items:center" onclick="document.getElementById('importBackupInput').click()">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Importer une sauvegarde
+        </button>
+        <input type="file" id="importBackupInput" accept="application/json" style="display:none" onchange="importBackup(event)">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -982,6 +997,51 @@ if(!state.clients) state.clients = [
 ];
 if(!state.failles) state.failles = [];
 if(!state.documents) state.documents = [];
+
+function exportBackup(){
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const d = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  a.href = url;
+  a.download = `shieldaudit-sauvegarde-${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('✓ Sauvegarde téléchargée','vert');
+}
+
+function importBackup(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    let imported;
+    try{
+      imported = JSON.parse(e.target.result);
+    }catch(err){
+      showToast('Fichier invalide','');
+      event.target.value = '';
+      return;
+    }
+    if(!confirm('Remplacer toutes les données actuelles (clients, devis, factures, contrats) par celles de cette sauvegarde ?')){
+      event.target.value = '';
+      return;
+    }
+    state = imported;
+    if(!state.clients) state.clients = [];
+    if(!state.failles) state.failles = [];
+    if(!state.documents) state.documents = [];
+    saveState();
+    event.target.value = '';
+    showToast('✓ Sauvegarde importée','vert');
+    location.reload();
+  };
+  reader.readAsText(file);
+}
+
 let editingClientId = null;
 
 function saveState(){ localStorage.setItem('sa_state', JSON.stringify(state)); }
