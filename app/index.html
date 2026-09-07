@@ -210,6 +210,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
   body{background:white!important}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
 
@@ -977,6 +978,11 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 <div class="modal-overlay" id="docs-modal" onclick="closeModalOutside(event,'docs-modal')">
   <div class="modal">
     <h2 id="docs-modal-title">Documents</h2>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.8rem">
+      <button class="hbtn outline" style="font-size:0.78rem" onclick="document.getElementById('importRapportInput').click()">📎 Importer un rapport PDF</button>
+      <button class="hbtn outline" style="font-size:0.78rem" onclick="exportClientZip(currentDocsModalMagasin)">📦 Télécharger tout le dossier</button>
+      <input type="file" id="importRapportInput" accept="application/pdf" style="display:none" onchange="importRapportPdf(event)">
+    </div>
     <div id="docs-modal-list" style="display:flex;flex-direction:column;gap:0.6rem;max-height:60vh;overflow-y:auto"></div>
     <div class="form-actions">
       <button class="hbtn outline" onclick="closeModal('docs-modal')">Fermer</button>
@@ -1193,24 +1199,100 @@ function saveDocument(type){
   renderClients(); renderDash();
   showToast('✓ Enregistré dans le suivi client','vert');
 }
+let currentDocsModalMagasin = '';
 function openClientDocs(magasin){
+  currentDocsModalMagasin = magasin;
   const norm=normName(magasin);
   const docs=state.documents.filter(d=>normName(d.magasin)===norm).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
   document.getElementById('docs-modal-title').textContent='Documents — '+magasin;
-  const icons={devis:'📝',contrat:'✍',facture:'🧾'};
-  const labels={devis:'Devis',contrat:'Contrat',facture:'Facture'};
+  const icons={devis:'📝',contrat:'✍',facture:'🧾',rapport:'📋'};
+  const labels={devis:'Devis',contrat:'Contrat',facture:'Facture',rapport:'Rapport terrain (PDF)'};
   document.getElementById('docs-modal-list').innerHTML = docs.length ? docs.map(d=>`
     <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem">
       <div>
         <div style="font-size:0.85rem;font-weight:600">${icons[d.type]||'📄'} ${labels[d.type]||d.type}${d.numero?' · '+esc(d.numero):''}</div>
-        <div style="font-size:0.75rem;color:var(--gris);margin-top:2px">${d.date?fmtDate(d.date):'—'} · ${d.montant?Number(d.montant).toLocaleString('fr-FR')+' €':'—'}</div>
+        <div style="font-size:0.75rem;color:var(--gris);margin-top:2px">${d.date?fmtDate(d.date):'—'}${d.type!=='rapport'?' · '+(d.montant?Number(d.montant).toLocaleString('fr-FR')+' €':'—'):''}</div>
       </div>
       <div style="display:flex;gap:0.4rem">
-        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="loadDocument(${d.id})">Voir</button>
+        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="${d.type==='rapport'?`viewRapportPdf(${d.id})`:`loadDocument(${d.id})`}">Voir</button>
         <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem;color:#cc3333;border-color:#e0a0a0" onclick="deleteDocument(${d.id})">Supprimer</button>
       </div>
     </div>`).join('') : '<p style="color:var(--gris);text-align:center;padding:1rem 0">Aucun document enregistré pour ce client pour le moment.</p>';
   document.getElementById('docs-modal').classList.add('open');
+}
+function dataUrlToBlob(dataUrl){
+  const [meta,b64]=dataUrl.split(',');
+  const mime=(meta.match(/:(.*?);/)||[])[1]||'application/octet-stream';
+  const bin=atob(b64);
+  const bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return new Blob([bytes],{type:mime});
+}
+function sanitizeFileName(s){
+  return String(s||'fichier').replace(/[\\/:*?"<>|]+/g,'-').trim() || 'fichier';
+}
+function importRapportPdf(event){
+  const file=event.target.files[0];
+  if(!file) return;
+  if(file.type!=='application/pdf'){ showToast('Choisis un fichier PDF','') ; event.target.value=''; return; }
+  const magasin=currentDocsModalMagasin;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const record={id:Date.now(),type:'rapport',magasin,numero:'',montant:'',statut:'',date:new Date().toISOString().slice(0,10),data:{pdfDataUrl:e.target.result,fileName:file.name}};
+    state.documents.unshift(record);
+    if(!state.clients.find(x=>normName(x.magasin)===normName(magasin))){
+      state.clients.unshift({id:Date.now()+1,magasin,contact:'',tel:'',email:'',ville:'',statut:'prospect',montant:'',date:'',notes:''});
+    }
+    saveState();
+    openClientDocs(magasin);
+    renderClients();
+    event.target.value='';
+    showToast('✓ Rapport PDF importé','vert');
+  };
+  reader.readAsDataURL(file);
+}
+function viewRapportPdf(id){
+  const d=state.documents.find(x=>x.id===id);
+  if(!d||!d.data||!d.data.pdfDataUrl) return;
+  const blob=dataUrlToBlob(d.data.pdfDataUrl);
+  const url=URL.createObjectURL(blob);
+  window.open(url,'_blank');
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+async function exportClientZip(magasin){
+  if(!magasin) return;
+  const norm=normName(magasin);
+  const docs=state.documents.filter(d=>normName(d.magasin)===norm);
+  if(!docs.length){ showToast('Aucun document pour ce client',''); return; }
+  showToast('Génération du dossier…','vert');
+  const zip=new JSZip();
+  const previewIds={devis:'devis-preview',contrat:'contrat-preview',facture:'facture-preview'};
+  const labels={devis:'Devis',contrat:'Contrat',facture:'Facture'};
+  let n=1;
+  for(const d of docs){
+    if(d.type==='rapport'){
+      if(d.data&&d.data.pdfDataUrl){
+        zip.file(sanitizeFileName(d.data.fileName||`${n++}-Rapport-terrain.pdf`), dataUrlToBlob(d.data.pdfDataUrl));
+      }
+      continue;
+    }
+    if(!previewIds[d.type]) continue;
+    loadDocument(d.id);
+    await new Promise(r=>setTimeout(r, d.data&&d.data.signature ? 400 : 60));
+    const el=document.getElementById(previewIds[d.type]);
+    if(el){
+      zip.file(`${n++}-${labels[d.type]}-${sanitizeFileName(d.numero||d.id)}.html`, buildPrintableHtml(el.innerHTML));
+    }
+  }
+  const blob=await zip.generateAsync({type:'blob'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`ShieldAudit - ${sanitizeFileName(magasin)} - dossier.zip`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  goPage('dashboard');
+  showToast('✓ Dossier téléchargé','vert');
 }
 function deleteDocument(id){
   const d=state.documents.find(x=>x.id===id);
@@ -1573,11 +1655,8 @@ function fmtDate(s){ if(!s) return '—'; const [y,m,d]=s.split('-'); return `${
 function showToast(msg,type){ const t=document.getElementById('toast'); t.textContent=msg; t.className='toast '+(type||''); setTimeout(()=>t.classList.add('show'),10); setTimeout(()=>t.classList.remove('show'),2500); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 function closeModalOutside(e,id){ if(e.target.id===id) closeModal(id); }
-function printDoc(id){
-  const el=document.getElementById(id);
-  if(!el) return;
-  const isAndroid=/Android/i.test(navigator.userAgent);
-  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+function buildPrintableHtml(bodyHtml){
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ShieldAudit</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -1595,18 +1674,16 @@ function printDoc(id){
     <button class="back-btn" onclick="location.reload()">← Retour</button>
     <button class="print-btn" onclick="window.print()">🖨 Imprimer / PDF</button>
   </div>
-  ${el.innerHTML}
+  ${bodyHtml}
   </body></html>`;
-
-  if(isAndroid){
-    document.open();
-    document.write(html);
-    document.close();
-  } else {
-    document.open();
-    document.write(html);
-    document.close();
-  }
+}
+function printDoc(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  const html=buildPrintableHtml(el.innerHTML);
+  document.open();
+  document.write(html);
+  document.close();
 }
 
 // Keyboard shortcut ESC
