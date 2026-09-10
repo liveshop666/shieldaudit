@@ -31,3 +31,11 @@ ALLOWED_ORIGIN = "*"
 # adapte ces deux valeurs :
 # SUPERPDP_SELLER_ENDPOINT_SCHEME = "0225"
 # SUPERPDP_SELLER_ENDPOINT_ID = "TON_SIRET_ICI"
+
+# SUPER PDP exige aussi l'identifiant d'enregistrement légal du vendeur
+# (Seller.LegalRegistrationIdentifier). Par défaut, worker.js utilise le
+# SIRET du bac à sable "Burger Queen" (31514329699141, scheme 0002 =
+# SIRENE/INSEE) — uniquement valable en bac à sable. Une fois le vrai SIRET
+# obtenu, décommente et adapte ces deux valeurs :
+# SUPERPDP_SELLER_LEGAL_SCHEME = "0002"
+# SUPERPDP_SELLER_LEGAL_ID = "TON_SIRET_ICI"

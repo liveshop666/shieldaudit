@@ -164,6 +164,10 @@ function buildUblInvoice(invoice, env) {
       <cbc:EndpointID schemeID="${esc(env?.SUPERPDP_SELLER_ENDPOINT_SCHEME || '0225')}">${esc(env?.SUPERPDP_SELLER_ENDPOINT_ID || '315143296_99141')}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.emetteur?.ville || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="${esc(env?.SUPERPDP_SELLER_LEGAL_SCHEME || '0002')}">${esc(env?.SUPERPDP_SELLER_LEGAL_ID || '31514329699141')}</cbc:CompanyID>
+      </cac:PartyLegalEntity>
       <cac:Contact><cbc:Telephone>${esc(invoice.emetteur?.telephone || '')}</cbc:Telephone></cac:Contact>
     </cac:Party>
   </cac:AccountingSupplierParty>
