@@ -1,0 +1,24 @@
+name = "shieldaudit-superpdp-proxy"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Autorise n'importe quelle origine par défaut ; remplace "*" par l'URL exacte
+# où index.html est hébergé (ex: "https://liveshop666.github.io") si tu veux
+# restreindre l'accès au relais à ta seule page.
+ALLOWED_ORIGIN = "*"
+
+# SUPERPDP_CLIENT_ID et SUPERPDP_CLIENT_SECRET sont des SECRETS : ne jamais
+# les écrire ici ni dans un fichier versionné. Une fois le worker créé,
+# exécute :
+#   npx wrangler secret put SUPERPDP_CLIENT_ID
+#   npx wrangler secret put SUPERPDP_CLIENT_SECRET
+# et colle les valeurs générées dans le portail SUPER PDP (Bac à sable →
+# Applications → ta application → Identifiant / Secret) quand c'est demandé.
+# Voir README.md.
+
+# Optionnel : décommente et adapte si l'adresse de l'API ou du serveur
+# d'authentification diffèrent des valeurs par défaut dans worker.js
+# (api.superpdp.tech).
+# SUPERPDP_API_URL = "https://api.superpdp.tech"
+# SUPERPDP_TOKEN_URL = "https://api.superpdp.tech/oauth2/token"
