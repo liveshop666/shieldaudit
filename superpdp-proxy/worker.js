@@ -161,7 +161,7 @@ function buildUblInvoice(invoice, env) {
   <cbc:BuyerReference>${esc(invoice.reference_devis || invoice.numero)}</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
-      <cbc:EndpointID schemeID="${esc(env?.SUPERPDP_SELLER_ENDPOINT_SCHEME || '0225')}">${esc(env?.SUPERPDP_SELLER_ENDPOINT_ID || '000000002')}</cbc:EndpointID>
+      <cbc:EndpointID schemeID="${esc(env?.SUPERPDP_SELLER_ENDPOINT_SCHEME || '0225')}">${esc(env?.SUPERPDP_SELLER_ENDPOINT_ID || '315143296_99141')}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.emetteur?.ville || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
       <cac:PartyLegalEntity>
