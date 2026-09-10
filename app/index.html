@@ -719,6 +719,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div class="form-group full"><label>Adresse</label><input id="f_adresse" placeholder="Adresse complète"></div>
           <div class="form-group"><label>Email</label><input id="f_email" placeholder="contact@magasin.fr"></div>
           <div class="form-group"><label>Téléphone</label><input id="f_tel" placeholder="06 XX XX XX XX"></div>
+          <div class="form-group"><label>SIRET client (optionnel)</label><input id="f_siret" placeholder="Ex: 12345678900012"></div>
         </div>
       </div>
       <div class="form-section">
@@ -1461,6 +1462,7 @@ function buildInvoicePayload(){
       adresse:document.getElementById('f_adresse').value.trim(),
       email:document.getElementById('f_email').value.trim(),
       telephone:document.getElementById('f_tel').value.trim(),
+      siret:document.getElementById('f_siret').value.trim(),
     },
     lignes:[{
       designation:'Pack Complet ShieldAudit',

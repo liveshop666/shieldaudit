@@ -176,6 +176,10 @@ function buildUblInvoice(invoice, env) {
       <cbc:EndpointID schemeID="EM">${esc(invoice.client?.email || 'client@example.com')}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.client?.nom || '')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.client?.adresse || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>${esc(invoice.client?.nom || '')}</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="0002">${esc((invoice.client?.siret || '').replace(/\s/g, '') || '000000003')}</cbc:CompanyID>
+      </cac:PartyLegalEntity>
       <cac:Contact><cbc:Name>${esc(invoice.client?.contact || '')}</cbc:Name><cbc:Telephone>${esc(invoice.client?.telephone || '')}</cbc:Telephone><cbc:ElectronicMail>${esc(invoice.client?.email || '')}</cbc:ElectronicMail></cac:Contact>
     </cac:Party>
   </cac:AccountingCustomerParty>
