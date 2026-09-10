@@ -24,8 +24,10 @@ ALLOWED_ORIGIN = "*"
 # SUPERPDP_TOKEN_URL = "https://api.superpdp.tech/oauth2/token"
 
 # SUPER PDP exige une adresse électronique Peppol pour le vendeur
-# (Seller.ElectronicAddress). Par défaut, worker.js utilise l'identifiant du
-# bac à sable de l'entreprise de test "Burger Queen" (0225:315143296_99141) —
+# (Seller.ElectronicAddress). Par défaut, worker.js utilise le numéro SIREN
+# du bac à sable (000000002 — l'entreprise liée au client_id/secret utilisé
+# pour se connecter DOIT correspondre à ce numéro, sinon SUPER PDP renvoie
+# une erreur "entreprise liée à la session ≠ vendeur de la facture") —
 # uniquement valable en bac à sable. Une fois le vrai SIRET obtenu (et
 # l'entreprise enregistrée dans l'annuaire en production), décommente et
 # adapte ces deux valeurs :
@@ -33,9 +35,9 @@ ALLOWED_ORIGIN = "*"
 # SUPERPDP_SELLER_ENDPOINT_ID = "TON_SIRET_ICI"
 
 # SUPER PDP exige aussi l'identifiant d'enregistrement légal du vendeur
-# (Seller.LegalRegistrationIdentifier). Par défaut, worker.js utilise le
-# SIRET du bac à sable "Burger Queen" (31514329699141, scheme 0002 =
-# SIRENE/INSEE) — uniquement valable en bac à sable. Une fois le vrai SIRET
-# obtenu, décommente et adapte ces deux valeurs :
+# (Seller.LegalRegistrationIdentifier) — DOIT correspondre au même numéro
+# que l'entreprise du bac à sable liée au client_id/secret (000000002 par
+# défaut, scheme 0002 = SIRENE/INSEE). Une fois le vrai SIRET obtenu,
+# décommente et adapte ces deux valeurs :
 # SUPERPDP_SELLER_LEGAL_SCHEME = "0002"
 # SUPERPDP_SELLER_LEGAL_ID = "TON_SIRET_ICI"
