@@ -69,7 +69,7 @@ export default {
       return json({ error: 'Authentification SUPER PDP (OAuth2) échouée.', detail: String(err) }, 502, env);
     }
 
-    const ublXml = buildUblInvoice(invoice);
+    const ublXml = buildUblInvoice(invoice, env);
     const apiBase = env.SUPERPDP_API_URL || 'https://api.superpdp.tech';
     const invoicesUrl = `${apiBase}/v1.beta/invoices?external_id=${encodeURIComponent(invoice.numero)}`;
 
@@ -118,7 +118,7 @@ async function getAccessToken(env) {
   return data.access_token;
 }
 
-function buildUblInvoice(invoice) {
+function buildUblInvoice(invoice, env) {
   const ht = Number(invoice.lignes[0]?.prix_ht) || 0;
   const tvaTaux = Number(invoice.lignes[0]?.taux_tva) || 0;
   const tvaMontant = Number(invoice.lignes[0]?.montant_tva) || 0;
@@ -161,6 +161,7 @@ function buildUblInvoice(invoice) {
   <cbc:BuyerReference>${esc(invoice.reference_devis || invoice.numero)}</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
+      <cbc:EndpointID schemeID="${esc(env?.SUPERPDP_SELLER_ENDPOINT_SCHEME || '0225')}">${esc(env?.SUPERPDP_SELLER_ENDPOINT_ID || '315143296_99141')}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.emetteur?.ville || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
       <cac:Contact><cbc:Telephone>${esc(invoice.emetteur?.telephone || '')}</cbc:Telephone></cac:Contact>
