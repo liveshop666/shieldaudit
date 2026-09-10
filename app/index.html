@@ -706,6 +706,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <button class="hbtn outline" onclick="saveDocument('facture')">💾 Enregistrer</button>
       <button class="hbtn vert" onclick="printDoc('facture-preview')">🖨 Imprimer / PDF</button>
       <button class="hbtn vert" onclick="sendToIopole()">📤 Envoyer à iopole</button>
+      <button class="hbtn vert" onclick="sendToSuperpdp()">📤 Envoyer à SUPER PDP</button>
     </div>
   </div>
   <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
@@ -1437,19 +1438,17 @@ calcContrat();
 // URL du relais sécurisé (Cloudflare Worker) qui détient la clé API iopole.
 // La clé elle-même ne doit jamais être écrite ici : voir iopole-proxy/README.md.
 const IOPOLE_PROXY_URL = 'https://shieldaudit-iopole-proxy.shieldaudit-rudy.workers.dev';
+// Idem pour le relais SUPER PDP (bac à sable) : voir superpdp-proxy/README.md.
+const SUPERPDP_PROXY_URL = 'https://shieldaudit-superpdp-proxy.shieldaudit-rudy.workers.dev';
 
-async function sendToIopole(){
-  if(IOPOLE_PROXY_URL.includes('REMPLACER')){
-    showToast('⚠ Relais iopole non configuré (voir iopole-proxy/README.md)','');
-    return;
-  }
+function buildInvoicePayload(){
   const magasin=document.getElementById('f_magasin').value.trim();
   const num=document.getElementById('f_num').value.trim();
-  if(!magasin || !num){ showToast('N° facture et magasin obligatoires',''); return; }
+  if(!magasin || !num){ showToast('N° facture et magasin obligatoires',''); return null; }
   const ht=parseFloat(document.getElementById('f_ht').value)||0;
   const tva=parseInt(document.getElementById('f_tva').value)||0;
   const tvaAmt=Math.round(ht*tva/100);
-  const invoice={
+  return {
     numero:num,
     date_emission:document.getElementById('f_date').value,
     date_echeance:document.getElementById('f_echeance').value,
@@ -1470,6 +1469,31 @@ async function sendToIopole(){
     iban:document.getElementById('f_iban').value.trim(),
     statut_paiement:document.getElementById('f_statut_paiement').value,
   };
+}
+
+async function sendToSuperpdp(){
+  if(SUPERPDP_PROXY_URL.includes('REMPLACER')){
+    showToast('⚠ Relais SUPER PDP non configuré (voir superpdp-proxy/README.md)','');
+    return;
+  }
+  const invoice=buildInvoicePayload();
+  if(!invoice) return;
+  showToast('Envoi vers SUPER PDP…','');
+  try{
+    const res=await fetch(SUPERPDP_PROXY_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(invoice) });
+    const data=await res.json().catch(()=>({}));
+    if(res.ok){ showToast('✓ Facture envoyée à SUPER PDP','vert'); }
+    else{ showToast('✗ Erreur SUPER PDP : '+(data.error||res.status),''); console.error('superpdp error',data); }
+  }catch(e){ showToast('✗ Impossible de joindre le relais SUPER PDP',''); console.error(e); }
+}
+
+async function sendToIopole(){
+  if(IOPOLE_PROXY_URL.includes('REMPLACER')){
+    showToast('⚠ Relais iopole non configuré (voir iopole-proxy/README.md)','');
+    return;
+  }
+  const invoice=buildInvoicePayload();
+  if(!invoice) return;
   showToast('Envoi vers iopole…','');
   try{
     const res=await fetch(IOPOLE_PROXY_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(invoice) });
