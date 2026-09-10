@@ -22,3 +22,12 @@ ALLOWED_ORIGIN = "*"
 # (api.superpdp.tech).
 # SUPERPDP_API_URL = "https://api.superpdp.tech"
 # SUPERPDP_TOKEN_URL = "https://api.superpdp.tech/oauth2/token"
+
+# SUPER PDP exige une adresse électronique Peppol pour le vendeur
+# (Seller.ElectronicAddress). Par défaut, worker.js utilise l'identifiant du
+# bac à sable de l'entreprise de test "Burger Queen" (0225:315143296_99141) —
+# uniquement valable en bac à sable. Une fois le vrai SIRET obtenu (et
+# l'entreprise enregistrée dans l'annuaire en production), décommente et
+# adapte ces deux valeurs :
+# SUPERPDP_SELLER_ENDPOINT_SCHEME = "0225"
+# SUPERPDP_SELLER_ENDPOINT_ID = "TON_SIRET_ICI"
