@@ -99,18 +99,17 @@ export default {
 async function getAccessToken(env) {
   const apiBase = env.SUPERPDP_API_URL || 'https://api.superpdp.tech';
   const tokenUrl = env.SUPERPDP_TOKEN_URL || `${apiBase}/oauth2/token`;
-  const body = new URLSearchParams({ grant_type: 'client_credentials' });
-  // Authentification "confidentielle" (RFC 6749 §2.3.1) : client_id/secret
-  // envoyés dans l'en-tête Authorization (Basic), pas dans le corps — c'est
-  // la méthode par défaut attendue pour une application de type
-  // "Confidentielle" côté SUPER PDP.
-  const basicAuth = btoa(`${env.SUPERPDP_CLIENT_ID}:${env.SUPERPDP_CLIENT_SECRET}`);
+  // D'après la doc officielle SUPER PDP (page "Authentification") : grant
+  // type client_credentials, avec client_id et client_secret envoyés comme
+  // paramètres (corps de la requête), pas via l'en-tête Authorization.
+  const body = new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: env.SUPERPDP_CLIENT_ID,
+    client_secret: env.SUPERPDP_CLIENT_SECRET,
+  });
   const res = await fetch(tokenUrl, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: `Basic ${basicAuth}`,
-    },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: body.toString(),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
