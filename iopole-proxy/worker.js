@@ -163,8 +163,8 @@ function buildUblInvoice(invoice) {
   <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
   <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
   <cbc:ID>${esc(invoice.numero)}</cbc:ID>
-  <cbc:IssueDate>${invoice.date_emission || ''}</cbc:IssueDate>
-  <cbc:DueDate>${invoice.date_echeance || ''}</cbc:DueDate>
+  <cbc:IssueDate>${invoice.date_emission || new Date().toISOString().slice(0, 10)}</cbc:IssueDate>
+  ${invoice.date_echeance ? `<cbc:DueDate>${invoice.date_echeance}</cbc:DueDate>` : ''}
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
   <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
   <cbc:BuyerReference>${esc(invoice.reference_devis || invoice.numero)}</cbc:BuyerReference>
