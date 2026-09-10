@@ -791,6 +791,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div style="background:var(--noir);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.85rem">Total TTC</span><span style="color:#6fcf97;font-size:1.1rem" id="fp_ttc2">3 600 €</span></div>
         </div>
       </div>
+      <div id="fp_tva_mention" style="font-size:0.72rem;color:#888;text-align:right;margin-bottom:1rem" hidden>TVA non applicable, art. 293 B du CGI</div>
       <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem;margin-bottom:1rem;font-size:0.75rem">
         <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:6px">Virement bancaire</div>
         IBAN : <span id="fp_iban">—</span><br>
@@ -1503,7 +1504,7 @@ async function sendToIopole(){
   }catch(e){ showToast('✗ Impossible de joindre le relais iopole',''); console.error(e); }
 }
 
-function calcFacture(){ const ht=parseFloat(document.getElementById('f_ht').value)||0; const tva=parseInt(document.getElementById('f_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('fp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_lbl').textContent='TVA '+tva+'%'; }
+function calcFacture(){ const ht=parseFloat(document.getElementById('f_ht').value)||0; const tva=parseInt(document.getElementById('f_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('fp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('fp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('fp_tva_lbl').textContent='TVA '+tva+'%'; const m=document.getElementById('fp_tva_mention'); if(m) m.hidden=(tva!==0); }
 function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel','f_num','f_ref_devis','f_iban','sig_fact_name'].forEach(id=>document.getElementById(id).value=''); document.getElementById('f_ht').value='3000'; calcFacture(); clearSig('sig_fact'); }
 ['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban'].forEach(id=>{
   const el=document.getElementById(id);
