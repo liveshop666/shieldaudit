@@ -124,6 +124,14 @@ function buildUblInvoice(invoice, env) {
   const tvaMontant = Number(invoice.lignes[0]?.montant_tva) || 0;
   const ttc = Number(invoice.lignes[0]?.prix_ttc) || ht + tvaMontant;
   const money = (n) => n.toFixed(2);
+  // SUPER PDP classe la facture en B2C si l'acheteur n'a pas d'identifiant
+  // Peppol/SIREN cohérent avec son identifiant légal. Comme les clients de
+  // ShieldAudit sont des entreprises (B2B), on utilise le SIREN du client
+  // (9 premiers chiffres du SIRET saisi) pour l'adresse Peppol ET
+  // l'enregistrement légal ; à défaut on retombe sur le SIREN de
+  // l'entreprise de test "Tricatel" du bac à sable (000000001).
+  const buyerSiret = (invoice.client?.siret || '').replace(/\s/g, '');
+  const buyerSiren = buyerSiret.length >= 9 ? buyerSiret.slice(0, 9) : '000000001';
 
   const lignesXml = invoice.lignes
     .map(
@@ -173,12 +181,12 @@ function buildUblInvoice(invoice, env) {
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
-      <cbc:EndpointID schemeID="EM">${esc(invoice.client?.email || 'client@example.com')}</cbc:EndpointID>
+      <cbc:EndpointID schemeID="0225">${esc(buyerSiren)}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.client?.nom || '')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.client?.adresse || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
       <cac:PartyLegalEntity>
         <cbc:RegistrationName>${esc(invoice.client?.nom || '')}</cbc:RegistrationName>
-        <cbc:CompanyID schemeID="0002">${esc((invoice.client?.siret || '').replace(/\s/g, '') || '000000003')}</cbc:CompanyID>
+        <cbc:CompanyID schemeID="0002">${esc(buyerSiren)}</cbc:CompanyID>
       </cac:PartyLegalEntity>
       <cac:Contact><cbc:Name>${esc(invoice.client?.contact || '')}</cbc:Name><cbc:Telephone>${esc(invoice.client?.telephone || '')}</cbc:Telephone><cbc:ElectronicMail>${esc(invoice.client?.email || '')}</cbc:ElectronicMail></cac:Contact>
     </cac:Party>
