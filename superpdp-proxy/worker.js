@@ -151,8 +151,8 @@ function buildUblInvoice(invoice, env) {
          xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
          xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
   <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
-  <cbc:ProfileID>urn:fdc:peppol.eu:2017:poacc:billing:01:1.0</cbc:ProfileID>
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>
+  <cbc:ProfileID>M1</cbc:ProfileID>
   <cbc:ID>${esc(invoice.numero)}</cbc:ID>
   <cbc:IssueDate>${invoice.date_emission || new Date().toISOString().slice(0, 10)}</cbc:IssueDate>
   ${invoice.date_echeance ? `<cbc:DueDate>${invoice.date_echeance}</cbc:DueDate>` : ''}
