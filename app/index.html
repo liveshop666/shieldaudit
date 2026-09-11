@@ -368,6 +368,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <button class="hbtn vert" onclick="printDoc('devis-preview')">🖨 Imprimer</button>
     </div>
   </div>
+  <div style="padding:1.5rem 1.5rem 0"><div id="d_compliance" style="border-radius:10px;padding:0.7rem 1rem;font-size:0.8rem;font-weight:600"></div></div>
   <div style="padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
     <div>
       <div class="form-section">
@@ -1008,6 +1009,29 @@ if(!state.clients) state.clients = [
 if(!state.failles) state.failles = [];
 if(!state.documents) state.documents = [];
 
+// SIRET de ShieldAudit — à renseigner dès l'immatriculation auto-entrepreneur
+// obtenue. Tant qu'il est vide, aucun document (devis, facture) ne peut être
+// légalement "en règle" : le SIRET est une mention obligatoire sur tout
+// document commercial. Une fois rempli ici, le badge de conformité du devis
+// passe automatiquement au vert.
+const SHIELDAUDIT_SIRET = '';
+
+function checkDevisCompliance(){
+  const el = document.getElementById('d_compliance');
+  if(!el) return;
+  const manquants = [];
+  if(!SHIELDAUDIT_SIRET) manquants.push('ton SIRET (ShieldAudit) pas encore renseigné dans l\'app');
+  if(!document.getElementById('d_magasin').value.trim()) manquants.push('nom du client');
+  if((parseFloat(document.getElementById('d_ht').value)||0) <= 0) manquants.push('prix HT');
+  if(manquants.length === 0){
+    el.style.cssText += 'background:var(--vert-light);border:1px solid #88ccaa;color:#085041';
+    el.textContent = '✓ Devis en règle';
+  } else {
+    el.style.cssText += 'background:#fff8e8;border:1px solid #f0c040;color:#7a5200';
+    el.textContent = '⚠ Devis incomplet : ' + manquants.join(', ');
+  }
+}
+
 function exportBackup(){
   const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
   const url = URL.createObjectURL(blob);
@@ -1367,13 +1391,13 @@ function loadDocument(id){
 }
 
 // ===== DEVIS =====
-function calcDevis(){ const ht=parseFloat(document.getElementById('d_ht').value)||0; const tva=parseInt(document.getElementById('d_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('d_ttc_display').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_label').textContent='TVA '+tva+'%'; const m=document.getElementById('dp_tva_mention'); if(m) m.hidden=(tva!==0); }
+function calcDevis(){ const ht=parseFloat(document.getElementById('d_ht').value)||0; const tva=parseInt(document.getElementById('d_tva').value)||0; const tvaAmt=Math.round(ht*tva/100); const ttc=ht+tvaAmt; document.getElementById('d_ttc_display').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_amt').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ht2').textContent=ht.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva2').textContent=tvaAmt.toLocaleString('fr-FR')+' €'; document.getElementById('dp_ttc2').textContent=ttc.toLocaleString('fr-FR')+' €'; document.getElementById('dp_tva_label').textContent='TVA '+tva+'%'; const m=document.getElementById('dp_tva_mention'); if(m) m.hidden=(tva!==0); checkDevisCompliance(); }
 function resetDevis(){ ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date_mission','sig_devis_name'].forEach(id=>document.getElementById(id).value=''); document.getElementById('d_ht').value='3000'; calcDevis(); clearSig('sig_devis'); }
 // Live update devis preview
 ['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date'].forEach(id=>{
   const el=document.getElementById(id);
   if(el) el.addEventListener('input',()=>{
-    if(id==='d_magasin'){ const t=document.getElementById('dp_magasin'); if(t) t.textContent=el.value||'—'; }
+    if(id==='d_magasin'){ const t=document.getElementById('dp_magasin'); if(t) t.textContent=el.value||'—'; checkDevisCompliance(); }
     if(id==='d_contact'){ const t=document.getElementById('dp_contact'); if(t) t.textContent=el.value||'—'; }
     if(id==='d_adresse'){ const t=document.getElementById('dp_adresse'); if(t) t.textContent=el.value||'—'; }
     if(id==='d_tel'){ const t=document.getElementById('dp_tel'); if(t) t.textContent=el.value||'—'; }
