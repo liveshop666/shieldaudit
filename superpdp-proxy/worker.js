@@ -127,11 +127,20 @@ function buildUblInvoice(invoice, env) {
   // SUPER PDP classe la facture en B2C si l'acheteur n'a pas d'identifiant
   // Peppol/SIREN cohérent avec son identifiant légal. Comme les clients de
   // ShieldAudit sont des entreprises (B2B), on utilise le SIREN du client
-  // (9 premiers chiffres du SIRET saisi) pour l'adresse Peppol ET
-  // l'enregistrement légal ; à défaut on retombe sur le SIREN de
-  // l'entreprise de test "Tricatel" du bac à sable (000000001).
+  // (9 premiers chiffres du SIRET saisi) pour l'enregistrement légal ; à
+  // défaut on retombe sur le "Numéro d'entreprise" de l'entreprise de test
+  // "Tricatel" du bac à sable (000000001).
+  // Pour l'adresse Peppol (EndpointID), le SIREN brut ne suffit pas : SUPER
+  // PDP vérifie que le destinataire est bien enregistré dans l'annuaire
+  // Peppol avec cette adresse précise avant d'accepter la facture. Sans
+  // SIRET client renseigné, on utilise donc la ligne d'annuaire réelle de
+  // "Tricatel" (0225:315143296_99140, visible sur sa page bac à sable) —
+  // avec un vrai SIRET, tant que ce client n'est pas lui-même enregistré
+  // sur Peppol, SUPER PDP refusera quand même (limitation réelle, pas un
+  // bug : la plupart des petites entreprises ne sont pas encore inscrites).
   const buyerSiret = (invoice.client?.siret || '').replace(/\s/g, '');
   const buyerSiren = buyerSiret.length >= 9 ? buyerSiret.slice(0, 9) : '000000001';
+  const buyerEndpointId = buyerSiret.length >= 9 ? buyerSiren : '315143296_99140';
 
   const lignesXml = invoice.lignes
     .map(
@@ -181,7 +190,7 @@ function buildUblInvoice(invoice, env) {
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
-      <cbc:EndpointID schemeID="0225">${esc(buyerSiren)}</cbc:EndpointID>
+      <cbc:EndpointID schemeID="0225">${esc(buyerEndpointId)}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.client?.nom || '')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.client?.adresse || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
       <cac:PartyLegalEntity>
