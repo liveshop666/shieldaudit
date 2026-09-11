@@ -141,6 +141,11 @@ function buildUblInvoice(invoice, env) {
   const buyerSiret = (invoice.client?.siret || '').replace(/\s/g, '');
   const buyerSiren = buyerSiret.length >= 9 ? buyerSiret.slice(0, 9) : '000000001';
   const buyerEndpointId = buyerSiret.length >= 9 ? buyerSiren : '315143296_99140';
+  // Une ligne de facture à 0% (taux "Zero rated") exige un identifiant de
+  // TVA (ou d'enregistrement fiscal) du vendeur (règle BR-Z-02). On calcule
+  // le numéro de TVA intracommunautaire français à partir du SIREN.
+  const sellerSiren = (env?.SUPERPDP_SELLER_LEGAL_ID || '000000002').slice(0, 9);
+  const sellerVat = frVat(sellerSiren);
 
   const lignesXml = invoice.lignes
     .map(
@@ -174,6 +179,9 @@ function buildUblInvoice(invoice, env) {
   <cbc:IssueDate>${invoice.date_emission || new Date().toISOString().slice(0, 10)}</cbc:IssueDate>
   ${invoice.date_echeance ? `<cbc:DueDate>${invoice.date_echeance}</cbc:DueDate>` : ''}
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:Note>#PMT#L'indemnité forfaitaire légale pour frais de recouvrement est de 40 €.</cbc:Note>
+  <cbc:Note>#PMD#À défaut de règlement à la date d'échéance, une pénalité de 10 % du net à payer sera applicable immédiatement.</cbc:Note>
+  <cbc:Note>#AAB#Aucun escompte pour paiement anticipé.</cbc:Note>
   <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
   <cbc:BuyerReference>${esc(invoice.reference_devis || invoice.numero)}</cbc:BuyerReference>
   <cac:AccountingSupplierParty>
@@ -181,6 +189,10 @@ function buildUblInvoice(invoice, env) {
       <cbc:EndpointID schemeID="${esc(env?.SUPERPDP_SELLER_ENDPOINT_SCHEME || '0225')}">${esc(env?.SUPERPDP_SELLER_ENDPOINT_ID || '315143296_99141')}</cbc:EndpointID>
       <cac:PartyName><cbc:Name>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:Name></cac:PartyName>
       <cac:PostalAddress><cbc:StreetName>${esc(invoice.emetteur?.ville || '')}</cbc:StreetName><cac:Country><cbc:IdentificationCode>FR</cbc:IdentificationCode></cac:Country></cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>${esc(sellerVat)}</cbc:CompanyID>
+        <cac:TaxScheme><cbc:ID>VAT</cbc:ID></cac:TaxScheme>
+      </cac:PartyTaxScheme>
       <cac:PartyLegalEntity>
         <cbc:RegistrationName>${esc(invoice.emetteur?.nom || 'ShieldAudit')}</cbc:RegistrationName>
         <cbc:CompanyID schemeID="${esc(env?.SUPERPDP_SELLER_LEGAL_SCHEME || '0002')}">${esc(env?.SUPERPDP_SELLER_LEGAL_ID || '000000002')}</cbc:CompanyID>
@@ -219,6 +231,12 @@ function buildUblInvoice(invoice, env) {
     <cbc:PayableAmount currencyID="EUR">${money(ttc)}</cbc:PayableAmount>
   </cac:LegalMonetaryTotal>${lignesXml}
 </Invoice>`;
+}
+
+function frVat(siren) {
+  const n = Number(siren) % 97;
+  const key = (12 + 3 * n) % 97;
+  return `FR${String(key).padStart(2, '0')}${siren}`;
 }
 
 function esc(str) {
