@@ -318,6 +318,7 @@ function renderF(){
       <div class="fg"><label>Zone concernée</label><input placeholder="Ex: Rayon électronique" value="${esc(f.zone)}" oninput="updF(${f.id},'zone',this.value)"></div>
       <div class="fg"><label>Technique exploitée</label><input placeholder="Ex: Dissimulation" value="${esc(f.tech)}" oninput="updF(${f.id},'tech',this.value)"></div>
       <div class="fg"><label>Valeur à risque</label><input placeholder="Ex: ~800 €" value="${esc(f.val)}" oninput="updF(${f.id},'val',this.value)"></div>
+      <div class="fg"><label>Durée sans intervention</label><input placeholder="Ex: depuis plusieurs mois" value="${esc(f.dur)}" oninput="updF(${f.id},'dur',this.value)"></div>
       <div class="fg"><label>Délai recommandé</label>
         <select onchange="updF(${f.id},'del',this.value)">
           <option value="immediat" ${f.del==='immediat'?'selected':''}>⚡ Immédiat</option>
