@@ -249,6 +249,10 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
       <span>Sauv.</span>
     </button>
+    <button class="nav-btn" onclick="refreshApp()" title="Rafraîchir la page (récupère les dernières mises à jour)">
+      <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      <span>Rafraîchir</span>
+    </button>
     <button class="nav-btn" onclick="history.length>1?history.back():window.close()" title="Retour">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
       <span>Retour</span>
@@ -1102,6 +1106,7 @@ let editingClientId = null;
 
 function saveState(){ localStorage.setItem('sa_state', JSON.stringify(state)); }
 function saveAll(){ saveState(); showToast('✓ Sauvegardé','vert'); }
+function refreshApp(){ saveState(); location.href = location.pathname + '?v=' + Date.now(); }
 
 // ===== NAV =====
 function goPage(id){

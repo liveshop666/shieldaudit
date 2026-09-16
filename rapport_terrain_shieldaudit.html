@@ -113,6 +113,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
   <div class="tr">
     <span class="si" id="sav-ind">Prêt</span>
     <button class="btn" onclick="if(window.history.length>1){history.back();}else{window.close();}">← Retour</button>
+    <button class="btn" onclick="refreshApp()" title="Rafraîchir la page (récupère les dernières mises à jour)">⟳ Rafraîchir</button>
     <button class="btn" onclick="resetAll()">↺ Nouveau</button>
     <button class="btn" onclick="addFaille()">+ Faille</button>
     <button class="btn v" onclick="genPDF()">📄 PDF</button>
@@ -286,6 +287,7 @@ function loadData(){
   updSynth();
 }
 function resetAll(){ if(!confirm('Effacer tout et recommencer ?')) return; D={failles:[]}; localStorage.removeItem('sa_rapp3'); location.reload(); }
+function refreshApp(){ doSave(); location.href = location.pathname + '?v=' + Date.now(); }
 
 // ===== FAILLES =====
 function addFaille(){
