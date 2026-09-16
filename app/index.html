@@ -352,6 +352,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <th>Statut</th><th>Montant</th><th>Commission (10%)</th><th>Prochain contact</th><th>Actions</th>
         </tr></thead>
         <tbody id="clients-tbody"></tbody>
+        <tfoot id="clients-tfoot"></tfoot>
       </table>
     </div>
   </div>
@@ -1156,7 +1157,8 @@ function renderClients(){
     `<div class="status-pill"><div class="dot" style="background:${dotColors[s]||'#999'}"></div>${n} ${STATUTS[s]||s}</div>`
   ).join('');
   const tbody=document.getElementById('clients-tbody');
-  if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--gris)">Aucun client trouvé</td></tr>`; return; }
+  const tfoot=document.getElementById('clients-tfoot');
+  if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;padding:2rem;color:var(--gris)">Aucun client trouvé</td></tr>`; tfoot.innerHTML=''; return; }
   tbody.innerHTML=filtered.map(c=>`
     <tr>
       <td><strong style="font-size:0.85rem;cursor:pointer;text-decoration:underline;text-decoration-color:var(--border)" onclick="openClientDocs('${esc(c.magasin).replace(/'/g,"\\'")}')" title="Voir devis/contrat/factures">${esc(c.magasin)}</strong></td>
@@ -1172,6 +1174,15 @@ function renderClients(){
         <button class="icon-btn del" onclick="delClient(${c.id})" title="Supprimer"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
       </div></td>
     </tr>`).join('');
+  const totalMontant=filtered.reduce((a,c)=>a+(parseFloat(c.montant)||0),0);
+  const totalCommission=totalMontant*0.1;
+  tfoot.innerHTML=`
+    <tr style="border-top:2px solid var(--noir);font-weight:700">
+      <td colspan="5" style="padding:8px 10px;font-size:0.8rem;color:var(--gris)">Total (${filtered.length} client${filtered.length>1?'s':''} affiché${filtered.length>1?'s':''})</td>
+      <td style="padding:8px 10px;font-size:0.82rem">${totalMontant.toLocaleString('fr-FR')} €</td>
+      <td style="padding:8px 10px;font-size:0.82rem;color:var(--vert)">${Math.round(totalCommission).toLocaleString('fr-FR')} €</td>
+      <td colspan="2"></td>
+    </tr>`;
 }
 function openClientModal(){ editingClientId=null; document.getElementById('client-modal-title').textContent='Nouveau client'; ['cm_magasin','cm_contact','cm_tel','cm_email','cm_ville','cm_notes'].forEach(id=>document.getElementById(id).value=''); document.getElementById('cm_statut').value='prospect'; document.getElementById('cm_montant').value=''; document.getElementById('cm_date').value=''; document.getElementById('client-modal').classList.add('open'); }
 function editClient(id){ const c=state.clients.find(x=>x.id===id); if(!c) return; editingClientId=id; document.getElementById('client-modal-title').textContent='Modifier le client'; document.getElementById('cm_magasin').value=c.magasin||''; document.getElementById('cm_contact').value=c.contact||''; document.getElementById('cm_tel').value=c.tel||''; document.getElementById('cm_email').value=c.email||''; document.getElementById('cm_ville').value=c.ville||''; document.getElementById('cm_statut').value=c.statut||'prospect'; document.getElementById('cm_montant').value=c.montant||''; document.getElementById('cm_date').value=c.date||''; document.getElementById('cm_notes').value=c.notes||''; document.getElementById('client-modal').classList.add('open'); }
