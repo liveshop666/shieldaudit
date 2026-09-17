@@ -395,7 +395,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div class="form-group"><label>Validité (jours)</label><input id="d_validite" value="30" type="number"></div>
           <div class="form-group"><label>Date de mission</label><input type="date" id="d_date_mission"></div>
           <div class="form-group"><label>Prix HT (€)</label><input id="d_ht" value="3000" type="number" oninput="calcDevis()"></div>
-          <div class="form-group"><label>TVA %</label><select id="d_tva" onchange="calcDevis()"><option value="20">20%</option><option value="0">0% (auto-entr.)</option></select></div>
+          <div class="form-group"><label>TVA %</label><select id="d_tva" onchange="calcDevis()"><option value="0" selected>0% (franchise en base)</option><option value="20">20%</option></select></div>
         </div>
         <div style="margin-top:1rem;background:#f4f4f0;border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:0.82rem;color:var(--gris)">Total TTC</div>
@@ -433,7 +433,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
         <div style="border:1px solid var(--border);border-radius:8px;padding:1rem">
           <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:8px">Prestataire</div>
-          <div style="font-size:0.82rem;line-height:1.8;color:#333">ShieldAudit<br>Caen, France<br>06 59 96 08 77</div>
+          <div style="font-size:0.82rem;line-height:1.8;color:#333">ShieldAudit<br>68 rue de la Réforme, 14650 Carpiquet<br>SIRET : 751 655 390 00035<br>06 59 96 08 77</div>
         </div>
         <div style="border:1px solid var(--border);border-radius:8px;padding:1rem">
           <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:8px">Client</div>
@@ -592,7 +592,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
         <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
           <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Prestataire</div>
-          <strong>ShieldAudit</strong><br>Caen, France<br>SIRET : à compléter<br>06 59 96 08 77
+          <strong>ShieldAudit</strong><br>68 rue de la Réforme, 14650 Carpiquet<br>SIRET : 751 655 390 00035<br>06 59 96 08 77
         </div>
         <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
           <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Client</div>
@@ -738,7 +738,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div class="form-group"><label>Réf. devis</label><input id="f_ref_devis" placeholder="DEV-2026-001"></div>
           <div class="form-group"><label>Date de prestation</label><input type="date" id="f_date_prest"></div>
           <div class="form-group"><label>Prix HT (€)</label><input id="f_ht" value="3000" type="number" oninput="calcFacture()"></div>
-          <div class="form-group"><label>TVA %</label><select id="f_tva" onchange="calcFacture()"><option value="20">20%</option><option value="0">0%</option></select></div>
+          <div class="form-group"><label>TVA %</label><select id="f_tva" onchange="calcFacture()"><option value="0" selected>0% (franchise en base)</option><option value="20">20%</option></select></div>
           <div class="form-group"><label>Statut paiement</label>
             <select id="f_statut_paiement">
               <option value="attente">En attente</option>
@@ -781,7 +781,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
         <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem">
           <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:6px">Émetteur</div>
-          <div style="font-size:0.78rem;line-height:1.8;color:#333">ShieldAudit<br>Caen, France<br>06 59 96 08 77</div>
+          <div style="font-size:0.78rem;line-height:1.8;color:#333">ShieldAudit<br>68 rue de la Réforme, 14650 Carpiquet<br>SIRET : 751 655 390 00035<br>06 59 96 08 77</div>
         </div>
         <div style="border:1px solid var(--border);border-radius:8px;padding:0.9rem">
           <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--vert);font-weight:700;margin-bottom:6px">Facturé à</div>
@@ -1040,7 +1040,7 @@ if(!state.documents) state.documents = [];
 // légalement "en règle" : le SIRET est une mention obligatoire sur tout
 // document commercial. Une fois rempli ici, le badge de conformité du devis
 // passe automatiquement au vert.
-const SHIELDAUDIT_SIRET = '';
+const SHIELDAUDIT_SIRET = '75165539000035';
 
 function checkDevisCompliance(){
   const el = document.getElementById('d_compliance');
@@ -1388,7 +1388,7 @@ function loadDocument(id){
     document.getElementById('d_validite').value=d.data.validite||30;
     document.getElementById('d_date_mission').value=d.data.dateMission||'';
     document.getElementById('d_ht').value=d.data.ht||0;
-    document.getElementById('d_tva').value=d.data.tva||20;
+    document.getElementById('d_tva').value=d.data.tva!=null?d.data.tva:0;
     dispatch(['d_magasin','d_contact','d_adresse','d_tel','d_email','d_siret_client','d_num','d_date']);
     calcDevis();
     restoreSig('sig_devis',d.data.signature,d.data.signatureName);
@@ -1419,7 +1419,7 @@ function loadDocument(id){
     document.getElementById('f_echeance').value=d.data.echeance||'';
     document.getElementById('f_ref_devis').value=d.data.refDevis||'';
     document.getElementById('f_ht').value=d.data.ht||0;
-    document.getElementById('f_tva').value=d.data.tva||20;
+    document.getElementById('f_tva').value=d.data.tva!=null?d.data.tva:0;
     document.getElementById('f_iban').value=d.data.iban||'';
     document.getElementById('f_statut_paiement').value=d.data.statutPaiement||'attente';
     dispatch(['f_magasin','f_contact','f_adresse','f_tel','f_email','f_num','f_date','f_echeance','f_iban']);
@@ -1519,7 +1519,7 @@ function buildInvoicePayload(){
     date_emission:document.getElementById('f_date').value,
     date_echeance:document.getElementById('f_echeance').value,
     reference_devis:document.getElementById('f_ref_devis').value,
-    emetteur:{ nom:'ShieldAudit', ville:'Caen, France', telephone:'06 59 96 08 77' },
+    emetteur:{ nom:'ShieldAudit', ville:'68 rue de la Réforme, 14650 Carpiquet', telephone:'06 59 96 08 77' },
     client:{
       nom:magasin,
       contact:document.getElementById('f_contact').value.trim(),
