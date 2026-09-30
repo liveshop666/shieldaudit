@@ -216,17 +216,17 @@ nav{
   font-size:0.95rem;font-weight:500;text-decoration:none;display:block;
 }
 
+/* ===== NAV PHONE ICON ===== */
+.nav-phone{width:34px;height:34px;border-radius:50%;background:var(--sand);display:none;align-items:center;justify-content:center;flex-shrink:0}
+.nav-phone svg{width:15px;height:15px;stroke:var(--noir)}
+@media(min-width:768px){.nav-phone{display:flex}}
+
 /* ===== HERO ===== */
 .hero{
-  padding:3.5rem 1.5rem 3rem;
-  max-width:1100px;margin:0 auto;
+  padding:2.5rem 1.5rem 1.5rem;
+  max-width:900px;margin:0 auto;text-align:center;
 }
-@media(min-width:768px){
-  .hero{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:4rem;align-items:center;padding:5rem 3rem 4rem;
-  }
-}
+@media(min-width:768px){.hero{padding:3.5rem 3rem 2rem}}
 .hero-tag{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--vert-light);color:#085041;
@@ -234,64 +234,45 @@ nav{
   border-radius:100px;margin-bottom:1.2rem;
 }
 .hero h1{
-  font-family:'DM Serif Display',serif;
-  font-size:2.2rem;line-height:1.15;letter-spacing:-1px;
-  margin-bottom:1rem;
+  font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:-0.03em;
+  font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.06;
+  margin:0 0 1.1rem;text-wrap:balance;
 }
-@media(min-width:768px){.hero h1{font-size:3.2rem}}
-.hero h1 em{font-style:italic;color:var(--vert)}
-.hero p{color:var(--gris);font-size:0.95rem;line-height:1.7;margin-bottom:1.8rem}
-.hero-btns{display:flex;flex-direction:column;gap:0.75rem}
-@media(min-width:480px){.hero-btns{flex-direction:row;align-items:center}}
+.hero h1 .imgline{display:inline-flex;align-items:center;gap:0 .3em;vertical-align:middle}
+.circ{
+  width:.92em;height:.92em;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,var(--vert),var(--vert-dark));vertical-align:middle;
+  overflow:hidden;flex-shrink:0;margin:0 .06em;
+  box-shadow:0 .06em .16em rgba(26,58,42,.4),inset 0 .03em .04em rgba(255,255,255,.25);
+}
+.circ svg{width:52%;height:52%;stroke:#eafff3;fill:none}
+.hero p{color:var(--gris);font-size:0.95rem;line-height:1.7;margin:0 auto 1.8rem;max-width:480px}
+.hero-btns{display:flex;align-items:center;justify-content:center;gap:1.3rem;flex-wrap:wrap}
 .btn-primary{
-  background:var(--noir);color:var(--blanc);
-  padding:1rem 1.8rem;border-radius:100px;
-  font-size:0.95rem;font-weight:500;border:none;cursor:pointer;
+  background:var(--vert);color:#fff;
+  padding:0.9rem 1.8rem;border-radius:100px;
+  font-size:0.82rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;border:none;cursor:pointer;
   font-family:'DM Sans',sans-serif;transition:opacity 0.2s;
   text-align:center;
-  box-shadow:0 16px 28px -14px rgba(23,20,13,.5),inset 0 1px 0 rgba(255,255,255,.08);
+  box-shadow:0 16px 28px -12px rgba(26,58,42,.55),inset 0 1px 0 rgba(255,255,255,.18);
 }
 .btn-primary:hover{opacity:0.85}
 .btn-ghost{
-  background:transparent;color:var(--noir);
-  padding:1rem 1.8rem;border-radius:100px;
-  font-size:0.95rem;border:1px solid var(--border);cursor:pointer;
-  font-family:'DM Sans',sans-serif;transition:background 0.2s;
-  text-align:center;
+  background:none;color:var(--noir);border:none;cursor:pointer;
+  font-size:0.82rem;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;
+  font-family:'DM Sans',sans-serif;padding:0;
 }
-.btn-ghost:hover{background:#f0f0ec}
+.btn-ghost:hover{color:var(--vert)}
 
-/* Hero visual card */
-.hero-visual{
-  background:var(--sand);border-radius:20px;
-  padding:1.5rem;display:flex;flex-direction:column;gap:0.9rem;
-  margin-top:2rem;
-  box-shadow:0 30px 60px -35px rgba(23,20,13,.4);
+/* Trust bar */
+.trustbar-pills{display:flex;align-items:center;justify-content:center;gap:.7rem;flex-wrap:wrap;padding:1.2rem 1.5rem 1.4rem}
+.trustbar-pills .item{
+  display:flex;align-items:center;gap:.45rem;background:var(--blanc);border:1px solid var(--border);
+  border-radius:100px;padding:.55rem 1rem;font-size:.7rem;color:var(--noir);
+  letter-spacing:.02em;text-transform:uppercase;font-weight:700;
+  box-shadow:0 6px 14px -10px rgba(23,20,13,.25);
 }
-@media(min-width:768px){.hero-visual{margin-top:0}}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
-.stat-card{
-  background:var(--white);border-radius:12px;
-  padding:1rem;border:1px solid var(--border);
-  box-shadow:0 14px 26px -20px rgba(23,20,13,.35);
-}
-.stat-card .label{font-size:0.72rem;color:var(--gris);margin-bottom:0.25rem;line-height:1.4}
-.stat-card .value{font-family:'DM Serif Display',serif;font-size:1.7rem;color:var(--noir)}
-.stat-card .sub{font-size:0.7rem;color:var(--vert);margin-top:0.15rem}
-.alert-card{
-  background:var(--white);border-radius:12px;
-  padding:0.9rem 1rem;border:1px solid var(--border);
-  display:flex;align-items:center;gap:0.9rem;
-  box-shadow:0 14px 26px -20px rgba(23,20,13,.35);
-}
-.alert-icon{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--vert-light);display:flex;align-items:center;
-  justify-content:center;color:var(--vert);font-size:1rem;flex-shrink:0;
-  box-shadow:0 8px 16px -10px rgba(45,106,79,.4),inset 0 1px 0 rgba(255,255,255,.5);
-}
-.alert-text .at{font-size:0.8rem;font-weight:500;color:var(--noir)}
-.alert-text .ab{font-size:0.72rem;color:var(--gris)}
+.trustbar-pills svg{width:14px;height:14px;stroke:var(--vert);flex-shrink:0}
 
 /* ===== CLIENTS ===== */
 .clients{
@@ -314,6 +295,7 @@ nav{
 .section{padding:3rem 1.5rem;max-width:1100px;margin:0 auto}
 @media(min-width:768px){.section{padding:4rem 3rem}}
 .section-label{font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.6rem}
+.section-label.pill{display:inline-block;background:var(--vert-light);color:var(--vert);letter-spacing:1px;padding:0.35rem 0.9rem;border-radius:100px}
 .section-title{font-family:'DM Serif Display',serif;font-size:1.8rem;line-height:1.2;letter-spacing:-0.5px;margin-bottom:2rem}
 @media(min-width:768px){.section-title{font-size:2.2rem}}
 
@@ -529,8 +511,7 @@ footer p{font-size:0.75rem;color:var(--gris)}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero-text{animation:fadeUp 0.6s ease both}
-.hero-visual{animation:fadeUp 0.6s 0.15s ease both}
+.hero{animation:fadeUp 0.6s ease both}
 </style>
 </head>
 <body>
@@ -547,7 +528,12 @@ footer p{font-size:0.75rem;color:var(--gris)}
     <li><a href="#tarifs">Tarifs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-cta" style="display:none" id="navCta" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs</button>
+  <div style="display:flex;align-items:center;gap:0.7rem">
+    <a href="tel:0659960877" class="nav-phone" aria-label="Appeler ShieldAudit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 5.5 5.5l.96-.96a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <button class="nav-cta" style="display:none" id="navCta" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs</button>
+  </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -562,51 +548,28 @@ footer p{font-size:0.75rem;color:var(--gris)}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <div class="hero-tag">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-      Sécurité retail certifiée
-    </div>
-    <h1>Protégez votre magasin <em>avant</em> qu'il soit trop tard</h1>
-    <p>Nous testons vos failles de sécurité comme un vrai voleur — pour que vous puissiez les corriger avant qu'elles coûtent cher.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir nos tarifs</button>
-      <button class="btn-ghost" onclick="document.getElementById('methode').scrollIntoView({behavior:'smooth'})">Notre méthode →</button>
-    </div>
+  <div class="hero-tag">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+    Sécurité retail certifiée
   </div>
-  <div class="hero-visual">
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="label">Garantie remboursement</div>
-        <div class="value">100%</div>
-        <div class="sub">si aucune faille détectée</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Délai de rapport</div>
-        <div class="value">48h</div>
-        <div class="sub">après l'audit terrain</div>
-      </div>
-    </div>
-    <div class="alert-card">
-      <div class="alert-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      </div>
-      <div class="alert-text">
-        <div class="at">Angle mort caméra — Rayon électronique</div>
-        <div class="ab">Zone non surveillée de 4m² · risque élevé</div>
-      </div>
-    </div>
-    <div class="alert-card">
-      <div class="alert-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="alert-text">
-        <div class="at">Antivol manquant — 3 références haut de gamme</div>
-        <div class="ab">Valeur exposée non sécurisée : ~1 200 €</div>
-      </div>
-    </div>
+  <h1>
+    <span class="imgline">Protégez<span class="circ"><svg viewBox="0 0 24 24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Votre Magasin</span><br>
+    Avant Qu'il Soit Trop Tard
+  </h1>
+  <p>Nous testons vos failles de sécurité comme un vrai voleur — pour que vous puissiez les corriger avant qu'elles coûtent cher.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Demander un audit</button>
+    <button class="btn-ghost" onclick="document.getElementById('methode').scrollIntoView({behavior:'smooth'})">Notre méthode →</button>
   </div>
 </section>
+
+<!-- TRUST BAR -->
+<div class="trustbar-pills" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Garantie remboursement</div>
+  <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Contrat signé avant mission</div>
+  <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Conseil enregistré en France</div>
+  <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Réponse sous 24h</div>
+</div>
 
 <!-- STATS CHOC -->
 <div class="stats-choc">
@@ -644,49 +607,9 @@ footer p{font-size:0.75rem;color:var(--gris)}
   </div>
 </div>
 
-<!-- CNAPS BADGE -->
-<div style="background:var(--blanc);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.5rem">
-  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center">
-
-    <div style="display:flex;align-items:center;gap:0.9rem;background:var(--sand);border-radius:14px;padding:1rem 1.4rem;flex:1;min-width:220px;max-width:340px;box-shadow:0 16px 30px -26px rgba(23,20,13,.4)">
-      <div style="width:42px;height:42px;border-radius:50%;background:var(--vert-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 16px -10px rgba(45,106,79,.4),inset 0 1px 0 rgba(255,255,255,.5)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-      </div>
-      <div>
-        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px">Société de conseil</div>
-        <div style="font-size:0.92rem;font-weight:500;color:var(--noir)">Enregistrée en France</div>
-        <div style="font-size:0.72rem;color:var(--gris)">Contrat signé obligatoire avant chaque mission</div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:0.9rem;background:var(--sand);border-radius:14px;padding:1rem 1.4rem;flex:1;min-width:220px;max-width:340px;box-shadow:0 16px 30px -26px rgba(23,20,13,.4)">
-      <div style="width:42px;height:42px;border-radius:50%;background:var(--vert-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 16px -10px rgba(45,106,79,.4),inset 0 1px 0 rgba(255,255,255,.5)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 12 2 2 4-4"/></svg>
-      </div>
-      <div>
-        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px">Intervention encadrée</div>
-        <div style="font-size:0.92rem;font-weight:500;color:var(--noir)">Contrat signé obligatoire</div>
-        <div style="font-size:0.72rem;color:var(--gris)">Chaque audit est couvert par un cadre légal strict</div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;gap:0.9rem;background:var(--sand);border-radius:14px;padding:1rem 1.4rem;flex:1;min-width:220px;max-width:340px;box-shadow:0 16px 30px -26px rgba(23,20,13,.4)">
-      <div style="width:42px;height:42px;border-radius:50%;background:var(--vert-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 16px -10px rgba(45,106,79,.4),inset 0 1px 0 rgba(255,255,255,.5)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-      </div>
-      <div>
-        <div style="font-size:0.72rem;color:var(--gris);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px">Garantie résultat</div>
-        <div style="font-size:0.92rem;font-weight:500;color:var(--noir)">Remboursé si aucune faille</div>
-        <div style="font-size:0.72rem;color:var(--gris)">100% satisfait ou 100% remboursé</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
 <!-- SERVICES -->
 <section class="section" id="services">
-  <div class="section-label">Nos services</div>
+  <div class="section-label pill">Ce qu'on fait</div>
   <div class="section-title">Une approche complète,<br>terrain et humaine</div>
   <div class="services-grid">
     <div class="service-card">
