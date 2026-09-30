@@ -12,15 +12,17 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--noir:#0f0f0f;--blanc:#fafaf8;--vert:#2d6a4f;--vl:#e8f4ee;--gris:#6b6b6b;--border:#e2e2de;--bg:#f0f0ec;--rouge:#cc3333;--orange:#cc7700;--jaune:#b8860b}
+:root{--noir:#17140d;--blanc:#fffdf7;--vert:#2d6a4f;--vl:#e8f4ee;--gris:#5f5748;--border:#ddd0ab;--bg:#efe6d0;--rouge:#cc3333;--orange:#cc7700;--jaune:#b8860b}
 html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir);overflow-x:hidden}
 .topbar{background:var(--noir);padding:0.8rem 1.2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap}
-.logo{font-family:'DM Serif Display',serif;font-size:1.1rem;color:white}
+.logo{display:flex;align-items:center;gap:0.5rem;font-family:'DM Serif Display',serif;font-size:1.1rem;color:white}
 .logo span{color:#6fcf97}
+.logo-badge{width:26px;height:26px;border-radius:50%;background:linear-gradient(150deg,var(--vert),#1a3a2a);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 16px -6px rgba(45,106,79,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.logo-badge svg{width:13px;height:13px;stroke:#eafff3;fill:none}
 .tr{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
 .btn{padding:0.5rem 0.9rem;border-radius:100px;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;border:1px solid #444;color:#aaa;background:transparent;-webkit-appearance:none}
-.btn.v{background:var(--vert);border-color:var(--vert);color:white}
-.btn.r{background:var(--rouge);border-color:var(--rouge);color:white}
+.btn.v{background:var(--vert);border-color:var(--vert);color:white;box-shadow:0 8px 16px -8px rgba(45,106,79,.6),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn.r{background:var(--rouge);border-color:var(--rouge);color:white;box-shadow:0 8px 16px -8px rgba(204,51,51,.5)}
 .tabs{background:var(--blanc);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
 .tabs::-webkit-scrollbar{display:none}
 .tab{padding:0.85rem 1rem;font-size:0.82rem;cursor:pointer;border:none;background:transparent;color:var(--gris);font-family:'DM Sans',sans-serif;border-bottom:3px solid transparent;white-space:nowrap;-webkit-appearance:none}
@@ -28,7 +30,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
 .nb{background:var(--rouge);color:white;font-size:0.6rem;padding:1px 5px;border-radius:100px;font-weight:700;margin-left:3px}
 .sec{display:none;padding:1rem;max-width:900px;margin:0 auto;padding-bottom:5rem}
 .sec.active{display:block}
-.card{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem}
+.card{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
 .ct{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem}
@@ -48,7 +50,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
 .r .sv{color:var(--rouge)}.o .sv{color:var(--orange)}.v .sv{color:var(--vert)}
 .sl{font-size:0.7rem;margin-top:3px}
 .r .sl{color:#aa2222}.o .sl{color:#aa5500}.v .sl{color:#1a5035}
-.fw{margin-bottom:0.8rem;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--blanc)}
+.fw{margin-bottom:0.8rem;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--blanc);box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
 .fh{display:flex;align-items:center;gap:0.6rem;padding:0.8rem 1rem}
 .fh.critique{background:#fff0f0;border-bottom:1px solid #ffcccc}
 .fh.eleve{background:#fff8f0;border-bottom:1px solid #ffd9aa}
@@ -66,14 +68,14 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
 .reco label{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:600;display:block;margin-bottom:4px}
 .reco textarea{background:transparent;border:none;outline:none;font-size:0.85rem;color:#1a3a2a;font-family:inherit;width:100%;resize:none;line-height:1.6;min-height:60px}
 .photos-row{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.6rem}
-.pbox{border:2px dashed var(--border);border-radius:10px;overflow:hidden;background:#fafaf8;position:relative;min-height:110px;transition:border-color 0.2s}
+.pbox{border:2px dashed var(--border);border-radius:10px;overflow:hidden;background:#fffdf7;position:relative;min-height:110px;transition:border-color 0.2s}
 .pbox:active{border-color:var(--vert)}
 .pbox input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:20;font-size:16px}
 .pph{padding:1.2rem 0.5rem;text-align:center;pointer-events:none;position:relative;z-index:1}
 .pph svg{width:24px;height:24px;stroke:#ccc;fill:none;stroke-width:1.5;stroke-linecap:round;display:block;margin:0 auto 0.3rem}
 .pph p{font-size:0.7rem;color:#ccc}
 .pi{width:100%;height:120px;object-fit:cover;display:none;position:relative;z-index:2}
-.pcap{padding:4px 8px;background:#f4f4f0;border-top:1px solid var(--border)}
+.pcap{padding:4px 8px;background:#ece0c9;border-top:1px solid var(--border)}
 .pcap input{border:none;background:transparent;font-size:0.7rem;color:var(--gris);font-family:inherit;outline:none;width:100%}
 .ab{border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:0.6rem}
 .ah{padding:0.7rem 1rem}
@@ -88,7 +90,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
 .add-btn{width:100%;padding:0.9rem;background:var(--blanc);border:2px dashed var(--border);border-radius:12px;color:var(--gris);font-size:0.88rem;font-family:inherit;cursor:pointer;margin-bottom:0.8rem;-webkit-appearance:none}
 .add-btn:active{border-color:var(--vert);color:var(--vert)}
 .nav-btns{display:flex;justify-content:space-between;margin-top:1rem}
-.scb{border:2px dashed var(--border);border-radius:10px;background:#fafaf8;position:relative;height:130px;touch-action:none}
+.scb{border:2px dashed var(--border);border-radius:10px;background:#fffdf7;position:relative;height:130px;touch-action:none}
 .scanvas{width:100%;height:100%;display:block;border-radius:10px;touch-action:none}
 .sph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc}
 .sclear{background:transparent;border:1px solid var(--border);border-radius:100px;padding:0.35rem 1rem;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--gris);margin-top:0.3rem;-webkit-appearance:none}
@@ -109,7 +111,10 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
 <body>
 
 <div class="topbar">
-  <div class="logo">Shield<span>Audit</span> · Rapport</div>
+  <div class="logo">
+    <span class="logo-badge"><svg viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+    Shield<span>Audit</span> · Rapport
+  </div>
   <div class="tr">
     <span class="si" id="sav-ind">Prêt</span>
     <button class="btn" onclick="if(window.history.length>1){history.back();}else{window.close();}">← Retour</button>
@@ -216,7 +221,7 @@ html,body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir
       <div class="fg"><label>Coût corrections estimé (€)</label><input type="number" id="r_cout" placeholder="Ex: 2500" oninput="autosave();calcEco()"></div>
       <div class="fg"><label>Réduction pertes estimée (%)</label><input type="number" id="r_red" placeholder="Ex: 60" oninput="autosave();calcEco()"></div>
       <div class="fg"><label>Pertes annuelles estimées (€)</label><input type="number" id="r_pert" placeholder="Ex: 12000" oninput="autosave();calcEco()"></div>
-      <div class="fg"><label>Économies annuelles (calculé)</label><input id="r_eco" readonly style="background:#f4f4f0;color:var(--gris)"></div>
+      <div class="fg"><label>Économies annuelles (calculé)</label><input id="r_eco" readonly style="background:#ece0c9;color:var(--gris)"></div>
     </div>
   </div>
   <div class="nav-btns">
@@ -388,7 +393,7 @@ function renderRecap(){
   const DL={immediat:'⚡ Immédiat','48h':'🔴 48h',semaine:'🟠 1 sem.',mois:'🟡 1 mois'};
   const NB={critique:'<span style="background:#fff0f0;color:var(--rouge);border:1px solid #ffaaaa;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Critique</span>',eleve:'<span style="background:#fff8f0;color:var(--orange);border:1px solid #ffd9aa;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Élevé</span>',moyen:'<span style="background:#fffdf0;color:var(--jaune);border:1px solid #ffe9a0;padding:2px 7px;border-radius:100px;font-size:0.65rem;font-weight:700">Moyen</span>'};
   if(!D.failles.length){document.getElementById('recap').innerHTML='<p style="color:var(--gris);font-size:0.83rem">Aucune faille.</p>';return;}
-  document.getElementById('recap').innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:0.8rem"><thead><tr style="background:var(--noir);color:white"><th style="padding:7px 10px;text-align:left">#</th><th style="padding:7px 10px;text-align:left">Faille</th><th style="padding:7px 10px;text-align:left">Zone</th><th style="padding:7px 10px;text-align:left">Niveau</th><th style="padding:7px 10px;text-align:left">Délai</th></tr></thead><tbody>${D.failles.map((f,i)=>`<tr style="border-bottom:1px solid #f0f0ec"><td style="padding:7px 10px;color:#bbb">${String(i+1).padStart(2,'0')}</td><td style="padding:7px 10px">${esc(f.titre||'—')}</td><td style="padding:7px 10px;color:var(--gris)">${esc(f.zone||'—')}</td><td style="padding:7px 10px">${NB[f.n]||f.n}</td><td style="padding:7px 10px">${DL[f.del]||'—'}</td></tr>`).join('')}</tbody></table>`;
+  document.getElementById('recap').innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:0.8rem"><thead><tr style="background:var(--noir);color:white"><th style="padding:7px 10px;text-align:left">#</th><th style="padding:7px 10px;text-align:left">Faille</th><th style="padding:7px 10px;text-align:left">Zone</th><th style="padding:7px 10px;text-align:left">Niveau</th><th style="padding:7px 10px;text-align:left">Délai</th></tr></thead><tbody>${D.failles.map((f,i)=>`<tr style="border-bottom:1px solid #efe6d0"><td style="padding:7px 10px;color:#bbb">${String(i+1).padStart(2,'0')}</td><td style="padding:7px 10px">${esc(f.titre||'—')}</td><td style="padding:7px 10px;color:var(--gris)">${esc(f.zone||'—')}</td><td style="padding:7px 10px">${NB[f.n]||f.n}</td><td style="padding:7px 10px">${DL[f.del]||'—'}</td></tr>`).join('')}</tbody></table>`;
 }
 
 function calcEco(){
@@ -408,7 +413,7 @@ function initSig(id){
   canvas.width=Math.floor(rb.width);
   canvas.height=Math.floor(rb.height);
   const ctx=canvas.getContext('2d');
-  ctx.strokeStyle='#0f0f0f';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.strokeStyle='#17140d';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
   SG[id]={ctx,drawing:false};
   const getP=e=>{const r=canvas.getBoundingClientRect();const s=e.touches?e.touches[0]:e;return{x:s.clientX-r.left,y:s.clientY-r.top};};
   canvas.addEventListener('mousedown',e=>{e.preventDefault();const p=getP(e);SG[id].drawing=true;ctx.beginPath();ctx.moveTo(p.x,p.y);document.getElementById(id+'-ph').style.display='none';});
@@ -468,8 +473,8 @@ h2{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#2d6a4f;bord
 .sv{font-size:24px;font-weight:900}
 .sc-r .sv{color:#cc3333}.sc-o .sv{color:#cc7700}.sc-v .sv{color:#2d6a4f}
 table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:10px}
-th{background:#0f0f0f;color:white;padding:5px 7px;text-align:left}
-td{padding:5px 7px;border-bottom:1px solid #f0f0ec}
+th{background:#17140d;color:white;padding:5px 7px;text-align:left}
+td{padding:5px 7px;border-bottom:1px solid #efe6d0}
 .ab{border:1px solid #ddd;border-radius:6px;margin-bottom:6px;page-break-inside:avoid}
 .ah{padding:6px 8px;font-weight:700;font-size:11px}
 .ah-r{background:#fff0f0;color:#cc3333}
