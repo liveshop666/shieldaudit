@@ -5,47 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiMxNzE0MGQiLz4KICA8cGF0aCBkPSJNMTYgNi4yIEwyNC41IDkuNCBMMjQuNSAxNSBDMjQuNSAyMC42IDIxIDI1IDE2IDI3IEMxMSAyNSA3LjUgMjAuNiA3LjUgMTUgTDcuNSA5LjQgWiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiNlY2UwYzkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=">
   <link rel="apple-touch-icon" href="data:image/png;base64,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">
-  <meta name="theme-color" content="#2d6a4f">
+  <meta name="theme-color" content="#163300">
 <title>ShieldAudit — App Terrain</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+/* ===== Design tokens — ShieldAudit × Wise ===== */
 :root{
-  --noir:#17140d;--blanc:#fffdf7;--sand:#ece0c9;--vert:#2d6a4f;--vert-light:#e8f4ee;
-  --vert-dark:#1a3a2a;--gris:#5f5748;--border:#ddd0ab;--bg:#efe6d0;
-  --rouge:#cc3333;--orange:#cc7700;--jaune:#b8860b;
+  /* Marque */
+  --forest:#163300;      /* Forest Ink — barre latérale, titres */
+  --lime:#9fe870;        /* Lime Voltage — action principale, état actif */
+  --spruce:#054d28;      /* Spruce — survol sur fond sombre */
+  --mist:#e2f6d5;        /* Linen Mist — encarts, pastilles */
+  --blue:#0b4c72;        /* Signal Blue — information */
+  --alarm:#cb272f;       /* Alarm Red — critique, suppression */
+  --alarm-tint:#fdecec;
+  /* Neutres */
+  --obsidian:#0e0f0c; --charcoal:#454745; --slate:#6a6c6a; --pebble:#868685; --fog:#e8ebe6; --paper:#ffffff;
+  /* Alias historiques (utilisés dans le HTML/JS) */
+  --noir:var(--obsidian); --blanc:var(--paper); --sand:var(--fog); --vert:var(--forest); --vert-light:var(--mist);
+  --vert-dark:var(--forest); --gris:var(--slate); --border:var(--fog); --bg:#f4f5f2;
+  --rouge:var(--alarm); --orange:var(--forest); --jaune:var(--forest);
+  /* Formes */
+  --r-pill:9999px; --r-input:10px; --r-card:16px; --r-large:28px;
+  --ring:rgba(14,15,12,.12) 0 0 0 1px; --lift:rgba(14,15,12,.08) 0 8px 24px 0;
+  --font:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  /* Layout */
   --sidebar:68px;--header:56px;
 }
-html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--noir)}
+html,body{height:100%;overflow:hidden;font-family:var(--font);background:var(--bg);color:var(--obsidian);-webkit-font-smoothing:antialiased}
 
 /* ===== LAYOUT ===== */
 .app{display:flex;height:100vh;overflow:hidden}
 
 /* SIDEBAR */
-.sidebar{width:var(--sidebar);background:var(--noir);display:flex;flex-direction:column;align-items:center;padding:1rem 0;gap:0.3rem;z-index:200;flex-shrink:0}
-.sidebar-logo{width:34px;height:34px;border-radius:50%;background:linear-gradient(150deg,var(--vert),var(--vert-dark));display:flex;align-items:center;justify-content:center;margin-bottom:1rem;flex-shrink:0;box-shadow:0 10px 20px -8px rgba(45,106,79,.7),inset 0 1px 0 rgba(255,255,255,.25)}
-.sidebar-logo svg{width:17px;height:17px;stroke:#eafff3;fill:none}
-.nav-btn{width:44px;height:44px;border-radius:12px;background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#555;transition:all 0.2s;position:relative}
-.nav-btn:hover{background:#1a1a1a;color:#aaa}
-.nav-btn.active{background:var(--vert);color:white;box-shadow:0 8px 18px -8px rgba(45,106,79,.7),inset 0 1px 0 rgba(255,255,255,.2)}
+.sidebar{width:var(--sidebar);background:var(--forest);display:flex;flex-direction:column;align-items:center;padding:1rem 0;gap:0.3rem;z-index:200;flex-shrink:0}
+.sidebar-logo{width:36px;height:36px;border-radius:50%;background:var(--lime);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;flex-shrink:0}
+.sidebar-logo svg{width:18px;height:18px;stroke:var(--forest);fill:none}
+.nav-btn{width:52px;height:48px;border-radius:14px;background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:rgba(255,255,255,.62);transition:all 0.2s;position:relative;font-family:var(--font)}
+.nav-btn:hover{background:var(--spruce);color:#fff}
+.nav-btn.active{background:var(--lime);color:var(--forest)}
 .nav-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.nav-btn span{font-size:8px;letter-spacing:0.5px;color:currentColor}
-.nav-sep{width:32px;height:1px;background:#1a1a1a;margin:0.3rem 0}
+.nav-btn span{font-size:8.5px;font-weight:600;color:currentColor}
+.nav-sep{width:32px;height:1px;background:rgba(255,255,255,.14);margin:0.3rem 0}
 .sidebar-bottom{margin-top:auto;display:flex;flex-direction:column;gap:0.3rem;align-items:center}
 
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 
 /* HEADER */
-.header{height:var(--header);background:var(--blanc);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem;flex-shrink:0}
-.header-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--noir)}
-.header-sub{font-size:0.75rem;color:var(--gris);margin-left:auto}
+.header{height:var(--header);background:var(--paper);border-bottom:1px solid var(--fog);display:flex;align-items:center;padding:0 1.5rem;gap:1rem;flex-shrink:0}
+.header-title{font-family:var(--font);font-weight:900;letter-spacing:-0.03em;font-size:1.3rem;color:var(--obsidian)}
+.header-sub{font-size:0.78rem;color:var(--slate);margin-left:auto}
 .header-btns{display:flex;gap:0.5rem}
-.hbtn{background:var(--noir);color:white;border:none;padding:0.45rem 1rem;border-radius:100px;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:opacity 0.2s;white-space:nowrap;box-shadow:0 10px 20px -10px rgba(23,20,13,.5),inset 0 1px 0 rgba(255,255,255,.08)}
-.hbtn:hover{opacity:0.85}
-.hbtn.outline{background:var(--blanc);color:var(--noir);border:1px solid var(--border);box-shadow:0 8px 16px -12px rgba(23,20,13,.3)}
-.hbtn.vert{background:var(--vert);box-shadow:0 10px 20px -10px rgba(45,106,79,.6),inset 0 1px 0 rgba(255,255,255,.15)}
-.hbtn.rouge{background:var(--rouge);box-shadow:0 10px 20px -10px rgba(204,51,51,.5),inset 0 1px 0 rgba(255,255,255,.15)}
+.hbtn{background:var(--forest);color:#fff;border:none;padding:0.55rem 1.1rem;border-radius:var(--r-pill);font-size:0.8rem;cursor:pointer;font-family:var(--font);font-weight:600;transition:transform .1s,opacity .2s;white-space:nowrap}
+.hbtn:hover{opacity:0.9}
+.hbtn:active{transform:scale(.97)}
+.hbtn.outline{background:var(--paper);color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.hbtn.vert{background:var(--lime);color:var(--forest)}
+.hbtn.rouge{background:var(--alarm);color:#fff}
 
 /* PAGES */
 .page{flex:1;overflow-y:auto;display:none;padding:1.5rem}
@@ -54,146 +72,150 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;backgroun
 /* ===== DASHBOARD ===== */
 .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
 @media(max-width:900px){.dash-grid{grid-template-columns:repeat(2,1fr)}}
-.dash-card{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.3rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.8rem;box-shadow:0 16px 30px -24px rgba(23,20,13,.45)}
-.dash-card:hover{border-color:var(--vert);transform:translateY(-3px);box-shadow:0 20px 34px -18px rgba(23,20,13,.3)}
-.dash-card .icon{width:44px;height:44px;border-radius:11px;background:linear-gradient(150deg,var(--vert-light),#d7ecdf);display:flex;align-items:center;justify-content:center;color:var(--vert);box-shadow:0 8px 16px -8px rgba(45,106,79,.4),inset 0 1px 0 rgba(255,255,255,.6)}
+.dash-card{background:var(--paper);border:1px solid transparent;border-radius:var(--r-card);padding:1.4rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.8rem;box-shadow:var(--ring)}
+.dash-card:hover{transform:translateY(-2px);box-shadow:var(--ring),var(--lift)}
+.dash-card .icon{width:46px;height:46px;border-radius:50%;background:var(--mist);display:flex;align-items:center;justify-content:center;color:var(--forest)}
 .dash-card .icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.dash-card h3{font-size:0.95rem;font-weight:500}
-.dash-card p{font-size:0.78rem;color:var(--gris);line-height:1.5}
+.dash-card h3{font-size:1rem;font-weight:800;letter-spacing:-0.01em}
+.dash-card p{font-size:0.8rem;color:var(--slate);line-height:1.5}
 .dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
 @media(max-width:900px){.dash-stats{grid-template-columns:repeat(2,1fr)}}
-.stat-box{background:var(--blanc);border:1px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
-.stat-box .val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--noir)}
-.stat-box .lbl{font-size:0.72rem;color:var(--gris);margin-top:3px}
-.stat-box.vert .val{color:var(--vert)}
-.stat-box.rouge .val{color:var(--rouge)}
-.activity{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.3rem;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
-.activity h3{font-size:0.82rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem}
+.stat-box{background:var(--paper);border-radius:var(--r-card);padding:1.2rem;text-align:center;box-shadow:var(--ring)}
+.stat-box .val{font-family:var(--font);font-weight:900;letter-spacing:-0.03em;font-size:2.1rem;color:var(--obsidian)}
+.stat-box .lbl{font-size:0.75rem;font-weight:500;color:var(--slate);margin-top:3px}
+.stat-box.vert{background:var(--mist);box-shadow:none}
+.stat-box.vert .val{color:var(--forest)}
+.stat-box.rouge .val{color:var(--alarm)}
+.activity{background:var(--paper);border-radius:var(--r-card);padding:1.3rem;box-shadow:var(--ring)}
+.activity h3{font-size:1.05rem;font-weight:900;letter-spacing:-0.02em;color:var(--obsidian);margin-bottom:1rem}
 .activity-list{display:flex;flex-direction:column;gap:0.6rem}
-.activity-item{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.85rem}
+.activity-item{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid var(--fog);font-size:0.86rem}
 .activity-item:last-child{border-bottom:none}
 .activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
 /* ===== CLIENTS ===== */
 .toolbar{display:flex;gap:0.8rem;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
 .search-wrap{position:relative;flex:1;min-width:180px}
-.search-wrap input{width:100%;padding:0.6rem 0.9rem 0.6rem 2.2rem;border:1px solid var(--border);border-radius:100px;font-size:0.85rem;font-family:'DM Sans',sans-serif;background:var(--blanc);outline:none}
-.search-wrap svg{position:absolute;left:0.7rem;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:#aaa;fill:none;stroke-width:2;stroke-linecap:round}
-select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;font-size:0.83rem;font-family:'DM Sans',sans-serif;background:var(--blanc);outline:none;cursor:pointer}
-.clients-table{background:var(--blanc);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
-.clients-table table{width:100%;border-collapse:collapse;font-size:0.83rem}
-.clients-table thead tr{background:var(--noir);color:white}
-.clients-table th{padding:10px 14px;text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;font-weight:500;white-space:nowrap}
-.clients-table td{padding:10px 14px;border-bottom:1px solid #ece0c9;vertical-align:middle}
+.search-wrap input{width:100%;min-height:44px;padding:0.6rem 0.9rem 0.6rem 2.4rem;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;border-radius:var(--r-pill);font-size:0.88rem;font-family:var(--font);background:var(--paper);outline:none}
+.search-wrap input:focus{box-shadow:inset 0 0 0 2px var(--forest)}
+.search-wrap svg{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--pebble);fill:none;stroke-width:2;stroke-linecap:round}
+select{min-height:44px;padding:0.6rem 0.9rem;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;border-radius:var(--r-pill);font-size:0.85rem;font-family:var(--font);color:var(--obsidian);background:var(--paper);outline:none;cursor:pointer}
+.clients-table{background:var(--paper);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--ring)}
+.clients-table table{width:100%;border-collapse:collapse;font-size:0.85rem}
+.clients-table thead tr{background:var(--forest);color:#fff}
+.clients-table th{padding:11px 14px;text-align:left;font-size:0.72rem;font-weight:700;white-space:nowrap}
+.clients-table td{padding:11px 14px;border-bottom:1px solid var(--fog);vertical-align:middle}
 .clients-table tr:last-child td{border-bottom:none}
-.clients-table tr:hover td{background:#fffdf7}
-.badge{display:inline-block;padding:3px 9px;border-radius:100px;font-size:0.68rem;font-weight:500}
-.badge.prospect{background:#fff8e8;color:#8a6200;border:1px solid #f0c040}
-.badge.rdv{background:#e8f0ff;color:#3355bb;border:1px solid #99aadd}
-.badge.envoye{background:#f0e8ff;color:#6633bb;border:1px solid #bb99dd}
-.badge.signe{background:var(--vert-light);color:#085041;border:1px solid #88ccaa}
-.badge.termine{background:#f0f0f0;color:#555;border:1px solid #ccc}
-.badge.perdu{background:#fff0f0;color:#aa2222;border:1px solid #ffaaaa}
+.clients-table tr:hover td{background:#f7f8f6}
+/* Statuts : prospect · RDV · devis envoyé · signé · terminé · perdu */
+.badge{display:inline-block;padding:4px 10px;border-radius:var(--r-pill);font-size:0.7rem;font-weight:700;white-space:nowrap}
+.badge.prospect{background:var(--fog);color:var(--charcoal)}
+.badge.rdv{background:var(--paper);color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.badge.envoye{background:var(--mist);color:var(--forest)}
+.badge.signe{background:var(--lime);color:var(--forest)}
+.badge.termine{background:var(--forest);color:var(--lime)}
+.badge.perdu{background:var(--fog);color:var(--slate);text-decoration:line-through}
 .td-actions{display:flex;gap:0.3rem}
-.icon-btn{width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:var(--blanc);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gris);transition:all 0.15s}
-.icon-btn:hover{background:var(--noir);color:white;border-color:var(--noir)}
-.icon-btn.del:hover{background:var(--rouge);border-color:var(--rouge)}
-.icon-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn{width:32px;height:32px;border-radius:50%;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;background:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--charcoal);transition:all 0.15s}
+.icon-btn:hover{background:var(--forest);color:#fff;box-shadow:none}
+.icon-btn.del:hover{background:var(--alarm)}
+.icon-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ===== FORMS ===== */
-.form-section{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
-.form-section h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.form-section{background:var(--paper);border-radius:var(--r-card);padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--ring)}
+.form-section h3{font-size:1.05rem;font-weight:900;letter-spacing:-0.02em;color:var(--obsidian);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid var(--fog)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:700px){.form-grid{grid-template-columns:1fr}}
 .form-grid.three{grid-template-columns:1fr 1fr 1fr}
 .form-group{display:flex;flex-direction:column;gap:0.35rem}
 .form-group.full{grid-column:1/-1}
-.form-group label{font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris)}
-.form-group input,.form-group select,.form-group textarea{padding:0.7rem 0.9rem;border:1px solid var(--border);border-radius:10px;font-size:0.88rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;background:var(--blanc);width:100%}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--vert)}
+.form-group label{font-size:0.75rem;font-weight:600;color:var(--charcoal)}
+.form-group input,.form-group select,.form-group textarea{min-height:46px;padding:0.7rem 0.9rem;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;border-radius:var(--r-input);font-size:0.92rem;font-family:var(--font);color:var(--obsidian);outline:none;transition:box-shadow 0.2s;background:var(--paper);width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{box-shadow:inset 0 0 0 2px var(--forest)}
 .form-group textarea{resize:vertical;min-height:80px}
 .form-actions{display:flex;gap:0.8rem;justify-content:flex-end;margin-top:1.2rem}
 
 /* SIGNATURE PAD */
-.sig-container{background:var(--blanc);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
-.sig-container h3{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);margin-bottom:1rem}
+.sig-container{background:var(--paper);border-radius:var(--r-card);padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--ring)}
+.sig-container h3{font-size:1.05rem;font-weight:900;letter-spacing:-0.02em;color:var(--obsidian);margin-bottom:1rem}
 .sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:700px){.sig-grid{grid-template-columns:1fr}}
 .sig-pad-wrap{display:flex;flex-direction:column;gap:0.5rem}
-.sig-label{font-size:0.78rem;color:var(--gris)}
-.sig-canvas-wrap{border:1px dashed var(--border);border-radius:10px;background:#fffdf7;position:relative;height:120px}
-.sig-canvas{width:100%;height:100%;cursor:crosshair;border-radius:10px}
-.sig-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#ccc;pointer-events:none}
+.sig-label{font-size:0.8rem;font-weight:600;color:var(--charcoal)}
+.sig-canvas-wrap{border:2px dashed #cfd3cc;border-radius:var(--r-input);background:var(--paper);position:relative;height:120px}
+.sig-canvas{width:100%;height:100%;cursor:crosshair;border-radius:var(--r-input)}
+.sig-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--pebble);pointer-events:none}
 .sig-btns{display:flex;gap:0.5rem;margin-top:0.4rem}
-.sig-btn{background:transparent;border:1px solid var(--border);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--gris);transition:all 0.2s}
-.sig-btn:hover{border-color:#999;color:var(--noir)}
+.sig-btn{background:transparent;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;border-radius:var(--r-pill);padding:0.4rem 0.95rem;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--charcoal);transition:all 0.2s}
+.sig-btn:hover{box-shadow:inset 0 0 0 1.5px var(--forest);color:var(--forest)}
 .sig-info{margin-top:0.6rem}
-.sig-info input{width:100%;padding:0.5rem 0.8rem;border:1px solid var(--border);border-radius:8px;font-size:0.82rem;font-family:'DM Sans',sans-serif;outline:none}
+.sig-info input{width:100%;min-height:44px;padding:0.55rem 0.85rem;border:none;box-shadow:inset 0 0 0 1px #cfd3cc;border-radius:var(--r-input);font-size:0.86rem;font-family:var(--font);outline:none}
 
-/* FAILLE CARDS */
-.faille-card{background:var(--blanc);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem;box-shadow:0 14px 26px -22px rgba(23,20,13,.4)}
+/* FAILLE CARDS — critique (rouge) · élevée (forest/lime) · moyenne (mist) */
+.faille-card{background:var(--paper);border-radius:var(--r-card);overflow:hidden;margin-bottom:1rem;box-shadow:var(--ring)}
 .faille-card-head{padding:0.8rem 1rem;display:flex;align-items:center;gap:0.8rem}
-.faille-card-head.critique{background:#fff0f0;border-bottom:1px solid #ffcccc}
-.faille-card-head.eleve{background:#fff8f0;border-bottom:1px solid #ffd9aa}
-.faille-card-head.moyen{background:#fffdf0;border-bottom:1px solid #ffe9a0}
-.faille-badge{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
-.faille-badge.critique{background:var(--rouge);color:white}
-.faille-badge.eleve{background:var(--orange);color:white}
-.faille-badge.moyen{background:var(--jaune);color:white}
-.faille-card-title{font-size:0.88rem;font-weight:500;color:var(--noir)}
+.faille-card-head.critique{background:var(--alarm-tint)}
+.faille-card-head.eleve{background:var(--fog)}
+.faille-card-head.moyen{background:var(--mist)}
+.faille-badge{font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:var(--r-pill)}
+.faille-badge.critique{background:var(--alarm);color:#fff}
+.faille-badge.eleve{background:var(--forest);color:var(--lime)}
+.faille-badge.moyen{background:var(--paper);color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.faille-card-title{font-size:0.92rem;font-weight:700;color:var(--obsidian)}
 .faille-card-body{padding:1rem}
-.photo-upload{border:2px dashed var(--border);border-radius:10px;height:90px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;background:#fffdf7;position:relative;overflow:hidden}
-.photo-upload:hover{border-color:var(--vert);background:var(--vert-light)}
+.photo-upload{border:2px dashed #cfd3cc;border-radius:var(--r-input);height:90px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;background:var(--paper);position:relative;overflow:hidden}
+.photo-upload:hover{border-color:var(--forest);background:var(--mist)}
 .photo-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.photo-upload p{font-size:0.75rem;color:#bbb;text-align:center;pointer-events:none}
+.photo-upload p{font-size:0.75rem;color:var(--pebble);text-align:center;pointer-events:none}
 .photo-preview{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;border-radius:8px}
 
 /* RAPPORT SECTIONS */
-.rapp-tabs{display:flex;gap:0.3rem;margin-bottom:1.2rem;background:var(--blanc);border:1px solid var(--border);border-radius:100px;padding:0.3rem;width:fit-content}
-.rapp-tab{padding:0.4rem 1rem;border-radius:100px;font-size:0.8rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;background:transparent;color:var(--gris);transition:all 0.2s}
-.rapp-tab.active{background:var(--noir);color:white}
+.rapp-tabs{display:flex;gap:0.3rem;margin-bottom:1.2rem;background:var(--paper);box-shadow:var(--ring);border-radius:var(--r-pill);padding:0.3rem;width:fit-content}
+.rapp-tab{padding:0.5rem 1.1rem;border-radius:var(--r-pill);font-size:0.82rem;font-weight:500;cursor:pointer;border:none;font-family:var(--font);background:transparent;color:var(--charcoal);transition:all 0.2s}
+.rapp-tab.active{background:var(--forest);color:#fff;font-weight:700}
 .rapp-section{display:none}
 .rapp-section.active{display:block}
 
 /* TOAST */
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--noir);color:white;padding:0.7rem 1.4rem;border-radius:100px;font-size:0.82rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--obsidian);color:#fff;padding:0.75rem 1.4rem;border-radius:var(--r-pill);font-size:0.85rem;font-weight:600;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
-.toast.vert{background:var(--vert)}
+.toast.vert{background:var(--lime);color:var(--forest)}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay{position:fixed;inset:0;background:rgba(14,15,12,0.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-overlay.open{display:flex}
-.modal{background:var(--blanc);border-radius:20px;padding:1.8rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 40px 70px -30px rgba(23,20,13,.5)}
-.modal h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:1.3rem}
+.modal{background:var(--paper);border-radius:var(--r-large);padding:1.8rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 30px 60px -20px rgba(14,15,12,.35)}
+.modal h2{font-family:var(--font);font-weight:900;letter-spacing:-0.03em;font-size:1.5rem;margin-bottom:1.3rem}
 
 /* CONTRAT PREVIEW */
-.doc-preview{background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;font-size:0.85rem;line-height:1.75;color:#333;max-height:400px;overflow-y:auto}
-.doc-preview h1{font-size:1rem;text-align:center;color:var(--vert-dark);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem}
-.doc-preview h2{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1.2rem 0 0.6rem}
+.doc-preview{background:#fff;box-shadow:var(--ring);border-radius:var(--r-card);padding:2rem;font-size:0.85rem;line-height:1.75;color:#333;max-height:400px;overflow-y:auto}
+.doc-preview h1{font-size:1.05rem;font-weight:900;text-align:center;color:var(--forest);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem}
+.doc-preview h2{font-size:0.8rem;font-weight:800;color:var(--forest);background:var(--mist);display:inline-block;padding:2px 10px;border-radius:var(--r-pill);margin:1.2rem 0 0.6rem}
 .doc-preview p{margin-bottom:0.6rem}
-.doc-preview .highlight{background:#fffbf0;border:1px solid #f0c040;border-radius:6px;padding:0.8rem;margin:0.8rem 0;font-size:0.82rem}
-.doc-price{text-align:center;font-size:1.3rem;font-weight:700;color:var(--vert-dark);margin:1rem 0}
+.doc-preview .highlight{background:#e6f0f6;color:var(--blue);border-radius:var(--r-input);padding:0.8rem;margin:0.8rem 0;font-size:0.82rem}
+.doc-price{text-align:center;font-size:1.4rem;font-weight:900;color:var(--forest);margin:1rem 0}
 
 /* EMPTY */
-.empty{text-align:center;padding:3rem;color:var(--gris)}
+.empty{text-align:center;padding:3rem;color:var(--slate)}
 .empty-icon{font-size:2.5rem;margin-bottom:0.8rem;opacity:0.4}
-.empty p{font-size:0.88rem}
+.empty p{font-size:0.9rem}
 
 /* STATUS PILLS */
 .status-bar{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1rem}
-.status-pill{display:flex;align-items:center;gap:5px;padding:0.4rem 0.8rem;border-radius:100px;font-size:0.75rem;border:1px solid var(--border);background:var(--blanc);white-space:nowrap}
-.status-pill .dot{width:6px;height:6px;border-radius:50%}
+.status-pill{display:flex;align-items:center;gap:6px;padding:0.45rem 0.9rem;border-radius:var(--r-pill);font-size:0.78rem;font-weight:500;box-shadow:var(--ring);background:var(--paper);white-space:nowrap}
+.status-pill .dot{width:8px;height:8px;border-radius:50%}
 
 /* PHOTO UPLOAD — FIX TABLETTE */
-.photo-upload{border:2px dashed var(--border);border-radius:10px;height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fffdf7;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
-.photo-upload:active{border-color:var(--vert);background:var(--vert-light)}
+.photo-upload{border:2px dashed #cfd3cc;border-radius:var(--r-input);height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--paper);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.photo-upload:active{border-color:var(--forest);background:var(--mist)}
 .photo-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:10;font-size:16px}
-.photo-upload p{font-size:0.78rem;color:#bbb;text-align:center;pointer-events:none;z-index:1;padding:0.5rem}
+.photo-upload p{font-size:0.78rem;color:var(--pebble);text-align:center;pointer-events:none;z-index:1;padding:0.5rem}
 .photo-preview{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:8px;z-index:5;display:none}
 
 /* SIGNATURE — FIX TABLETTE */
 .sig-canvas{touch-action:none;-webkit-user-select:none;user-select:none}
 .sig-canvas-wrap{touch-action:none}
+:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
 
 /* PRINT — RAPPORT COMPLET */
 @media print{
@@ -289,10 +311,10 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <h3>Facture</h3>
         <p>Émettre la facture après la mission et suivre les paiements.</p>
       </div>
-      <div class="dash-card" style="background:var(--vert-dark);border-color:var(--vert)" onclick="goPage('clients')">
-        <div class="icon" style="background:rgba(111,207,151,0.15)"><svg viewBox="0 0 24 24" style="stroke:#6fcf97"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <div class="dash-card" style="background:var(--forest)" onclick="goPage('clients')">
+        <div class="icon" style="background:var(--lime)"><svg viewBox="0 0 24 24" style="stroke:var(--forest)"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
         <h3 style="color:white">Nouvelle Mission</h3>
-        <p style="color:#6b9b85">Démarrer une nouvelle mission client de A à Z.</p>
+        <p style="color:rgba(255,255,255,.78)">Démarrer une nouvelle mission client de A à Z.</p>
       </div>
     </div>
     <div class="activity">
@@ -394,18 +416,18 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
           <div class="form-group"><label>Prix HT (€)</label><input id="d_ht" value="3000" type="number" oninput="calcDevis()"></div>
           <div class="form-group"><label>TVA %</label><select id="d_tva" onchange="calcDevis()"><option value="0" selected>0% (franchise en base)</option><option value="20">20%</option></select></div>
         </div>
-        <div style="margin-top:1rem;background:#ece0c9;border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center">
+        <div style="margin-top:1rem;background:#e2f6d5;border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:0.82rem;color:var(--gris)">Total TTC</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--noir)" id="d_ttc_display">3 600 €</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.6rem;color:var(--noir)" id="d_ttc_display">3 600 €</div>
         </div>
       </div>
       <div class="form-section">
         <h3>Signature électronique — Bon pour accord</h3>
         <div style="margin-bottom:0.8rem">
           <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom du client</label>
-          <input id="sig_devis_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+          <input id="sig_devis_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Inter',sans-serif;outline:none;width:100%">
         </div>
-        <div style="border:2px dashed var(--border);border-radius:12px;background:#fffdf7;position:relative;height:140px;touch-action:none" id="sig_devis-wrap">
+        <div style="border:2px dashed var(--border);border-radius:12px;background:#ffffff;position:relative;height:140px;touch-action:none" id="sig_devis-wrap">
           <canvas id="sig_devis" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
           <div id="sig_devis-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
             <div style="font-size:1.6rem">✍</div>
@@ -418,7 +440,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <div id="devis-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
         <div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--noir);letter-spacing:1px">Shield<span style="color:var(--vert)">Audit</span></div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.5rem;color:var(--noir);letter-spacing:1px">Shield<span style="color:var(--vert)">Audit</span></div>
           <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
           <div style="font-size:0.78rem;color:#666;margin-top:8px;line-height:1.7">Caen, France<br>06 59 96 08 77</div>
         </div>
@@ -438,25 +460,25 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         </div>
       </div>
       <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:1rem">
-        <thead><tr style="background:var(--noir);color:white">
+        <thead><tr style="background:var(--forest);color:white">
           <th style="padding:8px 10px;text-align:left">Désignation</th>
           <th style="padding:8px 10px;text-align:right">HT</th>
           <th style="padding:8px 10px;text-align:right">TVA</th>
           <th style="padding:8px 10px;text-align:right">TTC</th>
         </tr></thead>
         <tbody>
-          <tr style="border-bottom:1px solid #efe6d0"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit terrain · Rapport 48h · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="dp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="dp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="dp_ttc">3 600 €</td></tr>
+          <tr style="border-bottom:1px solid #e8ebe6"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit terrain · Rapport 48h · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="dp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="dp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="dp_ttc">3 600 €</td></tr>
         </tbody>
       </table>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
         <div style="width:220px">
           <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666;border-bottom:1px solid var(--border)"><span>Total HT</span><span id="dp_ht2">3 000 €</span></div>
           <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666"><span id="dp_tva_label">TVA 20%</span><span id="dp_tva2">600 €</span></div>
-          <div style="background:var(--noir);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.88rem">Total TTC</span><span style="color:#6fcf97;font-size:1.1rem" id="dp_ttc2">3 600 €</span></div>
+          <div style="background:var(--forest);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.88rem">Total TTC</span><span style="color:#9fe870;font-size:1.1rem" id="dp_ttc2">3 600 €</span></div>
         </div>
       </div>
       <div id="dp_tva_mention" style="font-size:0.72rem;color:#888;text-align:right;margin-bottom:1rem" hidden>TVA non applicable, art. 293 B du CGI</div>
-      <div style="background:var(--vert-light);border:1px solid #88ccaa;border-radius:8px;padding:0.8rem;font-size:0.75rem;color:#1a3a2a;margin-bottom:1rem">🛡 <strong>Garantie résultat :</strong> Si aucune faille n'est détectée, remboursement intégral sans condition.</div>
+      <div style="background:var(--vert-light);border:1px solid #cdeab9;border-radius:8px;padding:0.8rem;font-size:0.75rem;color:#163300;margin-bottom:1rem">🛡 <strong>Garantie résultat :</strong> Si aucune faille n'est détectée, remboursement intégral sans condition.</div>
       <div style="margin-bottom:1rem;padding-top:1rem;border-top:1px solid var(--border)">
         <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);font-weight:700;margin-bottom:5px">Bon pour accord</div>
         <div style="border-bottom:1px solid #333;height:55px;position:relative;margin-bottom:6px"><img id="sig_devis-preview" style="max-height:55px;max-width:100%;position:absolute;bottom:2px;left:0;display:none"></div>
@@ -481,9 +503,9 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
   <!-- TABS CONTRAT -->
   <div style="background:var(--blanc);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch">
-    <button class="contrat-tab active" onclick="switchContratTab('formulaire')" id="ctab-formulaire" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">📝 Formulaire</button>
-    <button class="contrat-tab" onclick="switchContratTab('signatures')" id="ctab-signatures" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">✍ Signatures</button>
-    <button class="contrat-tab" onclick="switchContratTab('apercu')" id="ctab-apercu" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">👁 Aperçu & PDF</button>
+    <button class="contrat-tab active" onclick="switchContratTab('formulaire')" id="ctab-formulaire" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">📝 Formulaire</button>
+    <button class="contrat-tab" onclick="switchContratTab('signatures')" id="ctab-signatures" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">✍ Signatures</button>
+    <button class="contrat-tab" onclick="switchContratTab('apercu')" id="ctab-apercu" style="padding:0.8rem 1.2rem;border:none;background:transparent;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--gris);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap">👁 Aperçu & PDF</button>
   </div>
 
   <!-- FORMULAIRE -->
@@ -507,7 +529,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <div class="form-group"><label>Date de la mission</label><input type="date" id="c_date_mission" oninput="updateContratPreview()"></div>
         <div class="form-group"><label>Délai rapport (jours)</label><input id="c_delai" value="2" type="number" oninput="updateContratPreview()"></div>
         <div class="form-group"><label>Prix HT (€)</label><input id="c_ht" value="3000" type="number" oninput="calcContrat()"></div>
-        <div class="form-group"><label>Prix TTC (calculé)</label><input id="c_ttc" value="3600" readonly style="background:#ece0c9;color:var(--gris)"></div>
+        <div class="form-group"><label>Prix TTC (calculé)</label><input id="c_ttc" value="3600" readonly style="background:var(--fog);color:var(--charcoal)"></div>
       </div>
     </div>
     <div style="text-align:right;padding-bottom:2rem">
@@ -517,7 +539,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
   <!-- SIGNATURES -->
   <div id="csec-signatures" style="display:none;padding:1.2rem;overflow-y:auto">
-    <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:12px;padding:1rem;margin-bottom:1.2rem;font-size:0.85rem;color:#7a5500">
+    <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:12px;padding:1rem;margin-bottom:1.2rem;font-size:0.85rem;color:#0b4c72">
       ✍ <strong>Instructions :</strong> Chaque partie signe dans la zone ci-dessous avec le doigt. La signature est enregistrée automatiquement dans le contrat.
     </div>
 
@@ -526,9 +548,9 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <h3>Signature ShieldAudit — Le Prestataire</h3>
       <div style="margin-bottom:0.8rem">
         <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom du signataire</label>
-        <input id="sig1_name" placeholder="Prénom Nom" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+        <input id="sig1_name" placeholder="Prénom Nom" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Inter',sans-serif;outline:none;width:100%">
       </div>
-      <div style="border:2px dashed var(--border);border-radius:12px;background:#fffdf7;position:relative;height:160px;touch-action:none" id="sig1-wrap">
+      <div style="border:2px dashed var(--border);border-radius:12px;background:#ffffff;position:relative;height:160px;touch-action:none" id="sig1-wrap">
         <canvas id="sig1" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
         <div id="sig1-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
           <div style="font-size:2rem">✍</div>
@@ -546,9 +568,9 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <h3>Signature Client</h3>
       <div style="margin-bottom:0.8rem">
         <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom, Qualité</label>
-        <input id="sig2_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+        <input id="sig2_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Inter',sans-serif;outline:none;width:100%">
       </div>
-      <div style="border:2px dashed var(--border);border-radius:12px;background:#fffdf7;position:relative;height:160px;touch-action:none" id="sig2-wrap">
+      <div style="border:2px dashed var(--border);border-radius:12px;background:#ffffff;position:relative;height:160px;touch-action:none" id="sig2-wrap">
         <canvas id="sig2" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
         <div id="sig2-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
           <div style="font-size:2rem">✍</div>
@@ -568,7 +590,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
   <!-- APERCU -->
   <div id="csec-apercu" style="display:none;padding:1.2rem;overflow-y:auto">
-    <div style="background:var(--vert-light);border:1px solid #88ccaa;border-radius:10px;padding:0.8rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#1a3a2a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+    <div style="background:var(--vert-light);border:1px solid #cdeab9;border-radius:10px;padding:0.8rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#163300;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
       <span>✅ Contrat prêt à imprimer / enregistrer en PDF</span>
       <button class="hbtn vert" onclick="window.print()" style="padding:0.5rem 1.2rem">🖨 Imprimer / PDF</button>
     </div>
@@ -576,7 +598,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
       <!-- EN-TÊTE -->
       <div style="text-align:center;margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:3px solid var(--vert)">
-        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--vert);letter-spacing:1px">Shield<span style="color:var(--noir)">Audit</span></div>
+        <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.8rem;color:var(--vert);letter-spacing:1px">Shield<span style="color:var(--noir)">Audit</span></div>
         <div style="font-size:0.68rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:4px">Conseil en Prévention des Pertes & Sécurité Retail</div>
       </div>
 
@@ -587,11 +609,11 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <!-- ARTICLE 1 -->
       <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 1 – Parties au contrat</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
+        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f4f5f2;font-size:0.8rem;line-height:1.8">
           <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Prestataire</div>
           <strong>ShieldAudit</strong><br>68 rue de la Réforme, 14650 Carpiquet<br>SIRET : 751 655 390 00035<br>06 59 96 08 77
         </div>
-        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f9f9f9;font-size:0.8rem;line-height:1.8">
+        <div style="border:1px solid #ddd;border-radius:8px;padding:1rem;background:#f4f5f2;font-size:0.8rem;line-height:1.8">
           <div style="font-size:0.62rem;text-transform:uppercase;color:var(--vert);font-weight:700;margin-bottom:6px;letter-spacing:1px">Le Client</div>
           <span id="cp_magasin" style="font-weight:600">—</span><br><span id="cp_adresse">—</span><br>SIRET : <span id="cp_siret">—</span><br><span id="cp_tel">—</span>
         </div>
@@ -606,7 +628,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
       <!-- ARTICLE 3 -->
       <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 3 – Autorisation expresse et cadre légal</div>
-      <div style="background:#fffbf0;border:1px solid #f0c040;border-radius:8px;padding:0.9rem;margin:0.6rem 0;font-size:0.8rem;line-height:1.6">⚠️ <strong>Clause essentielle.</strong> Le Client autorise formellement et sans équivoque le Prestataire à pénétrer dans son établissement, à simuler des actes de vol, et à manipuler des marchandises dans le cadre strict de la mission définie ci-après. Cette autorisation couvre les dates, lieux et périmètres indiqués à l'Article 4.</div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:8px;padding:0.9rem;margin:0.6rem 0;font-size:0.8rem;line-height:1.6">⚠️ <strong>Clause essentielle.</strong> Le Client autorise formellement et sans équivoque le Prestataire à pénétrer dans son établissement, à simuler des actes de vol, et à manipuler des marchandises dans le cadre strict de la mission définie ci-après. Cette autorisation couvre les dates, lieux et périmètres indiqués à l'Article 4.</div>
       <div style="font-size:0.82rem;line-height:1.7">
         <p style="margin-bottom:0.5rem">La présente prestation est réalisée par ShieldAudit en qualité de <strong>société de conseil aux entreprises</strong>, enregistrée en France sous le numéro SIRET indiqué à l'Article 1. Cette activité relève du conseil en gestion et sécurité des entreprises (code APE 7022Z) et n'est pas soumise à la réglementation des activités privées de sécurité (loi du 12 juillet 1983).</p>
         <p style="margin-bottom:0.5rem">Le Client reconnaît que le Prestataire intervient exclusivement en qualité de <strong>consultant mandaté</strong> par ses soins, à des fins de prévention et d'audit interne, et non en qualité d'agent de sécurité ou de surveillance.</p>
@@ -651,7 +673,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--vert);border-left:3px solid var(--vert);padding-left:8px;margin:1rem 0 0.6rem;font-weight:700">Article 7 – Rémunération</div>
       <div style="font-size:0.82rem;line-height:1.7">
         <p style="margin-bottom:0.5rem">En contrepartie de la prestation réalisée, le Client versera au Prestataire la somme de :</p>
-        <div style="text-align:center;font-size:1.4rem;font-weight:700;color:var(--vert-dark);margin:0.8rem 0;padding:0.8rem;background:#ece0c9;border-radius:8px"><span id="cp_ht">3 000 €</span> HT &nbsp;·&nbsp; <span id="cp_ttc_display" style="color:var(--vert)">3 600 € TTC</span></div>
+        <div style="text-align:center;font-size:1.4rem;font-weight:700;color:var(--vert-dark);margin:0.8rem 0;padding:0.8rem;background:#e2f6d5;border-radius:8px"><span id="cp_ht">3 000 €</span> HT &nbsp;·&nbsp; <span id="cp_ttc_display" style="color:var(--vert)">3 600 € TTC</span></div>
         <p style="margin-bottom:0.5rem"><strong>Modalités de paiement :</strong> 50 % à la signature (1 800 € TTC), 50 % à la remise du rapport (1 800 € TTC) — par virement bancaire ou chèque à l'ordre de ShieldAudit.</p>
         <p>En cas de retard de paiement, des pénalités de 1,5 % par mois seront appliquées de plein droit.</p>
       </div>
@@ -750,9 +772,9 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <h3>Signature électronique — Reçu / accepté</h3>
         <div style="margin-bottom:0.8rem">
           <label style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gris);display:block;margin-bottom:0.4rem">Nom, Prénom du client</label>
-          <input id="sig_fact_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'DM Sans',sans-serif;outline:none;width:100%">
+          <input id="sig_fact_name" placeholder="Ex: Jean Dupont, Gérant" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Inter',sans-serif;outline:none;width:100%">
         </div>
-        <div style="border:2px dashed var(--border);border-radius:12px;background:#fffdf7;position:relative;height:140px;touch-action:none" id="sig_fact-wrap">
+        <div style="border:2px dashed var(--border);border-radius:12px;background:#ffffff;position:relative;height:140px;touch-action:none" id="sig_fact-wrap">
           <canvas id="sig_fact" style="width:100%;height:100%;display:block;border-radius:10px;touch-action:none;cursor:crosshair"></canvas>
           <div id="sig_fact-ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#ccc">
             <div style="font-size:1.6rem">✍</div>
@@ -765,12 +787,12 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
     <div id="facture-preview" style="background:white;border:1px solid var(--border);border-radius:14px;padding:2rem;overflow-y:auto;max-height:calc(100vh - 120px)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--noir)">
         <div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.5rem">Shield<span style="color:var(--vert)">Audit</span></div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.5rem">Shield<span style="color:var(--vert)">Audit</span></div>
           <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
           <div style="font-size:0.75rem;color:#666;margin-top:8px;line-height:1.8">Caen, France · 06 59 96 08 77</div>
         </div>
         <div style="text-align:right">
-          <div id="f_badge_statut" style="display:inline-block;background:#fff8e8;color:#cc7700;border:1px solid #f0c040;border-radius:100px;font-size:0.68rem;font-weight:700;padding:3px 10px;margin-bottom:6px">EN ATTENTE</div>
+          <div id="f_badge_statut" style="display:inline-block;background:#e8ebe6;color:#454745;border:1px solid #e8ebe6;border-radius:100px;font-size:0.68rem;font-weight:700;padding:3px 10px;margin-bottom:6px">EN ATTENTE</div>
           <div style="font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:2px">Facture</div>
           <div style="font-size:0.75rem;color:#666;margin-top:5px;line-height:1.9">N° <span id="fp_num">FAC-2026-001</span><br>Émise le <span id="fp_date">—</span><br>Échéance : <span id="fp_echeance">—</span></div>
         </div>
@@ -786,14 +808,14 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         </div>
       </div>
       <table style="width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:1rem">
-        <thead><tr style="background:var(--noir);color:white"><th style="padding:8px 10px;text-align:left">Désignation</th><th style="padding:8px 10px;text-align:right">HT</th><th style="padding:8px 10px;text-align:right">TVA</th><th style="padding:8px 10px;text-align:right">TTC</th></tr></thead>
-        <tbody><tr style="border-bottom:1px solid #efe6d0"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit · Rapport · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="fp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="fp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="fp_ttc">3 600 €</td></tr></tbody>
+        <thead><tr style="background:var(--forest);color:white"><th style="padding:8px 10px;text-align:left">Désignation</th><th style="padding:8px 10px;text-align:right">HT</th><th style="padding:8px 10px;text-align:right">TVA</th><th style="padding:8px 10px;text-align:right">TTC</th></tr></thead>
+        <tbody><tr style="border-bottom:1px solid #e8ebe6"><td style="padding:8px 10px"><strong>Pack Complet ShieldAudit</strong><br><span style="color:#888;font-size:0.72rem">Audit · Rapport · Conseil</span></td><td style="padding:8px 10px;text-align:right" id="fp_ht">3 000 €</td><td style="padding:8px 10px;text-align:right" id="fp_tva_amt">600 €</td><td style="padding:8px 10px;text-align:right;font-weight:600" id="fp_ttc">3 600 €</td></tr></tbody>
       </table>
       <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
         <div style="width:230px">
           <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666;border-bottom:1px solid var(--border)"><span>Total HT</span><span id="fp_ht2">3 000 €</span></div>
           <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.78rem;color:#666"><span id="fp_tva_lbl">TVA 20%</span><span id="fp_tva2">600 €</span></div>
-          <div style="background:var(--noir);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.85rem">Total TTC</span><span style="color:#6fcf97;font-size:1.1rem" id="fp_ttc2">3 600 €</span></div>
+          <div style="background:var(--forest);border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;font-weight:700;margin-top:4px"><span style="color:white;font-size:0.85rem">Total TTC</span><span style="color:#9fe870;font-size:1.1rem" id="fp_ttc2">3 600 €</span></div>
         </div>
       </div>
       <div id="fp_tva_mention" style="font-size:0.72rem;color:#888;text-align:right;margin-bottom:1rem" hidden>TVA non applicable, art. 293 B du CGI</div>
@@ -823,26 +845,26 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
   </div>
   <div style="padding:1.5rem;max-width:900px;margin:0 auto">
     <div id="dcs-content">
-    <div style="background:var(--noir);color:white;border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem">
-      <div style="font-family:'DM Serif Display',serif;font-size:1.6rem">Shield<span style="color:var(--vert)">Audit</span></div>
-      <div style="font-size:0.7rem;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
-      <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:1.4rem;margin-top:1.2rem">Guide de vente &amp; argumentation commerciale</div>
-      <div style="font-size:0.82rem;color:#bbb;margin-top:0.6rem">Tout ce qu'il faut dire, dans le bon ordre, pour convaincre un gérant de magasin de faire appel à ShieldAudit.</div>
-      <div style="display:inline-block;border:1px solid var(--vert);border-radius:100px;font-size:0.72rem;padding:4px 14px;margin-top:1rem;color:var(--vert)">Document interne — Confidentiel</div>
+    <div style="background:var(--forest);color:white;border-radius:14px;padding:2rem;text-align:center;margin-bottom:1.5rem">
+      <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.6rem">Shield<span style="color:var(--lime)">Audit</span></div>
+      <div style="font-size:0.7rem;color:rgba(255,255,255,.7);letter-spacing:2px;text-transform:uppercase;margin-top:3px">Conseil en sécurité retail</div>
+      <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-style:italic;font-size:1.4rem;margin-top:1.2rem">Guide de vente &amp; argumentation commerciale</div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,.78);margin-top:0.6rem">Tout ce qu'il faut dire, dans le bon ordre, pour convaincre un gérant de magasin de faire appel à ShieldAudit.</div>
+      <div style="display:inline-block;border:1px solid var(--lime);border-radius:100px;font-size:0.72rem;padding:4px 14px;margin-top:1rem;color:var(--lime)">Document interne — Confidentiel</div>
     </div>
 
     <div class="form-section">
       <h3>1. Avant d'appeler — Les chiffres à connaître par cœur</h3>
       <p style="font-size:0.85rem;color:#333;margin-bottom:1rem">Ces chiffres sont tes meilleurs alliés. Ils créent un sentiment d'urgence chez le client <strong>avant même que tu aies présenté ton offre.</strong></p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem">
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">82%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">des commerces victimes d'au moins un vol en 2024</div></div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">3 Md€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes par an pour les commerçants en France</div></div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">3%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">seulement des vols aboutissent à une condamnation</div></div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">+15%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de hausse des vols en magasin en un an</div></div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">5 000€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes pour 1 commerçant sur 4 en seulement 6 mois</div></div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--vert)">67%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de réduction des pertes après un audit ShieldAudit</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">82%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">des commerces victimes d'au moins un vol en 2024</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">3 Md€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes par an pour les commerçants en France</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">3%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">seulement des vols aboutissent à une condamnation</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">+15%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de hausse des vols en magasin en un an</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">5 000€</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de pertes pour 1 commerçant sur 4 en seulement 6 mois</div></div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center"><div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.4rem;color:var(--vert)">67%</div><div style="font-size:0.72rem;color:#666;margin-top:4px">de réduction des pertes après un audit ShieldAudit</div></div>
       </div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Mémorise ces chiffres. En les citant naturellement dans la conversation, tu montres que tu maîtrises ton sujet et tu crédibilises immédiatement ton discours.</div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#0b4c72">💡 Mémorise ces chiffres. En les citant naturellement dans la conversation, tu montres que tu maîtrises ton sujet et tu crédibilises immédiatement ton discours.</div>
     </div>
 
     <div class="form-section">
@@ -851,7 +873,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;margin-bottom:0.7rem;font-size:0.85rem"><strong>En face à face :</strong><br><em>« Bonjour, je suis consultant en sécurité retail. Je travaille avec des gérants de magasins pour identifier les failles que leurs voleurs exploitent déjà — sans qu'ils le sachent. Est-ce que vous avez 5 minutes ? »</em></div>
       <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;margin-bottom:0.7rem;font-size:0.85rem"><strong>Par téléphone :</strong><br><em>« Bonjour, je m'appelle [prénom], je suis de ShieldAudit. On aide les commerçants à réduire leurs pertes de 60 à 70% en identifiant exactement comment les voleurs entrent et ressortent de leur magasin. Je voulais juste vous poser une question rapide : est-ce que vous savez combien vous perdez chaque mois en vol ? »</em></div>
       <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;font-size:0.85rem"><strong>Si le client dit "j'ai déjà des caméras" :</strong><br><em>« C'est exactement pour ça que j'appelle. Les caméras, les voleurs savent où elles sont. Notre travail, c'est de trouver les angles morts que même votre installateur n'a pas vus. »</em></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Ne parle pas de ton offre et de ton prix tout de suite. D'abord, crée le besoin. Pose des questions. Laisse le client parler de ses pertes.</div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#0b4c72">💡 Ne parle pas de ton offre et de ton prix tout de suite. D'abord, crée le besoin. Pose des questions. Laisse le client parler de ses pertes.</div>
     </div>
 
     <div class="form-section">
@@ -862,7 +884,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 1 — On pense comme un voleur</div>
         <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « Contrairement à un consultant classique qui regarde votre magasin de l'extérieur, nous entrons dedans comme un voleur. On teste vraiment — on prend les articles, on teste les alarmes, on vérifie si votre personnel réagit. »</p>
         <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « Vous savez exactement ce qu'un voleur peut faire dans votre magasin. Pas des suppositions. Des faits. »</p>
-        <div style="background:#ece0c9;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Si le client dit : "C'est légal ça ?"</strong><br>« Absolument. Avant chaque intervention, on signe un contrat ensemble qui autorise expressément la mission. Vous êtes couvert à 100%, et moi aussi. C'est la base de notre travail. »</div>
+        <div style="background:#e2f6d5;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Si le client dit : "C'est légal ça ?"</strong><br>« Absolument. Avant chaque intervention, on signe un contrat ensemble qui autorise expressément la mission. Vous êtes couvert à 100%, et moi aussi. C'est la base de notre travail. »</div>
       </div>
 
       <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
@@ -875,7 +897,7 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
         <div style="font-size:0.78rem;font-weight:700;color:var(--vert);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem">● Argument 3 — La garantie remboursement</div>
         <p style="font-size:0.84rem"><strong>Ce qu'on dit :</strong> « On est tellement sûrs de trouver des failles dans votre magasin que si on ne trouve rien, on vous rembourse intégralement. Pas de discussion, pas de condition. Vous ne prenez aucun risque. »</p>
         <p style="font-size:0.84rem"><strong>Bénéfice client :</strong> « C'est une décision sans risque. Le seul risque, c'est de ne pas le faire et de continuer à perdre de l'argent. »</p>
-        <div style="background:#ece0c9;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Impact psychologique :</strong> Cette garantie supprime le principal frein à l'achat. En pratique, 100% de vos audits trouveront des failles — donc vous ne la déclencherez jamais.</div>
+        <div style="background:#e2f6d5;border-radius:8px;padding:0.7rem;margin-top:0.5rem;font-size:0.8rem"><strong>Impact psychologique :</strong> Cette garantie supprime le principal frein à l'achat. En pratique, 100% de vos audits trouveront des failles — donc vous ne la déclencherez jamais.</div>
       </div>
 
       <div style="border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem">
@@ -888,44 +910,44 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
 
     <div class="form-section">
       <h3>4. Gérer les objections — Les réponses exactes à donner</h3>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ C'est trop cher, 3 600 €.</div><p style="font-size:0.84rem">« Je comprends. Permettez-moi de vous poser une question : combien pensez-vous perdre chaque mois en vol ? Même si c'est 300 €, ça fait 3 600 € par an. Notre audit est amorti en un an environ. Et avec une réduction de 60% des pertes, vous récupérez cet argent rapidement. <strong>Ce n'est pas une dépense — c'est la seule décision qui vous coûte de l'argent si vous ne la prenez pas.</strong> »</p></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ J'ai déjà un système de vidéosurveillance.</div><p style="font-size:0.84rem">« Très bien. Et savez-vous combien d'angles morts il y a dans votre magasin ? Les voleurs, eux, le savent. Notre travail c'est justement de trouver ces zones que vos caméras ne voient pas, et que votre installateur n'a pas vus non plus. <strong>Les caméras enregistrent les vols. Nous, on les empêche.</strong> »</p></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Je n'ai pas beaucoup de vols dans mon magasin.</div><p style="font-size:0.84rem">« C'est ce que pensent la plupart de nos clients avant l'audit. En moyenne, on trouve 14 failles par magasin — même dans des commerces qui pensaient être bien protégés. <strong>Le vol que vous ne voyez pas est le plus dangereux.</strong> Les petits vols quotidiens sont souvent invisibles dans les inventaires mais représentent des milliers d'euros par an. »</p></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Je dois en parler à mon associé / ma direction.</div><p style="font-size:0.84rem">« Bien sûr. Pour vous aider dans cette discussion, est-ce que je peux vous envoyer notre plaquette avec les chiffres clés ? Et si vous voulez, on peut fixer un rendez-vous à trois pour que je présente directement la solution à votre associé. <strong>Ça vous ferait gagner du temps et vous auriez toutes les réponses en direct.</strong> »</p></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem"><div style="font-size:0.84rem;font-style:italic;color:#7a5500;margin-bottom:0.4rem">❝ Ce n'est pas le bon moment.</div><p style="font-size:0.84rem">« Je comprends. Juste une question : les voleurs, eux, attendent-ils le bon moment ? <strong>Chaque semaine sans audit, c'est des pertes qui continuent.</strong> On peut commencer par un simple rendez-vous de 20 minutes, sans engagement, pour que vous ayez une idée concrète de ce qu'on peut faire pour vous. »</p></div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#0b4c72;margin-bottom:0.4rem">❝ C'est trop cher, 3 600 €.</div><p style="font-size:0.84rem">« Je comprends. Permettez-moi de vous poser une question : combien pensez-vous perdre chaque mois en vol ? Même si c'est 300 €, ça fait 3 600 € par an. Notre audit est amorti en un an environ. Et avec une réduction de 60% des pertes, vous récupérez cet argent rapidement. <strong>Ce n'est pas une dépense — c'est la seule décision qui vous coûte de l'argent si vous ne la prenez pas.</strong> »</p></div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#0b4c72;margin-bottom:0.4rem">❝ J'ai déjà un système de vidéosurveillance.</div><p style="font-size:0.84rem">« Très bien. Et savez-vous combien d'angles morts il y a dans votre magasin ? Les voleurs, eux, le savent. Notre travail c'est justement de trouver ces zones que vos caméras ne voient pas, et que votre installateur n'a pas vus non plus. <strong>Les caméras enregistrent les vols. Nous, on les empêche.</strong> »</p></div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#0b4c72;margin-bottom:0.4rem">❝ Je n'ai pas beaucoup de vols dans mon magasin.</div><p style="font-size:0.84rem">« C'est ce que pensent la plupart de nos clients avant l'audit. En moyenne, on trouve 14 failles par magasin — même dans des commerces qui pensaient être bien protégés. <strong>Le vol que vous ne voyez pas est le plus dangereux.</strong> Les petits vols quotidiens sont souvent invisibles dans les inventaires mais représentent des milliers d'euros par an. »</p></div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-bottom:0.6rem"><div style="font-size:0.84rem;font-style:italic;color:#0b4c72;margin-bottom:0.4rem">❝ Je dois en parler à mon associé / ma direction.</div><p style="font-size:0.84rem">« Bien sûr. Pour vous aider dans cette discussion, est-ce que je peux vous envoyer notre plaquette avec les chiffres clés ? Et si vous voulez, on peut fixer un rendez-vous à trois pour que je présente directement la solution à votre associé. <strong>Ça vous ferait gagner du temps et vous auriez toutes les réponses en direct.</strong> »</p></div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem"><div style="font-size:0.84rem;font-style:italic;color:#0b4c72;margin-bottom:0.4rem">❝ Ce n'est pas le bon moment.</div><p style="font-size:0.84rem">« Je comprends. Juste une question : les voleurs, eux, attendent-ils le bon moment ? <strong>Chaque semaine sans audit, c'est des pertes qui continuent.</strong> On peut commencer par un simple rendez-vous de 20 minutes, sans engagement, pour que vous ayez une idée concrète de ce qu'on peut faire pour vous. »</p></div>
     </div>
 
     <div class="form-section">
       <h3>5. La présentation du prix — Comment annoncer les 3 600 €</h3>
       <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">N'annonce jamais le prix en premier. D'abord, construis la valeur. Ensuite seulement, présente le prix.</p>
       <div style="border:2px solid var(--vert);border-radius:14px;padding:1.3rem;text-align:center;margin-bottom:1rem">
-        <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--noir)">3 600 € TTC</div>
+        <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:2rem;color:var(--noir)">3 600 € TTC</div>
         <div style="font-size:0.8rem;color:#666;margin-top:2px">soit 3 000 € HT — Pack complet ShieldAudit</div>
         <div style="font-size:0.78rem;color:#888;font-style:italic;margin-top:0.6rem">✓ Garantie remboursement si aucune faille détectée<br>✓ Rapport sous 48h</div>
       </div>
       <div style="background:var(--vert-light);border-left:3px solid var(--vert);border-radius:6px;padding:0.9rem;font-size:0.85rem"><strong>La phrase exacte à dire pour annoncer le prix :</strong><br><em>« Notre pack complet est à 3 600 € TTC, tout inclus — l'audit terrain, le rapport avec photos et les recommandations. Et si on ne trouve aucune faille dans votre magasin, on vous rembourse intégralement. Vous ne prenez aucun risque. »</em></div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Après avoir annoncé le prix, tais-toi. Laisse le client réagir. Le silence qui suit est normal — laisse-le s'installer. C'est lui qui doit parler en premier après le prix.</div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#0b4c72">💡 Après avoir annoncé le prix, tais-toi. Laisse le client réagir. Le silence qui suit est normal — laisse-le s'installer. C'est lui qui doit parler en premier après le prix.</div>
     </div>
 
     <div class="form-section">
       <h3>6. Le closing — Conclure la vente</h3>
       <p style="font-size:0.85rem;color:#333;margin-bottom:0.8rem">Le closing, c'est le moment où tu transformes l'intérêt en décision. Ne laisse jamais la conversation se terminer sans proposer une prochaine étape concrète.</p>
-      <div style="background:var(--noir);color:white;border-radius:12px;padding:1.2rem">
-        <div style="font-weight:700;color:var(--vert);margin-bottom:0.8rem;font-size:0.9rem">Les 3 phrases de closing qui fonctionnent</div>
-        <div style="border-left:3px solid var(--vert);padding-left:0.8rem;margin-bottom:0.8rem"><em>« Est-ce que vous préférez qu'on commence en début ou en fin de semaine ? »</em><br><span style="font-size:0.75rem;color:#aaa">→ Tu proposes deux options, les deux mènent à la vente.</span></div>
-        <div style="border-left:3px solid var(--vert);padding-left:0.8rem;margin-bottom:0.8rem"><em>« On peut démarrer dès la semaine prochaine. Je vous envoie le contrat ce soir et on cale la date ensemble. »</em><br><span style="font-size:0.75rem;color:#aaa">→ Tu crées l'urgence et tu passes à l'action immédiatement.</span></div>
-        <div style="border-left:3px solid var(--vert);padding-left:0.8rem"><em>« La seule question c'est : est-ce que vous voulez continuer à perdre de l'argent chaque semaine, ou est-ce qu'on règle ça maintenant ? »</em><br><span style="font-size:0.75rem;color:#aaa">→ À utiliser si le client hésite depuis longtemps — formulation directe et percutante.</span></div>
+      <div style="background:var(--forest);color:white;border-radius:12px;padding:1.2rem">
+        <div style="font-weight:700;color:var(--lime);margin-bottom:0.8rem;font-size:0.9rem">Les 3 phrases de closing qui fonctionnent</div>
+        <div style="border-left:3px solid var(--lime);padding-left:0.8rem;margin-bottom:0.8rem"><em>« Est-ce que vous préférez qu'on commence en début ou en fin de semaine ? »</em><br><span style="font-size:0.75rem;color:rgba(255,255,255,.72)">→ Tu proposes deux options, les deux mènent à la vente.</span></div>
+        <div style="border-left:3px solid var(--lime);padding-left:0.8rem;margin-bottom:0.8rem"><em>« On peut démarrer dès la semaine prochaine. Je vous envoie le contrat ce soir et on cale la date ensemble. »</em><br><span style="font-size:0.75rem;color:rgba(255,255,255,.72)">→ Tu crées l'urgence et tu passes à l'action immédiatement.</span></div>
+        <div style="border-left:3px solid var(--lime);padding-left:0.8rem"><em>« La seule question c'est : est-ce que vous voulez continuer à perdre de l'argent chaque semaine, ou est-ce qu'on règle ça maintenant ? »</em><br><span style="font-size:0.75rem;color:rgba(255,255,255,.72)">→ À utiliser si le client hésite depuis longtemps — formulation directe et percutante.</span></div>
       </div>
     </div>
 
     <div class="form-section">
       <h3>7. Le processus — Ce qui se passe après la vente</h3>
       <div style="display:flex;flex-direction:column;gap:0.7rem">
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>1. Signature du contrat</strong> — Tu envoies le contrat ShieldAudit par email. Le client le signe et te le renvoie. 50% du montant convenu est encaissé à la signature.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>2. Planification de l'audit</strong> — Tu fixes la date avec le client. Il doit juste te confirmer les horaires d'ouverture. Il n'a pas besoin de prévenir son personnel.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>3. Audit terrain</strong> — Tu visites le magasin comme un client ordinaire. Tu testes les failles, tu prends des photos discrètes, tu notes tout. Durée : 3 à 5 heures.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>4. Rapport sous 48h</strong> — Tu rédiges le rapport avec photos, plans annotés et recommandations classées. Tu l'envoies au client.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>5. Restitution</strong> — Tu présentes le rapport en face à face au client. Le solde (50% restant) est encaissé à cette étape.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>1. Signature du contrat</strong> — Tu envoies le contrat ShieldAudit par email. Le client le signe et te le renvoie. 50% du montant convenu est encaissé à la signature.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>2. Planification de l'audit</strong> — Tu fixes la date avec le client. Il doit juste te confirmer les horaires d'ouverture. Il n'a pas besoin de prévenir son personnel.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>3. Audit terrain</strong> — Tu visites le magasin comme un client ordinaire. Tu testes les failles, tu prends des photos discrètes, tu notes tout. Durée : 3 à 5 heures.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>4. Rapport sous 48h</strong> — Tu rédiges le rapport avec photos, plans annotés et recommandations classées. Tu l'envoies au client.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem"><strong>5. Restitution</strong> — Tu présentes le rapport en face à face au client. Le solde (50% restant) est encaissé à cette étape.</div>
       </div>
     </div>
 
@@ -933,36 +955,36 @@ select{padding:0.6rem 0.9rem;border:1px solid var(--border);border-radius:100px;
       <h3>8. Ta commission</h3>
       <p style="font-size:0.85rem;color:#333;margin-bottom:1rem">Le prix étant sur devis (adapté à chaque magasin), tu touches <strong>10% du montant de la vente</strong> que tu conclus avec le gérant — quel que soit le prix négocié. Cette commission se cumule : chaque nouvelle vente ajoute sa propre commission, il n'y a pas de plafond.</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem">
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center">
-          <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--noir)">2 000 €</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center">
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.3rem;color:var(--noir)">2 000 €</div>
           <div style="font-size:0.72rem;color:#666;margin-top:2px">vente conclue</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">200 €</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">200 €</div>
           <div style="font-size:0.68rem;color:#888">ta commission</div>
         </div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center">
-          <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--noir)">3 000 €</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center">
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.3rem;color:var(--noir)">3 000 €</div>
           <div style="font-size:0.72rem;color:#666;margin-top:2px">vente conclue</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">300 €</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">300 €</div>
           <div style="font-size:0.68rem;color:#888">ta commission</div>
         </div>
-        <div style="background:#ece0c9;border-radius:10px;padding:1rem;text-align:center">
-          <div style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--noir)">5 000 €</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:1rem;text-align:center">
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.3rem;color:var(--noir)">5 000 €</div>
           <div style="font-size:0.72rem;color:#666;margin-top:2px">vente conclue</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">500 €</div>
+          <div style="font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:1.1rem;color:var(--vert);margin-top:0.5rem">500 €</div>
           <div style="font-size:0.68rem;color:#888">ta commission</div>
         </div>
       </div>
-      <div style="background:#fff8e8;border:1px solid #f0c040;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#7a5500">💡 Plus tu vends haut (sans jamais baisser le prix face au client), plus ta commission grimpe. C'est pour ça que la règle "ne descends jamais le prix" te sert aussi directement.</div>
+      <div style="background:#e6f0f6;border:1px solid #b9d3e3;border-radius:10px;padding:0.9rem;margin-top:1rem;font-size:0.8rem;color:#0b4c72">💡 Plus tu vends haut (sans jamais baisser le prix face au client), plus ta commission grimpe. C'est pour ça que la règle "ne descends jamais le prix" te sert aussi directement.</div>
     </div>
 
     <div class="form-section">
       <h3>9. Les 5 règles d'or du commercial ShieldAudit</h3>
       <div style="display:flex;flex-direction:column;gap:0.6rem">
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Écoute plus que tu ne parles.</strong> Laisse le client exprimer ses problèmes. Plus il parle de ses pertes, plus il se convainc lui-même.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Pose toujours la question des pertes.</strong> « Combien pensez-vous perdre par mois ? » — cette question seule crée le besoin.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Ne descends jamais le prix.</strong> La garantie remboursement remplace toute négociation. Si le client insiste, reviens dessus.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Toujours proposer une prochaine étape.</strong> Ne raccroche jamais sans un rendez-vous, un envoi de document, ou une date d'audit confirmée.</div>
-        <div style="background:#ece0c9;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Confiance et calme.</strong> Tu proposes une solution qui fonctionne. Tu n'as pas à convaincre — tu informes. Le client qui dit non perd de l'argent. Pas toi.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Écoute plus que tu ne parles.</strong> Laisse le client exprimer ses problèmes. Plus il parle de ses pertes, plus il se convainc lui-même.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Pose toujours la question des pertes.</strong> « Combien pensez-vous perdre par mois ? » — cette question seule crée le besoin.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Ne descends jamais le prix.</strong> La garantie remboursement remplace toute négociation. Si le client insiste, reviens dessus.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Toujours proposer une prochaine étape.</strong> Ne raccroche jamais sans un rendez-vous, un envoi de document, ou une date d'audit confirmée.</div>
+        <div style="background:#e2f6d5;border-radius:10px;padding:0.9rem;font-size:0.84rem">✓ <strong>Confiance et calme.</strong> Tu proposes une solution qui fonctionne. Tu n'as pas à convaincre — tu informes. Le client qui dit non perd de l'argent. Pas toi.</div>
       </div>
     </div>
 
@@ -1047,10 +1069,10 @@ function checkDevisCompliance(){
   if(!document.getElementById('d_magasin').value.trim()) manquants.push('nom du client');
   if((parseFloat(document.getElementById('d_ht').value)||0) <= 0) manquants.push('prix HT');
   if(manquants.length === 0){
-    el.style.cssText += 'background:var(--vert-light);border:1px solid #88ccaa;color:#085041';
+    el.style.cssText += 'background:var(--vert-light);border:1px solid #cdeab9;color:#163300';
     el.textContent = '✓ Devis en règle';
   } else {
-    el.style.cssText += 'background:#fff8e8;border:1px solid #f0c040;color:#7a5200';
+    el.style.cssText += 'background:#e6f0f6;border:1px solid #b9d3e3;color:#0b4c72';
     el.textContent = '⚠ Devis incomplet : ' + manquants.join(', ');
   }
 }
@@ -1154,7 +1176,7 @@ function renderClients(){
   });
   const counts={};
   state.clients.forEach(c=>{ counts[c.statut]=(counts[c.statut]||0)+1; });
-  const dotColors={prospect:'#cc9900',rdv:'#4466cc',envoye:'#7744cc',signe:'#2d6a4f',termine:'#777',perdu:'#cc3333'};
+  const dotColors={prospect:'#868685',rdv:'#0b4c72',envoye:'#054d28',signe:'#9fe870',termine:'#163300',perdu:'#cb272f'};
   document.getElementById('status-bar').innerHTML=Object.entries(counts).map(([s,n])=>
     `<div class="status-pill"><div class="dot" style="background:${dotColors[s]||'#999'}"></div>${n} ${STATUTS[s]||s}</div>`
   ).join('');
@@ -1279,7 +1301,7 @@ function openClientDocs(magasin){
       </div>
       <div style="display:flex;gap:0.4rem">
         <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem" onclick="${d.type==='rapport'?`viewRapportPdf(${d.id})`:`loadDocument(${d.id})`}">Voir</button>
-        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem;color:#cc3333;border-color:#e0a0a0" onclick="deleteDocument(${d.id})">Supprimer</button>
+        <button class="hbtn outline" style="font-size:0.75rem;padding:0.4rem 0.8rem;color:#cb272f;box-shadow:inset 0 0 0 1.5px #cb272f" onclick="deleteDocument(${d.id})">Supprimer</button>
       </div>
     </div>`).join('') : '<p style="color:var(--gris);text-align:center;padding:1rem 0">Aucun document enregistré pour ce client pour le moment.</p>';
   document.getElementById('docs-modal').classList.add('open');
@@ -1583,7 +1605,7 @@ function resetFacture(){ ['f_magasin','f_contact','f_adresse','f_email','f_tel',
     if(id==='f_iban'){ const t=document.getElementById('fp_iban'); if(t) t.textContent=el.value||'—'; }
   });
 });
-document.getElementById('f_statut_paiement').addEventListener('change',function(){ const badges={attente:'background:#fff8e8;color:#cc7700;border:1px solid #f0c040',partiel:'background:#e8f0ff;color:#3355bb;border:1px solid #99aadd',paye:'background:var(--vert-light);color:#085041;border:1px solid #88ccaa'}; const labels={attente:'EN ATTENTE',partiel:'ACOMPTE REÇU',paye:'PAYÉ ✓'}; const b=document.getElementById('f_badge_statut'); b.style.cssText+=';'+badges[this.value]; b.textContent=labels[this.value]; });
+document.getElementById('f_statut_paiement').addEventListener('change',function(){ const badges={attente:'background:#e8ebe6;color:#454745;border:1px solid #e8ebe6',partiel:'background:#e2f6d5;color:#163300;border:1px solid #cdeab9',paye:'background:#9fe870;color:#163300;border:1px solid #9fe870'}; const labels={attente:'EN ATTENTE',partiel:'ACOMPTE REÇU',paye:'PAYÉ ✓'}; const b=document.getElementById('f_badge_statut'); b.style.cssText+=';'+badges[this.value]; b.textContent=labels[this.value]; });
 calcFacture();
 
 // ===== RAPPORT - FAILLES =====
@@ -1679,7 +1701,7 @@ function initSig(id){
   canvas.width=Math.floor(r.width);
   canvas.height=Math.floor(r.height);
   const ctx=canvas.getContext('2d');
-  ctx.strokeStyle='#17140d';
+  ctx.strokeStyle='#0e0f0c';
   ctx.lineWidth=3;
   ctx.lineCap='round';
   ctx.lineJoin='round';
@@ -1750,10 +1772,10 @@ function buildPrintableHtml(bodyHtml){
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Arial,sans-serif;padding:20px;padding-bottom:80px;color:#1a1a1a;font-size:12px;line-height:1.6}
     table{width:100%;border-collapse:collapse}
-    th{background:#17140d;color:white;padding:8px 12px;text-align:left;font-size:11px}
-    td{padding:8px 12px;border-bottom:1px solid #efe6d0}
+    th{background:#163300;color:white;padding:8px 12px;text-align:left;font-size:11px}
+    td{padding:8px 12px;border-bottom:1px solid #e8ebe6}
     .fixed-bar{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;z-index:999;box-shadow:0 -4px 15px rgba(0,0,0,0.1)}
-    .print-btn{background:#2d6a4f;color:white;border:none;padding:12px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;font-family:Arial}
+    .print-btn{background:#163300;color:white;border:none;padding:12px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;font-family:Arial}
     .back-btn{background:#333;color:white;border:none;padding:12px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-weight:700;font-family:Arial}
     @media print{.fixed-bar{display:none!important}body{padding:10px}}
   </style></head>
